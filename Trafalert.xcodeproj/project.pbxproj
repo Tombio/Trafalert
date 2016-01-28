@@ -8,22 +8,56 @@
 
 /* Begin PBXBuildFile section */
 		E690661E1C5AA12C0039CE74 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E690661D1C5AA12C0039CE74 /* AppDelegate.swift */; };
-		E69066201C5AA12C0039CE74 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E690661F1C5AA12C0039CE74 /* FirstViewController.swift */; };
-		E69066221C5AA12C0039CE74 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69066211C5AA12C0039CE74 /* SecondViewController.swift */; };
 		E69066251C5AA12C0039CE74 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E69066231C5AA12C0039CE74 /* Main.storyboard */; };
 		E69066271C5AA12C0039CE74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E69066261C5AA12C0039CE74 /* Assets.xcassets */; };
-		E690662A1C5AA12C0039CE74 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E69066281C5AA12C0039CE74 /* LaunchScreen.storyboard */; };
+		E69066341C5AA30E0039CE74 /* road_weather_stations.csv in Resources */ = {isa = PBXBuildFile; fileRef = E69066331C5AA30E0039CE74 /* road_weather_stations.csv */; };
+		E69066361C5AA33E0039CE74 /* AlertInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69066351C5AA33E0039CE74 /* AlertInfoView.swift */; };
+		E69066381C5AA35F0039CE74 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69066371C5AA35F0039CE74 /* MapViewController.swift */; };
+		E690663A1C5AA4E20039CE74 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E69066391C5AA4E20039CE74 /* MapKit.framework */; };
+		E6D12AED1C5AA9E5005D8FE7 /* SwiftCSV.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = E6D12AEC1C5AA9E5005D8FE7 /* SwiftCSV.framework.dSYM */; };
+		E6D12AEF1C5AAA10005D8FE7 /* SwiftCSV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6D12AEE1C5AAA10005D8FE7 /* SwiftCSV.framework */; };
+		E6D12AF01C5AAA10005D8FE7 /* SwiftCSV.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E6D12AEE1C5AAA10005D8FE7 /* SwiftCSV.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E6D12AF31C5AC134005D8FE7 /* WeatherStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D12AF21C5AC134005D8FE7 /* WeatherStation.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E6D12AEB1C5AA9CA005D8FE7 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				E6D12AED1C5AA9E5005D8FE7 /* SwiftCSV.framework.dSYM in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E6D12AF11C5AAA11005D8FE7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E6D12AF01C5AAA10005D8FE7 /* SwiftCSV.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		E690661A1C5AA12C0039CE74 /* Trafalert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trafalert.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E690661D1C5AA12C0039CE74 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E690661F1C5AA12C0039CE74 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		E69066211C5AA12C0039CE74 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		E69066241C5AA12C0039CE74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E69066261C5AA12C0039CE74 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E69066291C5AA12C0039CE74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E690662B1C5AA12C0039CE74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E69066311C5AA2B30039CE74 /* SwiftCSV.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftCSV.framework; path = Carthage/Build/iOS/SwiftCSV.framework; sourceTree = "<group>"; };
+		E69066331C5AA30E0039CE74 /* road_weather_stations.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = road_weather_stations.csv; sourceTree = "<group>"; };
+		E69066351C5AA33E0039CE74 /* AlertInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertInfoView.swift; sourceTree = "<group>"; };
+		E69066371C5AA35F0039CE74 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		E69066391C5AA4E20039CE74 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		E6D12AEC1C5AA9E5005D8FE7 /* SwiftCSV.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = SwiftCSV.framework.dSYM; path = Carthage/Build/iOS/SwiftCSV.framework.dSYM; sourceTree = "<group>"; };
+		E6D12AEE1C5AAA10005D8FE7 /* SwiftCSV.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftCSV.framework; path = Carthage/Build/iOS/SwiftCSV.framework; sourceTree = "<group>"; };
+		E6D12AF21C5AC134005D8FE7 /* WeatherStation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherStation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +65,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E690663A1C5AA4E20039CE74 /* MapKit.framework in Frameworks */,
+				E6D12AEF1C5AAA10005D8FE7 /* SwiftCSV.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +76,10 @@
 		E69066111C5AA12C0039CE74 = {
 			isa = PBXGroup;
 			children = (
+				E6D12AEE1C5AAA10005D8FE7 /* SwiftCSV.framework */,
+				E6D12AEC1C5AA9E5005D8FE7 /* SwiftCSV.framework.dSYM */,
+				E69066391C5AA4E20039CE74 /* MapKit.framework */,
+				E69066311C5AA2B30039CE74 /* SwiftCSV.framework */,
 				E690661C1C5AA12C0039CE74 /* Trafalert */,
 				E690661B1C5AA12C0039CE74 /* Products */,
 			);
@@ -56,13 +96,14 @@
 		E690661C1C5AA12C0039CE74 /* Trafalert */ = {
 			isa = PBXGroup;
 			children = (
+				E69066331C5AA30E0039CE74 /* road_weather_stations.csv */,
 				E690661D1C5AA12C0039CE74 /* AppDelegate.swift */,
-				E690661F1C5AA12C0039CE74 /* FirstViewController.swift */,
-				E69066211C5AA12C0039CE74 /* SecondViewController.swift */,
 				E69066231C5AA12C0039CE74 /* Main.storyboard */,
 				E69066261C5AA12C0039CE74 /* Assets.xcassets */,
-				E69066281C5AA12C0039CE74 /* LaunchScreen.storyboard */,
 				E690662B1C5AA12C0039CE74 /* Info.plist */,
+				E69066351C5AA33E0039CE74 /* AlertInfoView.swift */,
+				E69066371C5AA35F0039CE74 /* MapViewController.swift */,
+				E6D12AF21C5AC134005D8FE7 /* WeatherStation.swift */,
 			);
 			path = Trafalert;
 			sourceTree = "<group>";
@@ -77,6 +118,8 @@
 				E69066161C5AA12C0039CE74 /* Sources */,
 				E69066171C5AA12C0039CE74 /* Frameworks */,
 				E69066181C5AA12C0039CE74 /* Resources */,
+				E6D12AEB1C5AA9CA005D8FE7 /* CopyFiles */,
+				E6D12AF11C5AAA11005D8FE7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -99,6 +142,14 @@
 				TargetAttributes = {
 					E69066191C5AA12C0039CE74 = {
 						CreatedOnToolsVersion = 7.2;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -125,7 +176,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E690662A1C5AA12C0039CE74 /* LaunchScreen.storyboard in Resources */,
+				E69066341C5AA30E0039CE74 /* road_weather_stations.csv in Resources */,
 				E69066271C5AA12C0039CE74 /* Assets.xcassets in Resources */,
 				E69066251C5AA12C0039CE74 /* Main.storyboard in Resources */,
 			);
@@ -138,9 +189,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E69066221C5AA12C0039CE74 /* SecondViewController.swift in Sources */,
 				E690661E1C5AA12C0039CE74 /* AppDelegate.swift in Sources */,
-				E69066201C5AA12C0039CE74 /* FirstViewController.swift in Sources */,
+				E6D12AF31C5AC134005D8FE7 /* WeatherStation.swift in Sources */,
+				E69066381C5AA35F0039CE74 /* MapViewController.swift in Sources */,
+				E69066361C5AA33E0039CE74 /* AlertInfoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,14 +205,6 @@
 				E69066241C5AA12C0039CE74 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		E69066281C5AA12C0039CE74 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E69066291C5AA12C0039CE74 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -251,6 +295,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Trafalert/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.studiowannabe.Trafalert;
@@ -262,6 +310,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Trafalert/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.studiowannabe.Trafalert;
@@ -288,6 +340,7 @@
 				E69066301C5AA12C0039CE74 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
