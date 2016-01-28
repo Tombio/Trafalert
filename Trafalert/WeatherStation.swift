@@ -9,12 +9,31 @@
 import Foundation
 import MapKit
 
-struct WeatherStation {
+class WeatherStation: NSObject, MKAnnotation {
     
     let name: String
     let roadNumber: Int
-    let latitude: Double
-    let longitude: Double
-    let annotation: MKAnnotation
+    let latitude: CLLocationDegrees
+    let longitude: CLLocationDegrees
     
+    // MARK: MKAnnotation impl
+    var coordinate: CLLocationCoordinate2D {
+        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
+    
+    var title: String? {
+        return self.name
+    }
+    
+    var subtitle: String? {
+        return "Road \(self.roadNumber)"
+    }
+    
+    init(_ name: String, _ roadNumber: Int, _ latitude: CLLocationDegrees, _ longitude: CLLocationDegrees){
+        self.name = name
+        self.roadNumber = roadNumber
+        self.latitude = latitude
+        self.longitude = longitude
+        super.init()
+    }
 }
