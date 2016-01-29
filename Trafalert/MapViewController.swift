@@ -65,11 +65,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         do {
             tsv = try CSV(contentsOfFile: fileLocation, delimiter: semicolon, encoding: NSUTF8StringEncoding)
             for row in tsv.rows {
+                let id = Int(row["NUMERO"]!)!
                 let title = row["NIMI_FI"]!
                 let latitude = Double(row["Y"]!)!
                 let longitude = Double(row["X"]!)!
                 
-                let station = WeatherStation(title, Int(row["TIE"]!)!, latitude, longitude)
+                let station = WeatherStation(id, title, Int(row["TIE"]!)!, latitude, longitude)
                 ret.append(station)
             }
         }
