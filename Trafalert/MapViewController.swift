@@ -9,22 +9,19 @@
 import Foundation
 import MapKit
 import UIKit
-import SwiftCSV
+
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
 
-    let locationManager = CLLocationManager()
-    let weatherStation = MapViewController.initStationList()
+    let locationHandler = LocationManagerHandler()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationManager.delegate = self
         mapView.delegate = self
-        locationManager.requestAlwaysAuthorization()
-        for ws in weatherStation {
-            mapView.addOverlay(MKCircle(centerCoordinate: ws.coordinate, radius: 2000))
+        for ws in LocationManagerHandler.weatherStations {
+            mapView.addOverlay(WeatherStationOverlay.createOverlay(ws.coordinate, 2000, ws.name))
         }
     }
     
@@ -47,37 +44,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
 
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+        let wsOverlay = overlay as! WeatherStationOverlay
         let circleRenderer = MKCircleRenderer(overlay: overlay)
         circleRenderer.lineWidth = 1.0
-        circleRenderer.strokeColor = UIColor.purpleColor()
-        circleRenderer.fillColor = UIColor.purpleColor().colorWithAlphaComponent(0.4)
+        let color = self.locationHandler.listeningRegion(wsOverlay.stationName!) ? UIColor.greenColor() : UIColor.purpleColor()
+        circleRenderer.strokeColor = color
+        circleRenderer.fillColor = color.colorWithAlphaComponent(0.3)
         return circleRenderer
-    }
-
-    
-    // MARK: Static initialization of Weather Station data
-    
-    static func initStationList() -> [WeatherStation] {
-        var ret = [WeatherStation]()
-        let fileLocation = NSBundle.mainBundle().pathForResource("road_weather_stations", ofType: "csv")!
-        let semicolon = NSCharacterSet(charactersInString: ";")
-        let tsv: CSV!
-        do {
-            tsv = try CSV(contentsOfFile: fileLocation, delimiter: semicolon, encoding: NSUTF8StringEncoding)
-            for row in tsv.rows {
-                let id = Int(row["NUMERO"]!)!
-                let title = row["NIMI_FI"]!
-                let latitude = Double(row["Y"]!)!
-                let longitude = Double(row["X"]!)!
-                
-                let station = WeatherStation(id, title, Int(row["TIE"]!)!, latitude, longitude)
-                ret.append(station)
-            }
-        }
-        catch _ {
-            fatalError("Unable to read Weather Station info")
-        }
-        
-        return ret
     }
 }

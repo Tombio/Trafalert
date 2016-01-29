@@ -50,18 +50,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     // MARK: CLLocationManagerDelegate
     
     func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        // Ask from server info about entered region
         
     }
     
     func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
-        
+        // NOP
     }
-    
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        // Here we check that we have 5 closest regions at surveillance and update locationManager accordingly
-        
-    }
-
-
 }
 

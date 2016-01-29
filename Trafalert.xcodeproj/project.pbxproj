@@ -18,6 +18,7 @@
 		E6D12AEF1C5AAA10005D8FE7 /* SwiftCSV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6D12AEE1C5AAA10005D8FE7 /* SwiftCSV.framework */; };
 		E6D12AF01C5AAA10005D8FE7 /* SwiftCSV.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E6D12AEE1C5AAA10005D8FE7 /* SwiftCSV.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E6D12AF31C5AC134005D8FE7 /* WeatherStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D12AF21C5AC134005D8FE7 /* WeatherStation.swift */; };
+		E6D12AF51C5C0292005D8FE7 /* WeatherStationOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D12AF41C5C0292005D8FE7 /* WeatherStationOverlay.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -58,6 +59,7 @@
 		E6D12AEC1C5AA9E5005D8FE7 /* SwiftCSV.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = SwiftCSV.framework.dSYM; path = Carthage/Build/iOS/SwiftCSV.framework.dSYM; sourceTree = "<group>"; };
 		E6D12AEE1C5AAA10005D8FE7 /* SwiftCSV.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftCSV.framework; path = Carthage/Build/iOS/SwiftCSV.framework; sourceTree = "<group>"; };
 		E6D12AF21C5AC134005D8FE7 /* WeatherStation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherStation.swift; sourceTree = "<group>"; };
+		E6D12AF41C5C0292005D8FE7 /* WeatherStationOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherStationOverlay.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				E69066351C5AA33E0039CE74 /* AlertInfoView.swift */,
 				E69066371C5AA35F0039CE74 /* MapViewController.swift */,
 				E6D12AF21C5AC134005D8FE7 /* WeatherStation.swift */,
+				E6D12AF41C5C0292005D8FE7 /* WeatherStationOverlay.swift */,
 			);
 			path = Trafalert;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 				E690661E1C5AA12C0039CE74 /* AppDelegate.swift in Sources */,
 				E6D12AF31C5AC134005D8FE7 /* WeatherStation.swift in Sources */,
 				E69066381C5AA35F0039CE74 /* MapViewController.swift in Sources */,
+				E6D12AF51C5C0292005D8FE7 /* WeatherStationOverlay.swift in Sources */,
 				E69066361C5AA33E0039CE74 /* AlertInfoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
