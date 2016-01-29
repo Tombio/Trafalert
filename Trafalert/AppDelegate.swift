@@ -10,13 +10,21 @@ import UIKit
 import CoreLocation
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 
     var window: UIWindow?
     let locationManager = CLLocationManager()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        // setup location manager to receive updates all the time
+        let status = CLLocationManager.authorizationStatus()
+        if status == .NotDetermined || status == .Denied || status == .AuthorizedWhenInUse {
+            locationManager.requestAlwaysAuthorization()
+        }
+        locationManager.requestAlwaysAuthorization()
+        locationManager.allowsBackgroundLocationUpdates = true
+        locationManager.delegate = self
         return true
     }
 
@@ -37,6 +45,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(application: UIApplication) {
+    }
+    
+    // MARK: CLLocationManagerDelegate
+    
+    func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        
+    }
+    
+    func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
+        
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        // Here we check that we have 5 closest regions at surveillance and update locationManager accordingly
+        
     }
 
 
