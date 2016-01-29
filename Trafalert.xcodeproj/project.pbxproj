@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E6267BA51C5C238700A95763 /* Bond.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6267BA41C5C238700A95763 /* Bond.framework */; };
+		E6267BA61C5C238700A95763 /* Bond.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E6267BA41C5C238700A95763 /* Bond.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E690661E1C5AA12C0039CE74 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E690661D1C5AA12C0039CE74 /* AppDelegate.swift */; };
 		E69066251C5AA12C0039CE74 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E69066231C5AA12C0039CE74 /* Main.storyboard */; };
 		E69066271C5AA12C0039CE74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E69066261C5AA12C0039CE74 /* Assets.xcassets */; };
@@ -39,6 +41,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				E6D12AF01C5AAA10005D8FE7 /* SwiftCSV.framework in Embed Frameworks */,
+				E6267BA61C5C238700A95763 /* Bond.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -46,6 +49,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E6267BA41C5C238700A95763 /* Bond.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bond.framework; path = Carthage/Build/iOS/Bond.framework; sourceTree = "<group>"; };
 		E690661A1C5AA12C0039CE74 /* Trafalert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trafalert.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E690661D1C5AA12C0039CE74 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E69066241C5AA12C0039CE74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -67,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6267BA51C5C238700A95763 /* Bond.framework in Frameworks */,
 				E690663A1C5AA4E20039CE74 /* MapKit.framework in Frameworks */,
 				E6D12AEF1C5AAA10005D8FE7 /* SwiftCSV.framework in Frameworks */,
 			);
@@ -78,6 +83,7 @@
 		E69066111C5AA12C0039CE74 = {
 			isa = PBXGroup;
 			children = (
+				E6267BA41C5C238700A95763 /* Bond.framework */,
 				E6D12AEE1C5AAA10005D8FE7 /* SwiftCSV.framework */,
 				E6D12AEC1C5AA9E5005D8FE7 /* SwiftCSV.framework.dSYM */,
 				E69066391C5AA4E20039CE74 /* MapKit.framework */,

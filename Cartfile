@@ -1,1 +1,2 @@
 github "naoty/SwiftCSV" ~> 0.1.1
+github "SwiftBond/Bond" ~> 4.0

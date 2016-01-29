@@ -9,7 +9,7 @@
 import Foundation
 import MapKit
 import UIKit
-
+import Bond
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
@@ -22,6 +22,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         mapView.delegate = self
         for ws in LocationManagerHandler.weatherStations {
             mapView.addOverlay(WeatherStationOverlay.createOverlay(ws.coordinate, 2000, ws.name))
+        }
+        
+        locationHandler.monitoredLocations.observe { value in
+            self.mapView.setNeedsDisplay()
         }
     }
     

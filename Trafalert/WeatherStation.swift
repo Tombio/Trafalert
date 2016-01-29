@@ -9,6 +9,7 @@
 import Foundation
 import MapKit
 import SwiftCSV
+import Bond
 
 struct WeatherStation {
     
@@ -33,11 +34,12 @@ class LocationManagerHandler: NSObject, CLLocationManagerDelegate {
     
     let locationManager = CLLocationManager()
     static var weatherStations = LocationManagerHandler.initStationList()
-    var monitoredLocations = Set<CLRegion>()
+    var monitoredLocations = Observable(Set<CLRegion>())
     
     override init(){
         super.init()
         self.locationManager.delegate = self
+        self.locationManager.startUpdatingLocation()
         setupRegionListening(locationManager.location!)
     }
 
@@ -48,16 +50,24 @@ class LocationManagerHandler: NSObject, CLLocationManagerDelegate {
         })
         
         let nearestStations = LocationManagerHandler.weatherStations[0..<4]
-        monitoredLocations.removeAll()
+        monitoredLocations.value.removeAll()
+        clearLocationMonitors()
+        
         for weatherStation in nearestStations {
             let region = CLCircularRegion(center: weatherStation.location.coordinate, radius: 2000, identifier: weatherStation.name)
-            monitoredLocations.insert(region)
+            monitoredLocations.value.insert(region)
             locationManager.startMonitoringForRegion(region)
         }
     }
     
-    func listeningRegion(identifier: String) -> Bool {
+    func clearLocationMonitors() {
         for region in locationManager.monitoredRegions {
+            locationManager.stopMonitoringForRegion(region)
+        }
+    }
+    
+    func listeningRegion(identifier: String) -> Bool {
+        for region in monitoredLocations.value {
             if region.identifier == identifier {
                 return true
             }
