@@ -544,4 +544,49 @@ NUMERO;TSA_NIMI;NIMI_FI;NIMI_SE;NIMI_EN;TIE;TIEOSA;ETAISYYS;X;Y;KORKEUS;KUNTAKOO
 13013;vt5_Suomussalmi_Pisto_R;Tie 5 Suomussalmi Pisto;Väg 5 Suomussalmi Pisto;Road 5 Suomussalmi Pisto;5;339;3707;29.03814078790805;65.42587770485387;0;777;Suomussalmi;Kainuu
 13001;vt6_Korholanmäki_R;Tie 6 Sotkamo, Korholanmäk;Väg 6 Sotkamo, Korholanmäki;Road 6 Sotkamo, Korholanmäki;6;435;468;27.997210604379173;64.14230698605921;220;765;Sotkamo;Kainuu
 13003;vt22_Liminpuro_R;Tie 22 Vaala, Liminpuro;Väg 22 Vaala, Liminpuro;Road 22 Vaala, Liminpuro;22;22;5333;27.241302583188492;64.53364593059827;125;785;Vaala;Kainuu
-12035;vt28_Kokkosuo_R;Tie 28 Kokkosuo;Väg 28 Kokkosuo;Road 28 Kokkosuo;28;43;39;26.961940196580077;64.11398967331486;13;94
+12035;vt28_Kokkosuo_R;Tie 28 Kokkosuo;Väg 28 Kokkosuo;Road 28 Kokkosuo;28;43;39;26.961940196580077;64.11398967331486;13;940;Vuolijoki;Kainuu
+13006;kt76_Tervasalmi_R;Tie 76 Kuhmo, Tervasalmi;Väg 76 Kuhmo, Tervasalmi;Road 76 Kuhmo, Tervasalmi;76;10;712;29.105058786025563;64.08495417236227;175;290;Kuhmo;Kainuu
+13005;kt78_Paasikoski_R;Tie 78 Puolanka, Paasikosk;Väg 78 Puolango, Paasikoski;Road 78 Puolanka, Paasikoski;78;116;185;27.701835595988378;65.03369175482766;190;620;Puolanka;Kainuu
+13012;kt89_Kuusamonkylä_R;Tie 89 Kuhmo, Kuusamonkylä;Väg 89 Kuhmo, Kuusamonkylä;Road 89 Kuhmo, Kuusamonkylä;89;13;520;29.334757924058835;64.43350823344902;220;290;Kuhmo;Kainuu
+14044;vt4_Simo_Opt;Tie 4, Simo;Väg 4, Simo;Road 4, Simo;4;420;5990;24.93076267641921;65.66915343107037;0;751;Simo;Lappi
+14039;vt4_Siikalahti_R;Tie 4 Siikalahti;Väg 4 Siikalahti;Road 4 Siikalahti;4;424;2805;24.624972984472862;65.68419177247927;4;240;Kemi;Lappi
+14040;vt4_Siikalahti_O;Tie 4 Siikalahti;Väg 4 Siikalahti;Road 4 Siikalahti;4;424;2806;24.624972984472862;65.68419177247927;4;240;Kemi;Lappi
+14041;vt4_Siikalahti_Opt;Tie 4 Siikalahti;Väg 4 Siikalahti;Road 4 Siikalahti;4;424;2807;24.624972984472862;65.68419177247927;4;240;Kemi;Lappi
+14036;vt4_Ristikangas_R;Tie 4 Ristikangas;Väg 4 Ristikangas;Road 4 Ristikangas;4;425;4465;24.57354395942387;65.72501835521554;36;240;Kemi;Lappi
+14037;vt4_Ristikangas_O;Tie 4 Ristikangas;Väg 4 Ristikangas;Road 4 Ristikangas;4;425;4466;24.57354395942387;65.72501835521554;36;240;Kemi;Lappi
+14038;vt4_Ristikangas_Opt;Tie 4 Ristikangas;Väg 4 Ristikangas;Road 4 Ristikangas;4;425;4467;24.57354395942387;65.72501835521554;36;240;Kemi;Lappi
+14020;vt4_Isohaara_R;Tie 4 Keminmaa, Isohaara;Väg 4 Keminmaa, Isohaara;Road 4 Keminmaa, Isohaara;4;426;4160;24.53220479014545;65.7895045383581;8;241;Keminmaa;Lappi
+14025;vt4_Isohaara_O;Tie 4 Isohaara;Väg 4 Isohaara;Road 4 Isohaara;4;426;4161;24.53220479014545;65.7895045383581;8;241;Keminmaa;Lappi
+14008;vt4_Paakkola_R;Tie 4 Tervola, Paakkola;Väg 4 Tervola, Paakkola;Road 4 Tervola, Paakkola;4;431;2035;24.689779397072385;66.00096789862947;33;845;Tervola;Lappi
+14033;vt4_Paakkola_Opt;Tie 4 Tervola, Paakkola;Väg 4 Tervola, Paakkola;Road 4 Tervola, Paakkola;4;431;2035;24.689779397072385;66.00096789862947;33;845;Tervola;Lappi
+14002;vt4_Jaatila_R;Tie 4 Rovaniemi, Jaatila;Väg 4 Rovaniemi, Jaatila;Road 4 Rovaniemi, Jaatila;4;443;164;25.33886841756541;66.25244309627247;50;698;Rovaniemi;Lappi
+14032;vt4_Jaatila_Opt;Tie 4 Rovaniemi, Jaatila;Väg 4 Rovaniemi, Jaatila;Road 4 Rovaniemi, Jaatila;4;443;164;25.33886841756541;66.25244309627247;50;698;Rovaniemi;Lappi
+14034;vt4_Revontuli_R;Tie 4, Rovaniemi;Väg 4, Rovaniemi;Road 4, Rovaniemi;4;501;1000;25.73086811100074;66.50681156366018;90;698;Rovaniemi;Lappi
+14031;vt4_Santa_Claus_Opt;Tie 4 Rovaniemi, Santa Claus;Väg 4 Rovaniemi, Santa Claus;Road 4 Rovaniemi, Santa Claus;4;502;2744;25.78511741885655;66.53825051953521;122;698;Rovaniemi;Lappi
+14009;vt4_Napapiiri_R;Tie 4 Rovaniemi, Napapiiri;Väg 4 Rovaniemi, Polar cirke;Road 4 Rovaniemi, Arctic circl;4;503;701;25.84600343242798;66.54764708287964;162;698;Rovaniemi;Lappi
+14004;vt4_Vuojärvi_R;Tie 4 Sodankylä, Vuojärvi;Väg 4 Sodankylä, Vuojärvi;Road 4 Sodankylä, Vuojärvi;4;515;8562;26.545535005662654;67.06956301079886;220;758;Sodankylä;Lappi
+14007;vt4_Porttipahta_R;Tie 4 Sodankylä, Porttipah;Väg 4 Sodankylä, Porttipahta;Road 4 Sodankylä, Porttipahta;4;538;127;26.888505101870088;67.99015612823537;240;758;Sodankylä;Lappi
+14003;vt4_Saariselkä_R;Tie 4 Inari, Saariselkä;Väg 4 Enare, Saariselkä;Road 4 Inari, Saariselkä;4;549;3180;27.42531477268455;68.4567818988138;362;148;Inari;Lappi
+14016;vt4_Petsikko_R;Tie 4 Utsjoki, Petsikko;Väg 4 Utsjoki, Petsikko;Road 4 Utsjoki, Petsikko;4;573;3725;27.240760015183792;69.44509417388753;284;890;Utsjoki;Lappi
+14030;vt5_Suomu_K;Tie 5 Suomu;Väg 5 Suomu;Road 5 Suomu;5;375;528;28.10624409337995;66.55247743446414;190;320;Kemijärvi;Lappi
+14017;vt5_Kairala_R;Tie 5 Pelkosenniemi, Kaira;Väg 5 Pelkosenniemi, Kairala;Road 5 Pelkosenniemi, Kairala;5;413;902;27.43756881897435;67.19246094642261;157;583;Pelkosenniemi;Lappi
+14010;vt21_Kukkola_R;Tie 21 Tornio, Kukkola;Väg 21 Torneå, Kukkola;Road 21 Tornio, Kukkola;21;108;45;24.058930106047942;65.96686702739295;29;851;Tornio;Lappi
+14005;vt21_Kattilakoski_R;Tie 21 Ylitornio, Kattilak;Väg 21 Övertorneå, Kattilako;Road 21 Ylitornio, Kattilakosk;21;121;7576;23.790099587479755;66.51090907159366;65;976;Ylitornio;Lappi
+14011;vt21_Sieppijärvi_R;Tie 21 Kolari, Sieppijärvi;Väg 21 Kolari, Sieppijärvi;Road 21 Kolari, Sieppijärvi;21;133;7895;24.0488231789681;67.00339778355315;135;854;Pello;Lappi
+14018;vt21_Tapojärvi_R;Tie 21 Muonio, Tapojärvi;Väg 21 Muonio, Tapojärvi;Road 21 Muonio, Tapojärvi;21;148;4330;23.628818256460082;67.53192413912755;183;498;Muonio;Lappi
+14042;vt21_Palojoensuu_K;Tie 21 Palojoensuu;Väg 21 Palojoensuu;Road 21 Palojoensuu;21;210;392;23.0796016770067;68.28765520323871;0;47;Enontekiö;Lappi
+14019;vt21_Saarikoski_R;Tie 21 Enontekiö, Saarikos;Väg 21 Enontekis, Saarikoski;Road 21 Enontekiö, Saarikoski;21;229;9323;21.251917746829015;68.80679319315286;444;47;Enontekiö;Lappi
+14021;vt29_Luukkaankangas_R;Tie 29 Luukkaankangas;Väg 29 Luukkaankangas;Road 29 Luukkaankangas;29;1;4053;24.4083189420391;65.82546753738988;20;851;Tornio;Lappi
+14022;vt29_Luukkaankangas_O;Tie 29 Luukkaankangas;Väg 29 Luukkaankangas;Road 29 Luukkaankangas;29;1;4053;24.4083189420391;65.82546753738988;20;851;Tornio;Lappi
+14023;vt29_Kyläjoki_R;Tie 29 Kyläjoki;Väg 29 Kyläjoki;Road 29 Kyläjoki;29;2;796;24.262493693170047;65.83574153990624;6;851;Tornio;Lappi
+14024;vt29_Kyläjoki_O;Tie 29 Kyläjoki;Väg 29 Kyläjoki;Road 29 Kyläjoki;29;2;797;24.262493693170047;65.83574153990624;6;851;Tornio;Lappi
+14029;vt29_Kyläjoki_Opt;Tie 29 Kyläjoki;Väg 29 Kyläjoki;Road 29 Kyläjoki;29;2;798;24.262493693170047;65.83574153990624;6;851;Tornio;Lappi
+14012;kt78_Saukkokangas_R;Tie 78 Ranua, Saukkokangas;Väg 78 Ranua, Saukkokangas;Road 78 Ranua, Saukkokangas;78;217;5528;26.247240164809757;66.15727000028089;200;683;Ranua;Lappi
+14015;kt79_Lohiniva_R;Tie 79 Kittilä, Lohiniva;Väg 79 Kittilä, Lohiniva;Road 79 Kittilä, Lohiniva;79;19;4511;24.92688415697047;67.20028747017214;171;261;Kittilä;Lappi
+14013;kt82_Kalliosalmi_R;Tie 82 Rovaniemi, Kalliosa;Väg 82 Rovaniemi, Kalliosalm;Road 82 Rovaniemi, Kalliosalmi;82;4;5827;26.64555320921234;66.67615506293754;180;698;Rovaniemi;Lappi
+14014;kt83_Raanujärvi_R;Tie 83 Ylitornio, Raanujär;Väg 83 Övertorneå, Raanujärv;Road 83 Ylitornio, Raanujärvi;83;10;5188;24.846923403622128;66.64476170791652;102;976;Ylitornio;Lappi
+14026;st863_Sirniö_K;Tie 863 Posio, Sirniö;Väg 863 Posio, Sirniö;Road 863 Posio, Sirniö;863;9;2400;28.08685539205376;65.83404443136408;277;614;Posio;Lappi
+14001;st921_Kaakamo_R;Tie 921 Tornio, Kaakamo;Väg 921 Torneå, Kaakamo;Road 921 Tornio, Kaakamo;921;2;1418;24.457765905920255;65.8079462742766;4;851;Tornio;Lappi
+14043;st962_Pyhätunturi_K;Tie 962, Pelkosenniemi, Py;Väg 962, Pelkosenniemi, Pyhä;Road 962, Pelkosenniemi, Pyhät;962;7;3980;27.21440577821001;67.0432178462913;0;583;Pelkosenniemi;Lappi
+14027;st970_Nuorgam_K;Tie 970 Utsjoki, Nuorgam;Väg 970 Utsjoki, Nuorgam;Road 970 Utsjoki, Nuorgam;970;22;1577;27.94154652209803;70.08869779355518;11;890;Utsjoki;Lappi
+14028;yt9401_Ylläs_maisematie_R;Tie 9401 Ylläs, maisematie;Väg 9401 Ylläs, landskapväge;Road 9401 Ylläs, scenery route;9401;1;6810;24.178319801932574;67.56409328425744;390;273;Kolari;Lappi
