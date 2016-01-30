@@ -14,7 +14,7 @@
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
                     </layoutGuides>
                     <stackView key="view" opaque="NO" contentMode="scaleToFill" axis="vertical" id="jr9-jo-Hpp">
-                        <rect key="frame" x="0.0" y="0.0" width="110" height="200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uN2-7Z-lvj" userLabel="Container top">
@@ -41,7 +41,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular-widthClass=compact" ambiguous="YES">
+                                        <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
                                             <rect key="frame" x="0.0" y="0.0" width="134" height="0.0"/>
                                         </variation>
                                     </label>
@@ -50,7 +50,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular-widthClass=compact" ambiguous="YES">
+                                        <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
                                             <rect key="frame" x="134" y="0.0" width="133" height="0.0"/>
                                         </variation>
                                     </label>
@@ -59,7 +59,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular-widthClass=compact" ambiguous="YES">
+                                        <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
                                             <rect key="frame" x="267" y="0.0" width="134" height="0.0"/>
                                         </variation>
                                     </label>
@@ -191,7 +191,12 @@
         <scene sceneID="PYZ-ee-bZh">
             <objects>
                 <viewController id="vef-4n-yhG" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IvQ-2d-90M"/>
+                        <viewControllerLayoutGuide type="bottom" id="MAY-dT-s4B"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="NLQ-hN-C4L">
+                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -204,7 +209,12 @@
         <scene sceneID="4Ph-jX-7v4">
             <objects>
                 <viewController id="BjG-Sd-ssJ" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JXA-t2-3I2"/>
+                        <viewControllerLayoutGuide type="bottom" id="bYa-ci-B6r"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="24y-CA-9ef">
+                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
