@@ -4,7 +4,7 @@
 
 ## IDEA project
 *.idea*
-
+*/target*
 ## Build generated
 build/
 DerivedData/

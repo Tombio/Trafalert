@@ -4,11 +4,9 @@ package com.studiowannabe.trafalert.domain;
  * Created by Tomi on 31/01/16.
  */
 
-import lombok.Data;
-
 import java.time.LocalDateTime;
 
-public @Data class Warning {
+public interface Warning {
 
     enum WarningType {
         BLACK_ICE("Black ice"),
@@ -25,6 +23,6 @@ public @Data class Warning {
         }
     }
 
-    private final WarningType warningType;
-    private final LocalDateTime beginTime;
+    WarningType getWarningType();
+    LocalDateTime getBeginTime();
 }
