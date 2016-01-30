@@ -12,6 +12,7 @@ import MapKit
 class WeatherStationOverlay: MKCircle {
     
     var stationName: String?
+    var active: Bool = false
     
     class func createOverlay(coord: CLLocationCoordinate2D, _ radius: CLLocationDistance, _ name: String) -> MKCircle {
         let circle = WeatherStationOverlay(centerCoordinate: coord, radius: radius)

@@ -43,6 +43,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
+    
+    func application(application: UIApplication, willFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
+        self.locationManager.startMonitoringSignificantLocationChanges()
+        return true
+        
+    }
 
     func applicationWillTerminate(application: UIApplication) {
     }
@@ -51,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
         // Ask from server info about entered region
-        
+        print("Did enter region at app delegate \(region)")
     }
     
     func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {

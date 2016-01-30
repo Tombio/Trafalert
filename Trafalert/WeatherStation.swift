@@ -40,23 +40,23 @@ class LocationManagerHandler: NSObject, CLLocationManagerDelegate {
         super.init()
         self.locationManager.delegate = self
         self.locationManager.startUpdatingLocation()
-        setupRegionListening(locationManager.location!)
     }
 
     func setupRegionListening(currentLocation: CLLocation) {
-        print("setup region listening")
         LocationManagerHandler.weatherStations.sortInPlace({
             return $0.location.distanceFromLocation(currentLocation) < $1.location.distanceFromLocation(currentLocation)
         })
         
         let nearestStations = LocationManagerHandler.weatherStations[0..<4]
-        monitoredLocations.value.removeAll()
         clearLocationMonitors()
-        
+        var tempLocations = Set<CLRegion>()
         for weatherStation in nearestStations {
             let region = CLCircularRegion(center: weatherStation.location.coordinate, radius: 2000, identifier: weatherStation.name)
-            monitoredLocations.value.insert(region)
+            tempLocations.insert(region)
             locationManager.startMonitoringForRegion(region)
+        }
+        if !(tempLocations == monitoredLocations.value) {
+            monitoredLocations.value = tempLocations
         }
     }
     
@@ -69,6 +69,7 @@ class LocationManagerHandler: NSObject, CLLocationManagerDelegate {
     func listeningRegion(identifier: String) -> Bool {
         for region in monitoredLocations.value {
             if region.identifier == identifier {
+                print("We are listening to area \(identifier)")
                 return true
             }
         }
@@ -77,7 +78,6 @@ class LocationManagerHandler: NSObject, CLLocationManagerDelegate {
     
     // MARK: CLLocationMangerDelegate
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("Received location update")
         // Here we check that we have closest regions at surveillance and update locationManager accordingly
         guard let _ = locations.first else {
             return

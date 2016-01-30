@@ -24,34 +24,43 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             mapView.addOverlay(WeatherStationOverlay.createOverlay(ws.coordinate, 2000, ws.name))
         }
         
+        // Register observer for monitored locations
         locationHandler.monitoredLocations.observe { value in
-            self.mapView.setNeedsDisplay()
+            var updatingOverlays = self.activeOverlays()
+            updatingOverlays.appendContentsOf(self.overlaysToActivate(value))
+            print(updatingOverlays)
+            for overlay in updatingOverlays {
+                self.mapView.removeOverlay(overlay)
+                self.mapView.addOverlay(overlay)
+            }
         }
+    }
+    
+    func activeOverlays() -> [MKOverlay] {
+        return mapView.overlays.filter({
+            return ($0 as! WeatherStationOverlay).active
+        })
+    }
+    
+    func overlaysToActivate(regions: Set<CLRegion>) -> [MKOverlay] {
+        return mapView.overlays.filter({
+            for region in regions {
+                if ($0 as! WeatherStationOverlay).stationName == region.identifier {
+                    return true
+                }
+            }
+            return false
+        })
     }
     
     // MARK: MKMapViewDelegate
     
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        let identifier = "weatherStation"
-        if annotation is WeatherStation {
-            var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) as? MKPinAnnotationView
-            if annotationView == nil {
-                annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-                annotationView?.canShowCallout = true
-                annotationView?.leftCalloutAccessoryView = nil
-            } else {
-                annotationView?.annotation = annotation
-            }
-            return annotationView
-        }
-        return nil
-    }
-
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         let wsOverlay = overlay as! WeatherStationOverlay
         let circleRenderer = MKCircleRenderer(overlay: overlay)
         circleRenderer.lineWidth = 1.0
-        let color = self.locationHandler.listeningRegion(wsOverlay.stationName!) ? UIColor.greenColor() : UIColor.purpleColor()
+        wsOverlay.active = self.locationHandler.listeningRegion(wsOverlay.stationName!)
+        let color = wsOverlay.active ? UIColor.greenColor() : UIColor.purpleColor()
         circleRenderer.strokeColor = color
         circleRenderer.fillColor = color.colorWithAlphaComponent(0.3)
         return circleRenderer
