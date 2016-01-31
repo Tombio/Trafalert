@@ -1,7 +1,6 @@
 package com.studiowannabe.trafalert.control;
 
-import com.studiowannabe.trafalert.domain.Warning;
-import com.studiowannabe.trafalert.domain.WeatherStationData;
+import com.studiowannabe.trafalert.domain.*;
 import com.studiowannabe.trafalert.wsdl.RoadWeatherResponse;
 import com.studiowannabe.trafalert.wsdl.RoadWeatherType;
 import org.apache.log4j.Logger;
@@ -43,20 +42,17 @@ public class DataFetcher {
         if(response != null) {
             updateCaches(response);
         }
-
-        log.info("Cached weather stations " + cache.getCacheData().size());
-        log.info("Cached warning stations " + warningCache.getCacheData().size());
     }
 
     private void updateCaches(final RoadWeatherResponse response) {
         final HashMap<Long, WeatherStationData> map = new HashMap<>(response.getRoadweatherdata().getRoadweather().size());
         final HashMap<Long, List<Warning>> warningMap = new HashMap<>();
         for (RoadWeatherType data : response.getRoadweatherdata().getRoadweather()) {
-            final WeatherStationData.Precipitation precipitation = WeatherStationData.Precipitation.parse(data.getPrecipitation());
-            final WeatherStationData.PrecipitationType precipitationType = WeatherStationData.PrecipitationType.parse(data.getPrecipitationtype());
-            final WeatherStationData.RoadCondition roadCondition = WeatherStationData.RoadCondition.parse(data.getRoadsurfaceconditions1());
+            final Precipitation precipitation = Precipitation.parse(data.getPrecipitation());
+            final PrecipitationType precipitationType = PrecipitationType.parse(data.getPrecipitationtype());
+            final RoadCondition roadCondition = RoadCondition.parse(data.getRoadsurfaceconditions1());
 
-            final WeatherStationData wsd = new WeatherStationData(data.getAirtemperature1(), data.getRoadsurfacetemperature1(),
+            final WeatherStationData wsd = new WeatherStationData(data.getStationid().longValue(), data.getAirtemperature1(), data.getRoadsurfacetemperature1(),
                     data.getAveragewindspeed(), data.getMaxwindspeed(), data.getVisibilitymeters(), data.getDewpoint(),
                     data.getRoaddewpointdifference(), data.getHumidity(), data.getWinddirection(), precipitation, data.getPrecipitationintensity(),
                     data.getPrecipitationsum(), precipitationType, roadCondition);
