@@ -7,6 +7,7 @@ import com.studiowannabe.trafalert.domain.WeatherInfo;
 import com.studiowannabe.trafalert.domain.WeatherStationData;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,6 +44,12 @@ public class MainController {
         return objectMapper.writerWithDefaultPrettyPrinter().withRootName("warnings").writeValueAsString(warnings);
     }
 
+    @RequestMapping(value = "/warning", method = RequestMethod.GET, produces = "application/json")
+    public String warningsForRegion() throws Exception {
+        final List<WeatherInfo> infos = getAllStationsWithWarnings();
+        return objectMapper.writerWithDefaultPrettyPrinter().withRootName("warningInfo").writeValueAsString(infos);
+    }
+
     @RequestMapping(value = "/weather/{region}", method = RequestMethod.GET, produces = "application/json")
     public String weatherForRegion(@PathVariable(value = "region") final Long region) throws Exception {
         final WeatherStationData wsd = getWeatherForRegion(region);
@@ -59,7 +66,7 @@ public class MainController {
 
     @RequestMapping(value = "/info", method = RequestMethod.GET, produces = "application/json")
     public String allRegions() throws Exception {
-        final List<WeatherInfo> infos = getAllStationsWithWarnings();
+        final List<WeatherInfo> infos = getAllStationsAndWarnings();
         return objectMapper.writerWithDefaultPrettyPrinter().withRootName("fullInfo").writeValueAsString(infos);
     }
 
@@ -71,13 +78,26 @@ public class MainController {
         return cache.getCacheData().get(region);
     }
 
-    private List<WeatherInfo> getAllStationsWithWarnings() {
+    private List<WeatherInfo> getAllStationsAndWarnings() {
         final List<WeatherInfo> infos = new ArrayList<WeatherInfo>();
         final Collection<WeatherStationData> datas = cache.getCacheData().values();
         for(final WeatherStationData data : datas) {
             final List<Warning> warnings = warningCache.getCacheData().get(data.getStationId());
             final WeatherInfo wi = new WeatherInfo(data.getStationId(), data, warnings);
             infos.add(wi);
+        }
+        return infos;
+    }
+
+    private List<WeatherInfo> getAllStationsWithWarnings() {
+        final List<WeatherInfo> infos = new ArrayList<WeatherInfo>();
+        final Collection<WeatherStationData> datas = cache.getCacheData().values();
+        for(final WeatherStationData data : datas) {
+            final List<Warning> warnings = warningCache.getCacheData().get(data.getStationId());
+            if(!CollectionUtils.isEmpty(warnings)) {
+                final WeatherInfo wi = new WeatherInfo(data.getStationId(), data, warnings);
+                infos.add(wi);
+            }
         }
         return infos;
     }
