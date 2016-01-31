@@ -11,6 +11,7 @@ import java.util.List;
 @JsonRootName(value = "weatherInfo")
 public @Data class WeatherInfo {
 
+    final long stationId;
     final WeatherStationData WeatherData;
     final List<Warning> warnings;
 }

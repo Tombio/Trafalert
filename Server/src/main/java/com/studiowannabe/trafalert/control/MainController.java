@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -35,25 +37,50 @@ public class MainController {
     }
 
     @RequestMapping(value = "/warning/{region}/{version}", method = RequestMethod.GET, produces = "application/json")
-    public List<Warning> warningsForRegion(@PathVariable(value = "region") final int region,
-                                           @PathVariable(value = "version") final Long version) {
-        return null;
+    public String warningsForRegion(@PathVariable(value = "region") final Long region,
+                                           @PathVariable(value = "version") final Long version) throws Exception {
+        final List<Warning> warnings = getWarningsForRegion(region);
+        return objectMapper.writerWithDefaultPrettyPrinter().withRootName("warnings").writeValueAsString(warnings);
     }
 
     @RequestMapping(value = "/weather/{region}", method = RequestMethod.GET, produces = "application/json")
-    public String warningsForRegion(@PathVariable(value = "region") final long region) throws Exception {
-        final WeatherStationData wsd = cache.getCacheData().get(region);
-        log.info("Weather for " + region  + " => " + wsd);
+    public String weatherForRegion(@PathVariable(value = "region") final Long region) throws Exception {
+        final WeatherStationData wsd = getWeatherForRegion(region);
         return objectMapper.writerWithDefaultPrettyPrinter().withRootName("weather").writeValueAsString(wsd);
     }
 
     @RequestMapping(value = "/info/{region}", method = RequestMethod.GET, produces = "application/json")
-    public String fullInfoForRegion(@PathVariable(value = "region") final long region) throws Exception {
+    public String fullInfoForRegion(@PathVariable(value = "region") final Long region) throws Exception {
         final WeatherStationData wsd = cache.getCacheData().get(region);
         final List<Warning> warnings = warningCache.getCacheData().get(region);
-        final WeatherInfo wi = new WeatherInfo(wsd, warnings);
-        log.info("Info for " + region  + " => " + wsd);
-        return objectMapper.writerWithDefaultPrettyPrinter().withRootName("WeatherInfo").writeValueAsString(wi);
+        final WeatherInfo wi = new WeatherInfo(wsd.getStationId(), wsd, warnings);
+        return objectMapper.writerWithDefaultPrettyPrinter().withRootName("stationInfo").writeValueAsString(wi);
     }
+
+    @RequestMapping(value = "/info", method = RequestMethod.GET, produces = "application/json")
+    public String allRegions() throws Exception {
+        final List<WeatherInfo> infos = getAllStationsWithWarnings();
+        return objectMapper.writerWithDefaultPrettyPrinter().withRootName("fullInfo").writeValueAsString(infos);
+    }
+
+    private List<Warning> getWarningsForRegion(final long region) {
+        return warningCache.getCacheData().get(region);
+    }
+
+    private WeatherStationData getWeatherForRegion(final long region) {
+        return cache.getCacheData().get(region);
+    }
+
+    private List<WeatherInfo> getAllStationsWithWarnings() {
+        final List<WeatherInfo> infos = new ArrayList<WeatherInfo>();
+        final Collection<WeatherStationData> datas = cache.getCacheData().values();
+        for(final WeatherStationData data : datas) {
+            final List<Warning> warnings = warningCache.getCacheData().get(data.getStationId());
+            final WeatherInfo wi = new WeatherInfo(data.getStationId(), data, warnings);
+            infos.add(wi);
+        }
+        return infos;
+    }
+
 
 }
