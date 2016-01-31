@@ -4,11 +4,14 @@ package com.studiowannabe.trafalert.domain;
  * Created by Tomi on 31/01/16.
  */
 
+import lombok.Data;
+
 import java.time.LocalDateTime;
+import java.util.concurrent.atomic.AtomicLong;
 
-public interface Warning {
+public @Data abstract class Warning {
 
-    enum WarningType {
+    public enum WarningType {
         BLACK_ICE("Black ice"),
         STRONG_WIND("Strong wind"),
         STRONG_WIND_GUSTS("Strong wind in gusts"),
@@ -23,6 +26,15 @@ public interface Warning {
         }
     }
 
-    WarningType getWarningType();
-    LocalDateTime getBeginTime();
+    private static final AtomicLong VERSION_SEQUENCE = new AtomicLong(0L);
+
+    public final WarningType warningType;
+    public final LocalDateTime beginTime;
+    public final long version;
+
+    public Warning(final WarningType type) {
+        this.warningType = type;
+        this.beginTime = LocalDateTime.now();
+        this.version = VERSION_SEQUENCE.incrementAndGet();
+    }
 }

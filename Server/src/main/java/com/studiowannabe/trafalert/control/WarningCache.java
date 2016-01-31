@@ -1,9 +1,11 @@
 package com.studiowannabe.trafalert.control;
 
+import com.studiowannabe.trafalert.domain.Warning;
 import com.studiowannabe.trafalert.domain.WeatherStationData;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
@@ -11,19 +13,21 @@ import java.util.concurrent.atomic.AtomicReference;
  */
 
 @Component
-public class WeatherDataCache {
+public class WarningCache {
 
-    private static AtomicReference<HashMap<Long, WeatherStationData>> cacheData;
+    private static AtomicReference<HashMap<Long, List<Warning>>> cacheData;
     private static boolean inited = false;
 
-    public WeatherDataCache() {
+    public WarningCache() {
         if(!inited) {
             cacheData = new AtomicReference<>(new HashMap<>());
             inited = true;
         }
     }
-    public HashMap<Long, WeatherStationData> getCacheData() { return cacheData.get(); }
-    public void setCacheData(HashMap<Long, WeatherStationData> data) {
-        cacheData.set(data);
+    public HashMap<Long, List<Warning>> getCacheData() {
+        return cacheData.get();
+    }
+    public void setCacheData(HashMap<Long, List<Warning>> warnings) {
+        cacheData.set(warnings);
     }
 }

@@ -1,0 +1,1 @@
+web: java $JAVA_OPTS -Dserver.url="http://trafalert.herokuapp.com/" -Dserver.port=$PORT -jar target/*.jar
