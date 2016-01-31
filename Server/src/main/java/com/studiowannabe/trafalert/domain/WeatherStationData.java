@@ -23,7 +23,7 @@ public @Data class WeatherStationData {
     final BigDecimal humidity;
     final BigDecimal windDirection;
     final BigDecimal percipitationAmount;
-    final BigDecimal amountOfWAterOnRoadSurface;
+    final BigDecimal amountOfWaterOnRoadSurface;
     final BigDecimal substance;
 
 }
