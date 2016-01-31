@@ -52,10 +52,14 @@ public class DataFetcher {
         final HashMap<Long, WeatherStationData> map = new HashMap<>(response.getRoadweatherdata().getRoadweather().size());
         final HashMap<Long, List<Warning>> warningMap = new HashMap<>();
         for (RoadWeatherType data : response.getRoadweatherdata().getRoadweather()) {
+            final WeatherStationData.Precipitation precipitation = WeatherStationData.Precipitation.parse(data.getPrecipitation());
+            final WeatherStationData.PrecipitationType precipitationType = WeatherStationData.PrecipitationType.parse(data.getPrecipitationtype());
+            final WeatherStationData.RoadCondition roadCondition = WeatherStationData.RoadCondition.parse(data.getRoadsurfaceconditions1());
+
             final WeatherStationData wsd = new WeatherStationData(data.getAirtemperature1(), data.getRoadsurfacetemperature1(),
                     data.getAveragewindspeed(), data.getMaxwindspeed(), data.getVisibilitymeters(), data.getDewpoint(),
-                    data.getRoaddewpointdifference(), data.getHumidity(), data.getWinddirection(), data.getPrecipitation(), data.getRoadsurfaceconditions1(),
-                    data.getPrecipitationtype());
+                    data.getRoaddewpointdifference(), data.getHumidity(), data.getWinddirection(), precipitation, data.getPrecipitationintensity(),
+                    data.getPrecipitationsum(), precipitationType, roadCondition);
             map.put(data.getStationid().longValue(), wsd);
 
             warningMap.put(data.getStationid().longValue(), warningIssuer.calculateWarnings(data));
