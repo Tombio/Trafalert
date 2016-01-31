@@ -23,14 +23,17 @@ public class DataFetcher {
     private static final String WEATHER_URL = "http://tie.digitraffic.fi/sujuvuus/ws/roadWeather";
 
     private final WeatherDataCache cache;
+    private final WarningCache warningCache;
     private final WeatherClient weatherClient;
     private final WarningIssuer warningIssuer;
 
     @Autowired
-    public DataFetcher(final WeatherDataCache cache, final WeatherClient weatherClient, final WarningIssuer warningIssuer) {
+    public DataFetcher(final WeatherDataCache cache, final WeatherClient weatherClient,
+                       final WarningIssuer warningIssuer, final WarningCache warningCache) {
         this.cache = cache;
         this.weatherClient = weatherClient;
         this.warningIssuer = warningIssuer;
+        this.warningCache = warningCache;
     }
 
     @Scheduled(fixedDelay = 60 * 1000) // 30 seconds
@@ -38,12 +41,16 @@ public class DataFetcher {
         log.info("Run update...");
         final RoadWeatherResponse response = weatherClient.getRoadWeather();
         if(response != null) {
-            updateCache(response);
+            updateCaches(response);
         }
+
+        log.info("Cached weather stations " + cache.getCacheData().size());
+        log.info("Cached warning stations " + warningCache.getCacheData().size());
     }
 
-    private void updateCache(final RoadWeatherResponse response) {
+    private void updateCaches(final RoadWeatherResponse response) {
         final HashMap<Long, WeatherStationData> map = new HashMap<>(response.getRoadweatherdata().getRoadweather().size());
+        final HashMap<Long, List<Warning>> warningMap = new HashMap<>();
         for (RoadWeatherType data : response.getRoadweatherdata().getRoadweather()) {
             final WeatherStationData wsd = new WeatherStationData(data.getAirtemperature1(), data.getRoadsurfacetemperature1(),
                     data.getAveragewindspeed(), data.getMaxwindspeed(), data.getVisibilitymeters(), data.getDewpoint(),
@@ -51,9 +58,9 @@ public class DataFetcher {
                     data.getPrecipitationtype());
             map.put(data.getStationid().longValue(), wsd);
 
-            final List<Warning> warnings = warningIssuer.calculateWarnings(data);
-            log.info("Warnings: " + warnings);
+            warningMap.put(data.getStationid().longValue(), warningIssuer.calculateWarnings(data));
         }
         cache.setCacheData(map);
+        warningCache.setCacheData(warningMap);
     }
 }
