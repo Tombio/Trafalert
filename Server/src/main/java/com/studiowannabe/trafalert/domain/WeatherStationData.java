@@ -30,9 +30,11 @@ public @Data class WeatherStationData {
         }
 
         public static Precipitation parse(final BigDecimal bd) {
-            for(Precipitation p : values()) {
-                if(p.getAmount() == bd.intValue()){
-                    return p;
+            if(bd != null) {
+                for (Precipitation p : values()) {
+                    if (p.getAmount() == bd.intValue()) {
+                        return p;
+                    }
                 }
             }
             return UNKNOWN;
@@ -66,9 +68,11 @@ public @Data class WeatherStationData {
         }
 
         public static PrecipitationType parse(final BigDecimal bd) {
-            for(PrecipitationType p : values()) {
-                if(p.getValue() == bd.intValue()){
-                    return p;
+            if(bd != null) {
+                for (PrecipitationType p : values()) {
+                    if (p.getValue() == bd.intValue()) {
+                        return p;
+                    }
                 }
             }
             return UNKNOWN;
@@ -99,9 +103,11 @@ public @Data class WeatherStationData {
         }
 
         public static RoadCondition parse(final BigDecimal bd) {
-            for(RoadCondition rc : values()) {
-                if(rc.getValue() == bd.intValue()){
-                    return rc;
+            if(bd != null) {
+                for (RoadCondition rc : values()) {
+                    if (rc.getValue() == bd.intValue()) {
+                        return rc;
+                    }
                 }
             }
             return SENSOR_ERROR;
