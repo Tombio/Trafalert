@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		E6267BA51C5C238700A95763 /* Bond.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6267BA41C5C238700A95763 /* Bond.framework */; };
 		E6267BA61C5C238700A95763 /* Bond.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E6267BA41C5C238700A95763 /* Bond.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E67777AF1C5FFC1F0096D754 /* WeatherInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67777AE1C5FFC1F0096D754 /* WeatherInfo.swift */; };
+		E67777B11C6002110096D754 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E67777B01C6002110096D754 /* Alamofire.framework */; };
+		E67777B21C6002110096D754 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E67777B01C6002110096D754 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E67777B41C60021A0096D754 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E67777B31C60021A0096D754 /* SwiftyJSON.framework */; };
+		E67777B51C60021A0096D754 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E67777B31C60021A0096D754 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E690661E1C5AA12C0039CE74 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E690661D1C5AA12C0039CE74 /* AppDelegate.swift */; };
 		E69066251C5AA12C0039CE74 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E69066231C5AA12C0039CE74 /* Main.storyboard */; };
 		E69066271C5AA12C0039CE74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E69066261C5AA12C0039CE74 /* Assets.xcassets */; };
@@ -40,7 +45,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				E67777B51C60021A0096D754 /* SwiftyJSON.framework in Embed Frameworks */,
 				E6D12AF01C5AAA10005D8FE7 /* SwiftCSV.framework in Embed Frameworks */,
+				E67777B21C6002110096D754 /* Alamofire.framework in Embed Frameworks */,
 				E6267BA61C5C238700A95763 /* Bond.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -50,6 +57,9 @@
 
 /* Begin PBXFileReference section */
 		E6267BA41C5C238700A95763 /* Bond.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bond.framework; path = Carthage/Build/iOS/Bond.framework; sourceTree = "<group>"; };
+		E67777AE1C5FFC1F0096D754 /* WeatherInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherInfo.swift; sourceTree = "<group>"; };
+		E67777B01C6002110096D754 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		E67777B31C60021A0096D754 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		E690661A1C5AA12C0039CE74 /* Trafalert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trafalert.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E690661D1C5AA12C0039CE74 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E69066241C5AA12C0039CE74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -74,6 +84,8 @@
 				E6267BA51C5C238700A95763 /* Bond.framework in Frameworks */,
 				E690663A1C5AA4E20039CE74 /* MapKit.framework in Frameworks */,
 				E6D12AEF1C5AAA10005D8FE7 /* SwiftCSV.framework in Frameworks */,
+				E67777B11C6002110096D754 /* Alamofire.framework in Frameworks */,
+				E67777B41C60021A0096D754 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +95,8 @@
 		E69066111C5AA12C0039CE74 = {
 			isa = PBXGroup;
 			children = (
+				E67777B31C60021A0096D754 /* SwiftyJSON.framework */,
+				E67777B01C6002110096D754 /* Alamofire.framework */,
 				E6267BA41C5C238700A95763 /* Bond.framework */,
 				E6D12AEE1C5AAA10005D8FE7 /* SwiftCSV.framework */,
 				E6D12AEC1C5AA9E5005D8FE7 /* SwiftCSV.framework.dSYM */,
@@ -113,6 +127,7 @@
 				E69066371C5AA35F0039CE74 /* MapViewController.swift */,
 				E6D12AF21C5AC134005D8FE7 /* WeatherStation.swift */,
 				E6D12AF41C5C0292005D8FE7 /* WeatherStationOverlay.swift */,
+				E67777AE1C5FFC1F0096D754 /* WeatherInfo.swift */,
 			);
 			path = Trafalert;
 			sourceTree = "<group>";
@@ -200,6 +215,7 @@
 			files = (
 				E690661E1C5AA12C0039CE74 /* AppDelegate.swift in Sources */,
 				E6D12AF31C5AC134005D8FE7 /* WeatherStation.swift in Sources */,
+				E67777AF1C5FFC1F0096D754 /* WeatherInfo.swift in Sources */,
 				E69066381C5AA35F0039CE74 /* MapViewController.swift in Sources */,
 				E6D12AF51C5C0292005D8FE7 /* WeatherStationOverlay.swift in Sources */,
 				E69066361C5AA33E0039CE74 /* AlertInfoView.swift in Sources */,
