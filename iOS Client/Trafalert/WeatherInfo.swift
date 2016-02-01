@@ -9,5 +9,9 @@
 import Foundation
 
 struct WeatherInfo {
-
+    var stationName: String?
+    var airTemp: Double?
+    var roadTemp: Double?
+    var windSpeed: Double?
+    var windDirection: Int?
 }

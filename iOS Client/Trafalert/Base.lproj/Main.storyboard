@@ -18,10 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kbb-Mm-SGd">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YLh-oL-QHH" userLabel="Sky">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
@@ -110,29 +106,24 @@
                             <constraint firstItem="dfe-Ru-AFC" firstAttribute="width" secondItem="88M-Tl-FWi" secondAttribute="width" id="1nv-2E-7QR"/>
                             <constraint firstItem="dfe-Ru-AFC" firstAttribute="centerX" secondItem="88M-Tl-FWi" secondAttribute="centerX" id="3EI-yQ-DAt"/>
                             <constraint firstItem="fAD-q4-2MC" firstAttribute="centerX" secondItem="88M-Tl-FWi" secondAttribute="centerX" id="5dv-Lg-o1b"/>
-                            <constraint firstItem="kbb-Mm-SGd" firstAttribute="centerY" secondItem="88M-Tl-FWi" secondAttribute="centerY" id="6ph-b8-mcV"/>
                             <constraint firstItem="dfe-Ru-AFC" firstAttribute="height" secondItem="88M-Tl-FWi" secondAttribute="height" multiplier="0.1" id="AR2-tC-Tf1"/>
                             <constraint firstItem="fAD-q4-2MC" firstAttribute="bottom" secondItem="Sfs-iZ-1bF" secondAttribute="top" id="BJY-qO-OyS">
                                 <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                             </constraint>
                             <constraint firstItem="YLh-oL-QHH" firstAttribute="width" secondItem="88M-Tl-FWi" secondAttribute="width" id="DKc-N5-h5A"/>
                             <constraint firstItem="fAD-q4-2MC" firstAttribute="width" secondItem="88M-Tl-FWi" secondAttribute="width" id="LvU-hp-2dt"/>
-                            <constraint firstItem="kbb-Mm-SGd" firstAttribute="height" secondItem="88M-Tl-FWi" secondAttribute="height" id="NgF-wo-Ruz"/>
                             <constraint firstItem="hMg-RH-dxP" firstAttribute="height" secondItem="88M-Tl-FWi" secondAttribute="height" multiplier="0.35" id="Nhl-d0-IdE"/>
                             <constraint firstItem="fAD-q4-2MC" firstAttribute="height" secondItem="88M-Tl-FWi" secondAttribute="height" multiplier="0.15" id="Pwo-ks-eO2"/>
                             <constraint firstItem="YLh-oL-QHH" firstAttribute="top" secondItem="88M-Tl-FWi" secondAttribute="top" id="Tzm-pa-1Td"/>
                             <constraint firstItem="YLh-oL-QHH" firstAttribute="centerX" secondItem="88M-Tl-FWi" secondAttribute="centerX" id="Wje-I2-lfS"/>
                             <constraint firstItem="hMg-RH-dxP" firstAttribute="width" secondItem="88M-Tl-FWi" secondAttribute="width" id="aMa-aG-vOG"/>
                             <constraint firstItem="hMg-RH-dxP" firstAttribute="centerX" secondItem="88M-Tl-FWi" secondAttribute="centerX" id="gWv-KI-New"/>
-                            <constraint firstItem="kbb-Mm-SGd" firstAttribute="centerX" secondItem="88M-Tl-FWi" secondAttribute="centerX" id="liw-UI-FlM"/>
                             <constraint firstItem="YLh-oL-QHH" firstAttribute="height" secondItem="88M-Tl-FWi" secondAttribute="height" multiplier="0.35" id="qon-nl-hln"/>
-                            <constraint firstItem="kbb-Mm-SGd" firstAttribute="width" secondItem="88M-Tl-FWi" secondAttribute="width" id="tKI-Ji-AgX"/>
                             <constraint firstItem="dfe-Ru-AFC" firstAttribute="centerY" secondItem="88M-Tl-FWi" secondAttribute="centerY" id="vzE-HY-3FS"/>
                             <constraint firstItem="hMg-RH-dxP" firstAttribute="bottom" secondItem="Sfs-iZ-1bF" secondAttribute="top" id="xjM-fM-r2g"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="kbb-Mm-SGd"/>
                                 <exclude reference="YLh-oL-QHH"/>
                                 <exclude reference="dfe-Ru-AFC"/>
                                 <exclude reference="hMg-RH-dxP"/>
@@ -143,10 +134,6 @@
                                 <exclude reference="Tzm-pa-1Td"/>
                                 <exclude reference="Wje-I2-lfS"/>
                                 <exclude reference="qon-nl-hln"/>
-                                <exclude reference="6ph-b8-mcV"/>
-                                <exclude reference="NgF-wo-Ruz"/>
-                                <exclude reference="liw-UI-FlM"/>
-                                <exclude reference="tKI-Ji-AgX"/>
                                 <exclude reference="1nv-2E-7QR"/>
                                 <exclude reference="3EI-yQ-DAt"/>
                                 <exclude reference="AR2-tC-Tf1"/>
@@ -163,7 +150,6 @@
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
-                                <include reference="kbb-Mm-SGd"/>
                                 <include reference="YLh-oL-QHH"/>
                                 <include reference="dfe-Ru-AFC"/>
                                 <include reference="hMg-RH-dxP"/>
@@ -174,10 +160,6 @@
                                 <include reference="Tzm-pa-1Td"/>
                                 <include reference="Wje-I2-lfS"/>
                                 <include reference="qon-nl-hln"/>
-                                <include reference="6ph-b8-mcV"/>
-                                <include reference="NgF-wo-Ruz"/>
-                                <include reference="liw-UI-FlM"/>
-                                <include reference="tKI-Ji-AgX"/>
                                 <include reference="1nv-2E-7QR"/>
                                 <include reference="3EI-yQ-DAt"/>
                                 <include reference="AR2-tC-Tf1"/>
@@ -252,7 +234,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="360"/>
+            <point key="canvasLocation" x="628" y="580"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
