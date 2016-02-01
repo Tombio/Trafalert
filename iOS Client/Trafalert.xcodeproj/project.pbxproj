@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E6267BA51C5C238700A95763 /* Bond.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6267BA41C5C238700A95763 /* Bond.framework */; };
-		E6267BA61C5C238700A95763 /* Bond.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E6267BA41C5C238700A95763 /* Bond.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E67777AF1C5FFC1F0096D754 /* WeatherInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67777AE1C5FFC1F0096D754 /* WeatherInfo.swift */; };
 		E67777B11C6002110096D754 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E67777B01C6002110096D754 /* Alamofire.framework */; };
 		E67777B21C6002110096D754 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E67777B01C6002110096D754 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -16,11 +14,16 @@
 		E67777B51C60021A0096D754 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E67777B31C60021A0096D754 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E67777B71C60132F0096D754 /* DataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67777B61C60132F0096D754 /* DataFetcher.swift */; };
 		E67777B91C60149B0096D754 /* WeatherInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67777B81C60149B0096D754 /* WeatherInfoViewController.swift */; };
+		E67777BD1C601DA60096D754 /* ReactiveFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E67777BA1C601DA60096D754 /* ReactiveFoundation.framework */; };
+		E67777BE1C601DA60096D754 /* ReactiveFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E67777BA1C601DA60096D754 /* ReactiveFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E67777BF1C601DA60096D754 /* ReactiveKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E67777BB1C601DA60096D754 /* ReactiveKit.framework */; };
+		E67777C01C601DA60096D754 /* ReactiveKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E67777BB1C601DA60096D754 /* ReactiveKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E67777C11C601DA60096D754 /* ReactiveUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E67777BC1C601DA60096D754 /* ReactiveUIKit.framework */; };
+		E67777C21C601DA60096D754 /* ReactiveUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E67777BC1C601DA60096D754 /* ReactiveUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E690661E1C5AA12C0039CE74 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E690661D1C5AA12C0039CE74 /* AppDelegate.swift */; };
 		E69066251C5AA12C0039CE74 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E69066231C5AA12C0039CE74 /* Main.storyboard */; };
 		E69066271C5AA12C0039CE74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E69066261C5AA12C0039CE74 /* Assets.xcassets */; };
 		E69066341C5AA30E0039CE74 /* road_weather_stations.csv in Resources */ = {isa = PBXBuildFile; fileRef = E69066331C5AA30E0039CE74 /* road_weather_stations.csv */; };
-		E69066361C5AA33E0039CE74 /* AlertInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69066351C5AA33E0039CE74 /* AlertInfoView.swift */; };
 		E69066381C5AA35F0039CE74 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69066371C5AA35F0039CE74 /* MapViewController.swift */; };
 		E690663A1C5AA4E20039CE74 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E69066391C5AA4E20039CE74 /* MapKit.framework */; };
 		E6D12AED1C5AA9E5005D8FE7 /* SwiftCSV.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = E6D12AEC1C5AA9E5005D8FE7 /* SwiftCSV.framework.dSYM */; };
@@ -48,9 +51,11 @@
 			dstSubfolderSpec = 10;
 			files = (
 				E67777B51C60021A0096D754 /* SwiftyJSON.framework in Embed Frameworks */,
+				E67777C01C601DA60096D754 /* ReactiveKit.framework in Embed Frameworks */,
+				E67777C21C601DA60096D754 /* ReactiveUIKit.framework in Embed Frameworks */,
 				E6D12AF01C5AAA10005D8FE7 /* SwiftCSV.framework in Embed Frameworks */,
+				E67777BE1C601DA60096D754 /* ReactiveFoundation.framework in Embed Frameworks */,
 				E67777B21C6002110096D754 /* Alamofire.framework in Embed Frameworks */,
-				E6267BA61C5C238700A95763 /* Bond.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -64,6 +69,9 @@
 		E67777B31C60021A0096D754 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		E67777B61C60132F0096D754 /* DataFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataFetcher.swift; sourceTree = "<group>"; };
 		E67777B81C60149B0096D754 /* WeatherInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherInfoViewController.swift; sourceTree = "<group>"; };
+		E67777BA1C601DA60096D754 /* ReactiveFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveFoundation.framework; path = Carthage/Build/iOS/ReactiveFoundation.framework; sourceTree = "<group>"; };
+		E67777BB1C601DA60096D754 /* ReactiveKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveKit.framework; path = Carthage/Build/iOS/ReactiveKit.framework; sourceTree = "<group>"; };
+		E67777BC1C601DA60096D754 /* ReactiveUIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveUIKit.framework; path = Carthage/Build/iOS/ReactiveUIKit.framework; sourceTree = "<group>"; };
 		E690661A1C5AA12C0039CE74 /* Trafalert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trafalert.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E690661D1C5AA12C0039CE74 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E69066241C5AA12C0039CE74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -71,7 +79,6 @@
 		E690662B1C5AA12C0039CE74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E69066311C5AA2B30039CE74 /* SwiftCSV.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftCSV.framework; path = Carthage/Build/iOS/SwiftCSV.framework; sourceTree = "<group>"; };
 		E69066331C5AA30E0039CE74 /* road_weather_stations.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = road_weather_stations.csv; sourceTree = "<group>"; };
-		E69066351C5AA33E0039CE74 /* AlertInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertInfoView.swift; sourceTree = "<group>"; };
 		E69066371C5AA35F0039CE74 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		E69066391C5AA4E20039CE74 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E6D12AEC1C5AA9E5005D8FE7 /* SwiftCSV.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = SwiftCSV.framework.dSYM; path = Carthage/Build/iOS/SwiftCSV.framework.dSYM; sourceTree = "<group>"; };
@@ -85,10 +92,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6267BA51C5C238700A95763 /* Bond.framework in Frameworks */,
+				E67777BD1C601DA60096D754 /* ReactiveFoundation.framework in Frameworks */,
+				E67777C11C601DA60096D754 /* ReactiveUIKit.framework in Frameworks */,
 				E690663A1C5AA4E20039CE74 /* MapKit.framework in Frameworks */,
 				E6D12AEF1C5AAA10005D8FE7 /* SwiftCSV.framework in Frameworks */,
 				E67777B11C6002110096D754 /* Alamofire.framework in Frameworks */,
+				E67777BF1C601DA60096D754 /* ReactiveKit.framework in Frameworks */,
 				E67777B41C60021A0096D754 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -99,6 +108,9 @@
 		E69066111C5AA12C0039CE74 = {
 			isa = PBXGroup;
 			children = (
+				E67777BA1C601DA60096D754 /* ReactiveFoundation.framework */,
+				E67777BB1C601DA60096D754 /* ReactiveKit.framework */,
+				E67777BC1C601DA60096D754 /* ReactiveUIKit.framework */,
 				E67777B31C60021A0096D754 /* SwiftyJSON.framework */,
 				E67777B01C6002110096D754 /* Alamofire.framework */,
 				E6267BA41C5C238700A95763 /* Bond.framework */,
@@ -127,7 +139,6 @@
 				E69066231C5AA12C0039CE74 /* Main.storyboard */,
 				E69066261C5AA12C0039CE74 /* Assets.xcassets */,
 				E690662B1C5AA12C0039CE74 /* Info.plist */,
-				E69066351C5AA33E0039CE74 /* AlertInfoView.swift */,
 				E69066371C5AA35F0039CE74 /* MapViewController.swift */,
 				E6D12AF21C5AC134005D8FE7 /* WeatherStation.swift */,
 				E6D12AF41C5C0292005D8FE7 /* WeatherStationOverlay.swift */,
@@ -225,7 +236,6 @@
 				E67777AF1C5FFC1F0096D754 /* WeatherInfo.swift in Sources */,
 				E69066381C5AA35F0039CE74 /* MapViewController.swift in Sources */,
 				E6D12AF51C5C0292005D8FE7 /* WeatherStationOverlay.swift in Sources */,
-				E69066361C5AA33E0039CE74 /* AlertInfoView.swift in Sources */,
 				E67777B91C60149B0096D754 /* WeatherInfoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

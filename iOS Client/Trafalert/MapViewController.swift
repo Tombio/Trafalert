@@ -9,7 +9,7 @@
 import Foundation
 import MapKit
 import UIKit
-import Bond
+import ReactiveKit
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     

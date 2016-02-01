@@ -15,7 +15,7 @@ class DataFetcher {
     static var weatherEndPoint = "/weather"
     static var warningEndPoint = "/warning"
     
-    func updateWeatherInfo(station: Int) {
+    func updateWeatherInfo(station: Int, callback: (WeatherInfo)) {
         let address = String(format: "%@%@%@", arguments: [DataFetcher.server, DataFetcher.weatherEndPoint, station])
         debugPrint(address)
         Alamofire.request(.GET, address)

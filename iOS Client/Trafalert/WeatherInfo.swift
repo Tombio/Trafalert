@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import ReactiveKit
 
 struct WeatherInfo {
-    var stationName: String?
-    var airTemp: Double?
+    var stationName = Observable("Unknown")
+    var airTemp = Observable(19.11)
     var roadTemp: Double?
     var windSpeed: Double?
     var windDirection: Int?

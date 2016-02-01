@@ -8,14 +8,24 @@
 
 import Foundation
 import UIKit
-
+import ReactiveFoundation
+import ReactiveUIKit
 
 class WeatherInfoViewController: UIViewController {
     
-    var currentWeatherInfo: WeatherInfo?
+    @IBOutlet weak var stationNameLbl: UILabel!
+    @IBOutlet weak var airTempLbl: UILabel!
+    @IBOutlet weak var conditionLbl: UILabel!
+    
+    var currentWeatherInfo = WeatherInfo()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Bind some stuff
+        currentWeatherInfo.stationName.bindTo(stationNameLbl)
+        currentWeatherInfo.airTemp.observe { value in
+            self.airTempLbl.text = String(format: "%0.1f °C", value)
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
