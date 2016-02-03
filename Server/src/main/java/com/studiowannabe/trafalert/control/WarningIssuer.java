@@ -1,5 +1,6 @@
 package com.studiowannabe.trafalert.control;
 
+import com.studiowannabe.trafalert.domain.BlackIceWarning;
 import com.studiowannabe.trafalert.domain.Warning;
 import com.studiowannabe.trafalert.domain.WindWarning;
 import com.studiowannabe.trafalert.wsdl.RoadWeatherType;
@@ -33,6 +34,11 @@ public class WarningIssuer {
             warnings.add(ww);
         }
 
+        final Warning biw = createBlackIceWarning(data);
+        if(biw != null) {
+            warnings.add(biw);
+        }
+
 
         return warnings;
     }
@@ -51,6 +57,27 @@ public class WarningIssuer {
             }
         }
         return null; // No need for wind warning...
+    }
+
+    private Warning createBlackIceWarning(final RoadWeatherType data) {
+        // road surface dew point and road surface temperature both need to be negative for
+        // black ice to form... at least to my current understanding
+        if(data.getRoaddewpointdifference() == null || data.getRoadsurfacetemperature1() == null) {
+            return null;
+        }
+
+        if(data.getRoaddewpointdifference().doubleValue() > 0 || data.getRoadsurfacetemperature1().doubleValue() > 0){
+            return null;
+        }
+
+
+        final Warning cw = existingWarning(Warning.WarningType.BLACK_ICE, data.getStationid().longValue());
+        if(cw != null) {
+            return cw;
+        }
+        else {
+            return new BlackIceWarning(data.getRoaddewpointdifference(), data.getRoadsurfacetemperature1());
+        }
     }
 
     private Warning existingWarning(final Warning.WarningType type, final long station) {

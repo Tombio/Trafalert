@@ -62,6 +62,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     // MARK: Callback setter
 
     func setWeather(info: WeatherInfo) {
+        if currentStation != nil {
+            info.stationName.value = currentStation!.name
+        }
         currentWeather.updateWith(info)
     }
     

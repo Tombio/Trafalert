@@ -13,6 +13,7 @@ import ObjectMapper
 class DataFetcher {
     
     static var server = "http://localhost:8080"
+        
     static var weatherEndPoint = "/weather"
     static var warningEndPoint = "/warning"
     
@@ -22,6 +23,7 @@ class DataFetcher {
         Alamofire.request(.GET, address)
             .responseJSON { response in
                 if let json = response.result.value {
+                    debugPrint(json)
                     if let weather = Mapper<WeatherInfo>().map(json) {
                         callback(weather)
                     }
