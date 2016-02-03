@@ -13,9 +13,9 @@ import ObjectMapper
 class DataFetcher {
     
     static var server = "http://localhost:8080"
-        
-    static var weatherEndPoint = "/weather"
-    static var warningEndPoint = "/warning"
+    static var infoEndPoint = "/info" // get weather + warnings
+    static var weatherEndPoint = "/weather" // get weather only
+    static var warningEndPoint = "/warning" // get warnings only
     
     func updateWeatherInfo(station: Int, callback: (WeatherInfo) -> Void) {
         let address = String(format: "%@%@/%d", arguments:[DataFetcher.server, DataFetcher.weatherEndPoint, station])
