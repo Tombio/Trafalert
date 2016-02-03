@@ -8,7 +8,6 @@
 
 import Foundation
 import MapKit
-import SwiftCSV
 import ReactiveKit
 
 struct WeatherStation {
@@ -33,7 +32,7 @@ struct WeatherStation {
 class LocationManagerHandler: NSObject, CLLocationManagerDelegate {
     
     let locationManager = CLLocationManager()
-    static var weatherStations = LocationManagerHandler.initStationList()
+    
     var monitoredLocations = Observable(Set<CLRegion>())
     
     override init(){
@@ -43,11 +42,9 @@ class LocationManagerHandler: NSObject, CLLocationManagerDelegate {
     }
 
     func setupRegionListening(currentLocation: CLLocation) {
-        LocationManagerHandler.weatherStations.sortInPlace({
-            return $0.location.distanceFromLocation(currentLocation) < $1.location.distanceFromLocation(currentLocation)
-        })
+        let sorted = WeatherStationList.sortedStations(currentLocation)
+        let nearestStations = sorted[0..<4]
         
-        let nearestStations = LocationManagerHandler.weatherStations[0..<4]
         clearLocationMonitors()
         var tempLocations = Set<CLRegion>()
         for weatherStation in nearestStations {
@@ -83,31 +80,5 @@ class LocationManagerHandler: NSObject, CLLocationManagerDelegate {
             return
         }
         self.setupRegionListening(locations.first!)
-    }
-    
-    // MARK: Static initialization of Weather Station data
-    
-    static func initStationList() -> [WeatherStation] {
-        var ret = [WeatherStation]()
-        let fileLocation = NSBundle.mainBundle().pathForResource("road_weather_stations", ofType: "csv")!
-        let semicolon = NSCharacterSet(charactersInString: ";")
-        let tsv: CSV!
-        do {
-            tsv = try CSV(contentsOfFile: fileLocation, delimiter: semicolon, encoding: NSUTF8StringEncoding)
-            for row in tsv.rows {
-                let id = Int(row["NUMERO"]!)!
-                let title = row["NIMI_FI"]!
-                let latitude = Double(row["Y"]!)!
-                let longitude = Double(row["X"]!)!
-                
-                let station = WeatherStation(id, title, Int(row["TIE"]!)!, latitude, longitude)
-                ret.append(station)
-            }
-        }
-        catch _ {
-            fatalError("Unable to read Weather Station info")
-        }
-        
-        return ret
     }
 }

@@ -17,15 +17,17 @@ class WeatherInfoViewController: UIViewController {
     @IBOutlet weak var airTempLbl: UILabel!
     @IBOutlet weak var conditionLbl: UILabel!
     
-    var currentWeatherInfo = WeatherInfo()
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Bind some stuff
-        currentWeatherInfo.stationName.bindTo(stationNameLbl)
-        currentWeatherInfo.airTemp.observe { value in
-            self.airTempLbl.text = String(format: "%0.1f °C", value)
+        appDelegate.currentWeather.stationName.bindTo(stationNameLbl)
+        appDelegate.currentWeather.airTemp.observe { value in
+            self.airTempLbl.text = String(format: "%0.1f°", value)
         }
+        appDelegate.currentWeather.condition.bindTo(conditionLbl)
+        
     }
     
     override func viewDidAppear(animated: Bool) {

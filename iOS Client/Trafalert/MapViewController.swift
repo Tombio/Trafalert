@@ -20,7 +20,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
-        for ws in LocationManagerHandler.weatherStations {
+        for ws in WeatherStationList.weatherStations {
             mapView.addOverlay(WeatherStationOverlay.createOverlay(ws.coordinate, 2000, ws.name))
         }
         
@@ -28,7 +28,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         locationHandler.monitoredLocations.observe { value in
             var updatingOverlays = self.activeOverlays()
             updatingOverlays.appendContentsOf(self.overlaysToActivate(value))
-            print(updatingOverlays)
             for overlay in updatingOverlays {
                 self.mapView.removeOverlay(overlay)
                 self.mapView.addOverlay(overlay)

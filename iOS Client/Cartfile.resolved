@@ -1,6 +1,6 @@
 github "Alamofire/Alamofire" "3.1.5"
+github "Hearst-DD/ObjectMapper" "1.1.1"
 github "ReactiveKit/ReactiveFoundation" "v1.0.6"
 github "ReactiveKit/ReactiveKit" "v1.1.2"
 github "ReactiveKit/ReactiveUIKit" "v1.0.10"
 github "naoty/SwiftCSV" "0.1.3"
-github "SwiftyJSON/SwiftyJSON" "2.3.3"

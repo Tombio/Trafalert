@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import ObjectMapper
 
 class DataFetcher {
     
@@ -15,13 +16,19 @@ class DataFetcher {
     static var weatherEndPoint = "/weather"
     static var warningEndPoint = "/warning"
     
-    func updateWeatherInfo(station: Int, callback: (WeatherInfo)) {
-        let address = String(format: "%@%@%@", arguments: [DataFetcher.server, DataFetcher.weatherEndPoint, station])
+    func updateWeatherInfo(station: Int, callback: (WeatherInfo) -> Void) {
+        let address = String(format: "%@%@/%d", arguments:[DataFetcher.server, DataFetcher.weatherEndPoint, station])
         debugPrint(address)
         Alamofire.request(.GET, address)
             .responseJSON { response in
-                debugPrint(response)
+                if let json = response.result.value {
+                    if let weather = Mapper<WeatherInfo>().map(json) {
+                        callback(weather)
+                    }
+                }
+                else {
+                    debugPrint("Failed to update info")
+                }
         }
     }
-    
 }

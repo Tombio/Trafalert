@@ -13,7 +13,12 @@ import CoreLocation
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 
     var window: UIWindow?
+    var currentWeather = WeatherInfo()
+    var currentStation: WeatherStation?
+    
     let locationManager = CLLocationManager()
+    let dataFetcher = DataFetcher()
+    
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -25,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         locationManager.requestAlwaysAuthorization()
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.delegate = self
+        locationManager.startUpdatingLocation()
         return true
     }
 
@@ -53,11 +59,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func applicationWillTerminate(application: UIApplication) {
     }
     
+    // MARK: Callback setter
+
+    func setWeather(info: WeatherInfo) {
+        currentWeather.updateWith(info)
+    }
+    
     // MARK: CLLocationManagerDelegate
+    func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
+        let nearestStation = WeatherStationList.nearestStation(newLocation)
+        debugPrint("Location update \(newLocation)")
+        if let cs = currentStation {
+            if cs.id == nearestStation.id {
+                // Update weather info to reflect nearest station
+                dataFetcher.updateWeatherInfo(nearestStation.id, callback: setWeather)
+            }
+        }
+        else {
+            currentStation = nearestStation
+            // Update weather info to reflect nearest station
+            dataFetcher.updateWeatherInfo(nearestStation.id, callback: setWeather)
+
+        }
+        
+    }
     
     func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
         // Ask from server info about entered region
         print("Did enter region at app delegate \(region)")
+        
     }
     
     func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
