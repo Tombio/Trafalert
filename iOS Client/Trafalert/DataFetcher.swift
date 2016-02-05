@@ -12,19 +12,20 @@ import ObjectMapper
 
 class DataFetcher {
     
-    static var server = "http://localhost:8080"
+    //static var server = "http://localhost:8080"
+    static var server = "http://trafalert.herokuapp.com"
     static var infoEndPoint = "/info" // get weather + warnings
     static var weatherEndPoint = "/weather" // get weather only
     static var warningEndPoint = "/warning" // get warnings only
     
-    func updateWeatherInfo(station: Int, callback: (WeatherInfo) -> Void) {
-        let address = String(format: "%@%@/%d", arguments:[DataFetcher.server, DataFetcher.weatherEndPoint, station])
+    func updateWeatherInfo(station: Int, callback: (WeatherStationData) -> Void) {
+        let address = String(format: "%@%@/%d", arguments:[DataFetcher.server, DataFetcher.infoEndPoint, station])
         debugPrint(address)
         Alamofire.request(.GET, address)
             .responseJSON { response in
                 if let json = response.result.value {
                     debugPrint(json)
-                    if let weather = Mapper<WeatherInfo>().map(json) {
+                    if let weather = Mapper<WeatherStationData>().map(json) {
                         callback(weather)
                     }
                 }

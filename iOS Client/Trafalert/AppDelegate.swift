@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import AVFoundation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
@@ -15,11 +16,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var window: UIWindow?
     var currentWeather = WeatherInfo()
     var currentStation: WeatherStation?
+    var lastUpdateTime: NSDate?
     
     let locationManager = CLLocationManager()
     let dataFetcher = DataFetcher()
+    let speechSynth = AVSpeechSynthesizer()
+    // let voice = AVSpeechSynthesisVoice(language: "fi-FI")
     
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         // setup location manager to receive updates all the time
@@ -59,32 +62,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func applicationWillTerminate(application: UIApplication) {
     }
     
+    // MARK: Speak, my young Badawan
+    
+    func talk(string: String) {
+        debugPrint("Speak \(string)")
+        let utterance = AVSpeechUtterance(string: string)
+        // utterance.voice = voice
+        speechSynth.speakUtterance(utterance)
+    }
+    
     // MARK: Callback setter
 
-    func setWeather(info: WeatherInfo) {
+    func setWeather(info: WeatherStationData) {
         if currentStation != nil {
-            info.stationName.value = currentStation!.name
+            info.info!.stationName.value = currentStation!.name
         }
-        currentWeather.updateWith(info)
+        currentWeather.updateWith(info.info!)
     }
     
     // MARK: CLLocationManagerDelegate
+    
     func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
         let nearestStation = WeatherStationList.nearestStation(newLocation)
         debugPrint("Location update \(newLocation)")
-        if let cs = currentStation {
-            if cs.id == nearestStation.id {
-                // Update weather info to reflect nearest station
-                dataFetcher.updateWeatherInfo(nearestStation.id, callback: setWeather)
-            }
-        }
-        else {
+        if currentStation == nil || currentStation!.id != nearestStation.id {
             currentStation = nearestStation
             // Update weather info to reflect nearest station
             dataFetcher.updateWeatherInfo(nearestStation.id, callback: setWeather)
-
+            lastUpdateTime = NSDate()
         }
-        
+        else if lastUpdateTime == nil || lastUpdateTime!.timeIntervalSinceDate(NSDate()) > 60 {
+            dataFetcher.updateWeatherInfo(nearestStation.id, callback: setWeather)
+            lastUpdateTime = NSDate()
+            
+        }
+        else {
+                dataFetcher.updateWeatherInfo(nearestStation.id, callback: setWeather)
+        }
     }
     
     func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
