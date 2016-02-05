@@ -85,20 +85,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
         let nearestStation = WeatherStationList.nearestStation(newLocation)
         debugPrint("Location update \(newLocation)")
-        if currentStation == nil || currentStation!.id != nearestStation.id {
+        if timeToUpdate(nearestStation) {
             currentStation = nearestStation
-            // Update weather info to reflect nearest station
             dataFetcher.updateWeatherInfo(nearestStation.id, callback: setWeather)
             lastUpdateTime = NSDate()
         }
-        else if lastUpdateTime == nil || lastUpdateTime!.timeIntervalSinceDate(NSDate()) > 60 {
-            dataFetcher.updateWeatherInfo(nearestStation.id, callback: setWeather)
-            lastUpdateTime = NSDate()
-            
-        }
-        else {
-                dataFetcher.updateWeatherInfo(nearestStation.id, callback: setWeather)
-        }
+    }
+    
+    func timeToUpdate(nearestStation: WeatherStation) -> Bool {
+        return currentStation == nil || nearestStation.id != currentStation?.id || lastUpdateTime == nil || lastUpdateTime!.timeIntervalSinceNow < -30
     }
     
     func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
