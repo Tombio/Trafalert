@@ -60,6 +60,7 @@ public class MainController {
     public String fullInfoForRegion(@PathVariable(value = "region") final Long region) throws Exception {
         final WeatherStationData wsd = cache.getCacheData().get(region);
         final List<Warning> warnings = warningCache.getCacheData().get(region);
+        log.info("Station " + wsd);
         final WeatherInfo wi = new WeatherInfo(wsd.getStationId(), wsd, warnings);
         return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(wi);
     }
