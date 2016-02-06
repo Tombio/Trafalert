@@ -22,6 +22,8 @@ class WeatherInfoViewController: UIViewController {
     @IBOutlet weak var windImage: UIImageView!
     @IBOutlet weak var roadTempLbl: UILabel!
     @IBOutlet weak var freezingPointLbl: UILabel!
+    @IBOutlet weak var warningView: UIView!
+    @IBOutlet weak var roadSurfaceConditionLbl: UILabel!
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
@@ -32,8 +34,8 @@ class WeatherInfoViewController: UIViewController {
         appDelegate.currentWeather.airTemp.observe { value in
             self.airTempLbl.text = String(format: "%0.1f°", value)
         }
-        appDelegate.currentWeather.condition.observe { value in
-            self.conditionLbl.text = value.rawValue
+        appDelegate.currentWeather.precipitationType.observe { value in
+            self.conditionLbl.text = value.humanReadable()
         }
         appDelegate.currentWeather.precipitationIntensity.observe { value in
             self.rainLbl.text = String(format: "%i mm/h", value)
@@ -52,8 +54,16 @@ class WeatherInfoViewController: UIViewController {
             self.roadTempLbl.text = String(format: "%0.1f°", value)
         }
         appDelegate.currentWeather.dewPoint.observe { value in
-            self.freezingPointLbl.text = String(format: "Tienpinnan jäätymislämpötila: %0.1f°", value)
+            let actual = value > 0 ? 0.0 : value
+            self.freezingPointLbl.text = String(format: "Tienpinnan jäätymislämpötila: %0.1f°", actual)
         }
+        appDelegate.currentWeather.roadSurfaceCondition.observe { value in
+            self.roadSurfaceConditionLbl.text = value.humanReadable()
+        }
+        appDelegate.currentData.warnings.observe { value in
+            self.warningView.hidden = value.collection.isEmpty
+        }
+        
     }
     
     func rotateImage(wind: Float) {

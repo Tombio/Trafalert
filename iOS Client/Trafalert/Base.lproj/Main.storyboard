@@ -316,13 +316,19 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Air temp" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7tD-LR-lEX" userLabel="roadTempLbl">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Road temp" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7tD-LR-lEX" userLabel="roadTempLbl">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="70"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Condition" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mu6-Mb-a7b" userLabel="freezingPointLbl">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Condition" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Qd-Oi-hBy" userLabel="roadSurfaceConditionLbl">
+                                        <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Freezing point" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mu6-Mb-a7b" userLabel="freezingPointLbl">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -334,10 +340,14 @@
                                     <constraint firstItem="Ryv-gS-e4O" firstAttribute="width" secondItem="hMg-RH-dxP" secondAttribute="width" id="8At-50-00h"/>
                                     <constraint firstItem="Ryv-gS-e4O" firstAttribute="top" secondItem="hMg-RH-dxP" secondAttribute="top" id="9VN-dP-hAe"/>
                                     <constraint firstItem="7tD-LR-lEX" firstAttribute="width" secondItem="hMg-RH-dxP" secondAttribute="width" id="DYd-mN-H5W"/>
+                                    <constraint firstItem="8Qd-Oi-hBy" firstAttribute="bottom" secondItem="Mu6-Mb-a7b" secondAttribute="top" id="Tlx-jc-1W5"/>
+                                    <constraint firstItem="8Qd-Oi-hBy" firstAttribute="height" secondItem="hMg-RH-dxP" secondAttribute="height" multiplier="0.2" id="U9I-7J-5DK"/>
+                                    <constraint firstItem="8Qd-Oi-hBy" firstAttribute="width" secondItem="hMg-RH-dxP" secondAttribute="width" id="Wm4-IM-mou"/>
+                                    <constraint firstItem="8Qd-Oi-hBy" firstAttribute="centerX" secondItem="hMg-RH-dxP" secondAttribute="centerX" id="XYJ-SA-liw"/>
                                     <constraint firstItem="Mu6-Mb-a7b" firstAttribute="width" secondItem="hMg-RH-dxP" secondAttribute="width" id="h9J-gQ-irL"/>
                                     <constraint firstItem="7tD-LR-lEX" firstAttribute="centerY" secondItem="hMg-RH-dxP" secondAttribute="centerY" multiplier="0.8" id="i2b-ge-e2u"/>
                                     <constraint firstItem="Ryv-gS-e4O" firstAttribute="centerX" secondItem="hMg-RH-dxP" secondAttribute="centerX" id="ifA-7v-zS7"/>
-                                    <constraint firstItem="Mu6-Mb-a7b" firstAttribute="height" secondItem="hMg-RH-dxP" secondAttribute="height" multiplier="0.3" id="pBr-63-H41"/>
+                                    <constraint firstItem="Mu6-Mb-a7b" firstAttribute="height" secondItem="hMg-RH-dxP" secondAttribute="height" multiplier="0.2" id="pBr-63-H41"/>
                                     <constraint firstAttribute="bottom" secondItem="Mu6-Mb-a7b" secondAttribute="bottom" id="qBq-To-kqh"/>
                                     <constraint firstItem="Mu6-Mb-a7b" firstAttribute="centerX" secondItem="hMg-RH-dxP" secondAttribute="centerX" id="slI-fP-GaI"/>
                                     <constraint firstItem="7tD-LR-lEX" firstAttribute="height" secondItem="hMg-RH-dxP" secondAttribute="height" multiplier="0.4" id="tgz-VY-BGR"/>
@@ -348,6 +358,7 @@
                                     <mask key="subviews">
                                         <exclude reference="Ryv-gS-e4O"/>
                                         <exclude reference="7tD-LR-lEX"/>
+                                        <exclude reference="8Qd-Oi-hBy"/>
                                         <exclude reference="Mu6-Mb-a7b"/>
                                     </mask>
                                     <mask key="constraints">
@@ -359,6 +370,10 @@
                                         <exclude reference="i2b-ge-e2u"/>
                                         <exclude reference="tgz-VY-BGR"/>
                                         <exclude reference="uCe-Ov-402"/>
+                                        <exclude reference="Tlx-jc-1W5"/>
+                                        <exclude reference="U9I-7J-5DK"/>
+                                        <exclude reference="Wm4-IM-mou"/>
+                                        <exclude reference="XYJ-SA-liw"/>
                                         <exclude reference="h9J-gQ-irL"/>
                                         <exclude reference="pBr-63-H41"/>
                                         <exclude reference="qBq-To-kqh"/>
@@ -369,6 +384,7 @@
                                     <mask key="subviews">
                                         <include reference="Ryv-gS-e4O"/>
                                         <include reference="7tD-LR-lEX"/>
+                                        <include reference="8Qd-Oi-hBy"/>
                                         <include reference="Mu6-Mb-a7b"/>
                                     </mask>
                                     <mask key="constraints">
@@ -380,6 +396,10 @@
                                         <include reference="i2b-ge-e2u"/>
                                         <include reference="tgz-VY-BGR"/>
                                         <include reference="uCe-Ov-402"/>
+                                        <include reference="Tlx-jc-1W5"/>
+                                        <include reference="U9I-7J-5DK"/>
+                                        <include reference="Wm4-IM-mou"/>
+                                        <include reference="XYJ-SA-liw"/>
                                         <include reference="h9J-gQ-irL"/>
                                         <include reference="pBr-63-H41"/>
                                         <include reference="qBq-To-kqh"/>
@@ -387,7 +407,7 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fAD-q4-2MC" userLabel="Warning">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fAD-q4-2MC" userLabel="Warning">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" red="1" green="0.0092708704513445594" blue="0.0" alpha="0.31305426520270269" colorSpace="calibratedRGB"/>
                             </view>
@@ -475,9 +495,11 @@
                         <outlet property="conditionLbl" destination="80f-Op-yOu" id="lm9-R5-uEr"/>
                         <outlet property="freezingPointLbl" destination="Mu6-Mb-a7b" id="CgQ-Po-XiL"/>
                         <outlet property="rainLbl" destination="jK3-bz-4Do" id="YIk-sA-UeD"/>
+                        <outlet property="roadSurfaceConditionLbl" destination="8Qd-Oi-hBy" id="hF3-oa-kqQ"/>
                         <outlet property="roadTempLbl" destination="7tD-LR-lEX" id="FRu-kN-3NG"/>
                         <outlet property="stationNameLbl" destination="7nZ-em-cT2" id="k0X-ga-IJT"/>
                         <outlet property="visibilityLbl" destination="bav-mK-ZYT" id="KCh-fv-63x"/>
+                        <outlet property="warningView" destination="fAD-q4-2MC" id="JOE-IB-FcY"/>
                         <outlet property="windDirection" destination="Cy8-eC-Ch6" id="DuU-83-Fxt"/>
                         <outlet property="windImage" destination="J9R-Mr-RE8" id="UN1-q8-2YV"/>
                     </connections>

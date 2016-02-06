@@ -14,8 +14,11 @@ import AVFoundation
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 
     var window: UIWindow?
-    var currentWeather = WeatherInfo()
+    var currentWeather =
+    WeatherInfo()
     var currentStation: WeatherStation?
+    var currentData = WeatherStationData()
+    
     var lastUpdateTime: NSDate?
     
     let locationManager = CLLocationManager()
@@ -62,7 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func applicationWillTerminate(application: UIApplication) {
     }
     
-    // MARK: Speak, my young Badawan
+    // MARK: Speak, my young Padawan
     
     func talk(string: String) {
         debugPrint("Speak \(string)")
@@ -74,10 +77,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     // MARK: Callback setter
 
     func setWeather(info: WeatherStationData) {
+        currentData = info
         if currentStation != nil {
-            info.info!.stationName.value = currentStation!.name
+            info.info.stationName.value = currentStation!.name
         }
-        currentWeather.updateWith(info.info!)
+        currentWeather.updateWith(info.info)
     }
     
     // MARK: CLLocationManagerDelegate
@@ -92,8 +96,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         }
     }
     
+    /**
+    * Update if there is now currentStation (first run), nearest station has changed, 
+    * last update time is unknown or it has been more than 30 seconds since last update
+    */
     func timeToUpdate(nearestStation: WeatherStation) -> Bool {
-        return currentStation == nil || nearestStation.id != currentStation?.id || lastUpdateTime == nil || lastUpdateTime!.timeIntervalSinceNow < -30
+        return currentStation == nil || nearestStation.id != currentStation?.id ||
+            lastUpdateTime == nil || NSDate().timeIntervalSinceDate(lastUpdateTime!) > 30
     }
     
     func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
