@@ -8,7 +8,9 @@
 
 import UIKit
 import CoreLocation
+import CoreMotion
 import AVFoundation
+import ReactiveKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
@@ -18,10 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var currentWarnings = Array<Warning>()
     var currentStation: WeatherStation?
     var currentData = WeatherStationData()
+    var inCar = Observable(false)
     
     var lastUpdateTime: NSDate?
     
     let locationManager = CLLocationManager()
+    let motionManager = CMMotionActivityManager()
     let dataFetcher = DataFetcher()
     let speechSynth = AVSpeechSynthesizer()
     // let voice = AVSpeechSynthesisVoice(language: "fi-FI")
@@ -37,6 +41,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
+        // Also start stalking motion data if possible
+        if CMMotionActivityManager.isActivityAvailable() {
+            motionManager.startActivityUpdatesToQueue(NSOperationQueue.mainQueue(), withHandler: {
+                (activity: CMMotionActivity?) -> Void in
+                self.inCar.value = activity?.automotive == true
+            })
+        }
+        else {
+            debugPrint("No activity monitoring.. :(")
+        }
+        
+        
         return true
     }
 
@@ -69,6 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func talk(string: String) {
         debugPrint("Speak \(string)")
+        
         let utterance = AVSpeechUtterance(string: string)
         // utterance.voice = voice
         speechSynth.speakUtterance(utterance)
@@ -88,8 +105,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
         let nearestStation = WeatherStationList.nearestStation(newLocation)
-        debugPrint("Location update \(newLocation)")
         if timeToUpdate(nearestStation) {
+            debugPrint("Location update \(newLocation)")
             currentStation = nearestStation
             dataFetcher.updateWeatherInfo(nearestStation.id, callback: setWeather)
             lastUpdateTime = NSDate()
