@@ -32,7 +32,7 @@ class WeatherInfoViewController: UIViewController {
         // Bind some stuff
         appDelegate.currentWeather.stationName.bindTo(stationNameLbl)
         appDelegate.currentWeather.airTemp.observe { value in
-            self.airTempLbl.text = String(format: "%0.1f°", value)
+            self.airTempLbl.text = String(format: " %0.1f°", value)
         }
         appDelegate.currentWeather.precipitationType.observe { value in
             self.conditionLbl.text = value.humanReadable()
@@ -51,7 +51,7 @@ class WeatherInfoViewController: UIViewController {
             self.rotateImage(Float(value))
         }
         appDelegate.currentWeather.roadTemp.observe {value in
-            self.roadTempLbl.text = String(format: "%0.1f°", value)
+            self.roadTempLbl.text = String(format: " %0.1f°", value)
         }
         appDelegate.currentWeather.dewPoint.observe { value in
             let actual = value > 0 ? 0.0 : value

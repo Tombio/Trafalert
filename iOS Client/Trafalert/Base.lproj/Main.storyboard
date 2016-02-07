@@ -430,9 +430,9 @@
                             <constraint firstItem="hMg-RH-dxP" firstAttribute="width" secondItem="88M-Tl-FWi" secondAttribute="width" id="aMa-aG-vOG"/>
                             <constraint firstItem="YLh-oL-QHH" firstAttribute="centerX" secondItem="88M-Tl-FWi" secondAttribute="centerX" id="feu-Uy-TyH"/>
                             <constraint firstItem="hMg-RH-dxP" firstAttribute="centerX" secondItem="88M-Tl-FWi" secondAttribute="centerX" id="gWv-KI-New"/>
+                            <constraint firstItem="hMg-RH-dxP" firstAttribute="top" secondItem="dfe-Ru-AFC" secondAttribute="bottom" id="mSM-kd-De3"/>
                             <constraint firstItem="YLh-oL-QHH" firstAttribute="height" secondItem="88M-Tl-FWi" secondAttribute="height" multiplier="0.35" id="qon-nl-hln"/>
-                            <constraint firstItem="dfe-Ru-AFC" firstAttribute="centerY" secondItem="88M-Tl-FWi" secondAttribute="centerY" id="vzE-HY-3FS"/>
-                            <constraint firstItem="hMg-RH-dxP" firstAttribute="bottom" secondItem="Sfs-iZ-1bF" secondAttribute="top" id="xjM-fM-r2g"/>
+                            <constraint firstItem="dfe-Ru-AFC" firstAttribute="centerY" secondItem="88M-Tl-FWi" secondAttribute="centerY" multiplier="0.8" id="vzE-HY-3FS"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -458,7 +458,7 @@
                                 <exclude reference="Nhl-d0-IdE"/>
                                 <exclude reference="aMa-aG-vOG"/>
                                 <exclude reference="gWv-KI-New"/>
-                                <exclude reference="xjM-fM-r2g"/>
+                                <exclude reference="mSM-kd-De3"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -485,7 +485,7 @@
                                 <include reference="Nhl-d0-IdE"/>
                                 <include reference="aMa-aG-vOG"/>
                                 <include reference="gWv-KI-New"/>
-                                <include reference="xjM-fM-r2g"/>
+                                <include reference="mSM-kd-De3"/>
                             </mask>
                         </variation>
                     </view>
