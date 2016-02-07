@@ -9,56 +9,11 @@
 import Foundation
 import ReactiveKit
 import ObjectMapper
-/*
-{
-    stationId = 4065;
-    warnings =     (
-        {
-            beginTime =             {
-                chronology =                 {
-                    calendarType = iso8601;
-                    id = ISO;
-                };
-                dayOfMonth = 4;
-                dayOfWeek = THURSDAY;
-                dayOfYear = 35;
-                hour = 18;
-                minute = 52;
-                month = FEBRUARY;
-                monthValue = 2;
-                nano = 263000000;
-                second = 37;
-                year = 2016;
-            };
-            roadDewPointDifference = "-0.5";
-            roadSurfaceTemperature = "-1.4";
-            version = 204;
-            warningType = "BLACK_ICE";
-        }
-    );
-    weatherData =     {
-        airTemperature = "-0.8";
-        averageWindSpeed = "2.4";
-        dewPoint = "-1.1";
-        humidity = 98;
-        maxWindSpeed = "5.6";
-        precipitation = "NO_PRECIPITATION";
-        precipitationIntensity = 0;
-        precipitationSum = "0.4";
-        precipitationType = "NO_PRECIPITATION";
-        roadCondition = DAMP;
-        roadSurfaceDewPointDifference = "-0.3";
-        roadSurfaceTemperature = "-1.4";
-        stationId = 4065;
-        visibility = 20000;
-        windDirection = 271;
-    };
-}
-*/
+
 class WeatherStationData: Mappable {
     var stationId: Int?
     var info = WeatherInfo()
-    var warnings = ObservableCollection(Array<Warning>())
+    let warnings = ObservableCollection(Array<Warning>())
     
     init(){}
     required init?(_ map: Map) {}
@@ -66,7 +21,15 @@ class WeatherStationData: Mappable {
     func mapping(map: Map) {
         stationId <- map["stationId"]
         info <- map["weatherData"]
-        warnings <- map["warnings"]//Mapper<Warning>().mapArray(map["warnings"].value())
+        if let warn = Mapper<Warning>().mapArray(map["warnings"].currentValue) {
+            debugPrint("Warnings found")
+            warnings.replace(warn)
+        }
+        else {
+            debugPrint("No warnings")
+            warnings.replace(Array<Warning>())
+        }
+        debugPrint(warnings.collection)
     }
 }
 
@@ -213,7 +176,6 @@ class WeatherInfo: Mappable {
         self.roadSurfaceDewPointDifference.value = info.roadSurfaceDewPointDifference.value
         self.dewPoint.value = info.dewPoint.value
         self.roadSurfaceCondition.value = info.roadSurfaceCondition.value
-        debugPrint(self.roadSurfaceCondition.value)
     }
     
     

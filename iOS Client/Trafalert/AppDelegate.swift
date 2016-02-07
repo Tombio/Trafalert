@@ -14,8 +14,8 @@ import AVFoundation
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 
     var window: UIWindow?
-    var currentWeather =
-    WeatherInfo()
+    var currentWeather  = WeatherInfo()
+    var currentWarnings = Array<Warning>()
     var currentStation: WeatherStation?
     var currentData = WeatherStationData()
     
@@ -77,7 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     // MARK: Callback setter
 
     func setWeather(info: WeatherStationData) {
-        currentData = info
+        currentData.warnings.replace(info.warnings.collection)
         if currentStation != nil {
             info.info.stationName.value = currentStation!.name
         }

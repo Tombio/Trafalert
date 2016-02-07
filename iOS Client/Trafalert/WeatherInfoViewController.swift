@@ -61,6 +61,7 @@ class WeatherInfoViewController: UIViewController {
             self.roadSurfaceConditionLbl.text = value.humanReadable()
         }
         appDelegate.currentData.warnings.observe { value in
+            debugPrint("Warnings hidden => \(value.collection.isEmpty)")
             self.warningView.hidden = value.collection.isEmpty
         }
         

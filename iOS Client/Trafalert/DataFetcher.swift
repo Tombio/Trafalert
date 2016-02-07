@@ -21,7 +21,7 @@ class DataFetcher {
     func updateWeatherInfo(station: Int, callback: (WeatherStationData) -> Void) {
         let address = String(format: "%@%@/%d", arguments:[DataFetcher.server, DataFetcher.infoEndPoint, station])
         debugPrint(address)
-        Alamofire.request(.GET, address)
+        Alamofire.request(.GET, address, parameters: nil, encoding: .JSON)
             .responseJSON { response in
                 if let json = response.result.value {
                     debugPrint(json)
