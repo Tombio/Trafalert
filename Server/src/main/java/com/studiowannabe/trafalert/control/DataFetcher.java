@@ -35,7 +35,7 @@ public class DataFetcher {
         this.warningCache = warningCache;
     }
 
-    @Scheduled(fixedDelay = 60 * 1000) // 30 seconds
+    @Scheduled(fixedDelay = 60 * 1000) // 60 seconds
     private void runDataUpdate(){
         log.info("Run update...");
         final RoadWeatherResponse response = weatherClient.getRoadWeather();
