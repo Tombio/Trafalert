@@ -62,7 +62,7 @@ class WeatherInfoViewController: UIViewController {
         }
         appDelegate.currentData.warnings.observe { value in
             debugPrint("Warnings hidden => \(value.collection.isEmpty)")
-            self.warningView.hidden = value.collection.isEmpty
+            self.warningView.hidden = false//value.collection.isEmpty
         }
         
     }
