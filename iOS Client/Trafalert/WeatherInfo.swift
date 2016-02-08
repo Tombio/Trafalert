@@ -36,14 +36,28 @@ class WeatherStationData: Mappable {
 class Warning: Mappable {
     
     enum WarningType: String {
-        case NONE = ""
-        case BLACK_ICE = "Mustaa jäätä"
-        case STRONG_WIND = "Voimakas tuuli"
-        case STRONG_WIND_GUSTS = "Voimakas tuuli puuskissa"
-        case POOR_VISIBILITY = "Huono näkyvyys"
-        case SLIPPERY_ROAD = "Liukas tie"
-        case HEAVY_RAIN = "Rankkasade"
+        case NONE
+        case BLACK_ICE
+        case STRONG_WIND
+        case STRONG_WIND_GUSTS
+        case POOR_VISIBILITY
+        case SLIPPERY_ROAD
+        case HEAVY_RAIN
+        
+        func humanReadable() -> String {
+            switch(self){
+            case .NONE: return ""
+            case .BLACK_ICE: return "Mustaa jäätä"
+            case .STRONG_WIND: return "Voimakas tuuli"
+            case .STRONG_WIND_GUSTS: return "Voimakas tuuli puuskissa"
+            case .POOR_VISIBILITY: return "Huono näkyvyys"
+            case .SLIPPERY_ROAD: return "Liukas tie"
+            case .HEAVY_RAIN: return "Rankkasade"
+            }
+        }
+
     }
+    
     
     var version = Observable(0)
     var warningType = Observable(WarningType.NONE)
@@ -55,14 +69,6 @@ class Warning: Mappable {
         version.value <- map["version"]
         warningType.value <- map["warningType"]
     }
-    
-    var hashValue: Int {
-        return version.value.hashValue
-    }
-}
-
-func ==(lhs: Warning, rhs: Warning) -> Bool {
-    return lhs.version.value == rhs.version.value
 }
 
 class WeatherInfo: Mappable {

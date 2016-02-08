@@ -16,6 +16,8 @@ import ReactiveKit
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 
     var window: UIWindow?
+    
+    // Need to clean this mess at some point
     var currentWeather  = WeatherInfo()
     var currentWarnings = Array<Warning>()
     var currentStation: WeatherStation?

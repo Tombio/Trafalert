@@ -24,6 +24,7 @@ class WeatherInfoViewController: UIViewController {
     @IBOutlet weak var freezingPointLbl: UILabel!
     @IBOutlet weak var warningView: UIView!
     @IBOutlet weak var roadSurfaceConditionLbl: UILabel!
+    @IBOutlet weak var warningLbl: UILabel!
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
@@ -61,10 +62,12 @@ class WeatherInfoViewController: UIViewController {
             self.roadSurfaceConditionLbl.text = value.humanReadable()
         }
         appDelegate.currentData.warnings.observe { value in
-            debugPrint("Warnings hidden => \(value.collection.isEmpty)")
-            self.warningView.hidden = false//value.collection.isEmpty
+            self.warningView.hidden = value.collection.isEmpty
+            let warningString = value.collection.reduce("", combine: {
+                $0 == "" ? $1.warningType.value.humanReadable() : $0 + "\n" + $1.warningType.value.humanReadable()
+            })
+            self.warningLbl.text = warningString
         }
-        
     }
     
     func rotateImage(wind: Float) {

@@ -562,6 +562,7 @@
                         <outlet property="roadTempLbl" destination="7tD-LR-lEX" id="FRu-kN-3NG"/>
                         <outlet property="stationNameLbl" destination="7nZ-em-cT2" id="k0X-ga-IJT"/>
                         <outlet property="visibilityLbl" destination="bav-mK-ZYT" id="KCh-fv-63x"/>
+                        <outlet property="warningLbl" destination="OB4-yM-v5t" id="idr-eO-IAF"/>
                         <outlet property="warningView" destination="fAD-q4-2MC" id="JOE-IB-FcY"/>
                         <outlet property="windDirection" destination="Cy8-eC-Ch6" id="DuU-83-Fxt"/>
                         <outlet property="windImage" destination="J9R-Mr-RE8" id="UN1-q8-2YV"/>
