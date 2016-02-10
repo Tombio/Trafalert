@@ -116,7 +116,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     /**
-    * Update if there is now currentStation (first run), nearest station has changed, 
+    * Update if there is no currentStation (first run), nearest station has changed, 
     * last update time is unknown or it has been more than 30 seconds since last update
     */
     func timeToUpdate(nearestStation: WeatherStation) -> Bool {
