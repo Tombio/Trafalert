@@ -1,13 +1,12 @@
 package com.studiowannabe.trafalert.control;
 
-import com.studiowannabe.trafalert.domain.BlackIceWarning;
-import com.studiowannabe.trafalert.domain.Warning;
-import com.studiowannabe.trafalert.domain.WindWarning;
+import com.studiowannabe.trafalert.domain.warning.*;
 import com.studiowannabe.trafalert.wsdl.RoadWeatherType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -19,6 +18,10 @@ public class WarningIssuer {
 
     private final WarningCache warningCache;
 
+    private static final int WIND_WARNING_SPEED = 15;
+    private static final int VISIBILITY_WARNING_METERS = 500;
+    private static final List<Integer> PRECIPITATION_WARNING_VALUES = Arrays.asList(3,6);
+
     @Autowired
     public WarningIssuer(final WarningCache warningCache){
         this.warningCache = warningCache;
@@ -29,9 +32,15 @@ public class WarningIssuer {
             return Collections.emptyList();
         }
         final List<Warning> warnings = new ArrayList<>();
+
         final Warning ww = createWindWarning(data);
         if(ww != null) {
             warnings.add(ww);
+        }
+
+        final Warning gw = createGustWarning(data);
+        if(gw != null) {
+            warnings.add(gw);
         }
 
         final Warning biw = createBlackIceWarning(data);
@@ -39,24 +48,92 @@ public class WarningIssuer {
             warnings.add(biw);
         }
 
+        final Warning vw = createVisibilityWarning(data);
+        if(vw != null){
+            warnings.add(vw);
+        }
+
+        final Warning srw = createSlipperyRoadWarning(data);
+        if(srw != null){
+            warnings.add(srw);
+        }
+
+        final Warning hrw = createHeavyRainWarning(data);
+        if(hrw != null){
+            warnings.add(hrw);
+        }
 
         return warnings;
     }
 
-    private Warning createWindWarning(final RoadWeatherType data) {
-        if(data.getAveragewindspeed() == null) {
-            return null;
+    private Warning createHeavyRainWarning(RoadWeatherType data) {
+        if(data.getPrecipitation() != null && PRECIPITATION_WARNING_VALUES.contains(data.getPrecipitation().intValue())){
+            final Warning hrw = existingWarning(Warning.WarningType.HEAVY_RAIN, data.getStationid().longValue());
+            if(hrw != null) {
+                return hrw;
+            }
+            else {
+                return new HeavyRainWarning(data.getPrecipitation());
+            }
         }
-        if(data.getAveragewindspeed().intValue() >= 5) { // Check if current wind is above warning level
-            final Warning cw = existingWarning(Warning.WarningType.STRONG_WIND, data.getStationid().longValue());
-            if(cw != null) { // if there already is a issued warning return same instance
+
+        return null;
+    }
+
+    private Warning createSlipperyRoadWarning(RoadWeatherType data) {
+        if(data.getWarning3() != null && data.getWarning3().intValue() > 0){
+            final Warning srw = existingWarning(Warning.WarningType.SLIPPERY_ROAD, data.getStationid().longValue());
+            if(srw != null) {
+                return srw;
+            }
+            else {
+                return new SlipperyRoadWarning(data.getWarning3());
+            }
+        }
+
+        return null;
+    }
+
+    private Warning createWindWarning(final RoadWeatherType data) {
+        if(data.getAveragewindspeed() != null && data.getAveragewindspeed().intValue() >= WIND_WARNING_SPEED) {
+           final Warning cw = existingWarning(Warning.WarningType.STRONG_WIND, data.getStationid().longValue());
+            if(cw != null) {
                 return cw;
             }
-            else { // or create new one
+            else {
                 return new WindWarning(data.getAveragewindspeed());
             }
         }
-        return null; // No need for wind warning...
+        return null;
+    }
+
+    private Warning createGustWarning(final RoadWeatherType data) {
+        if(data.getMaxwindspeed() != null && data.getMaxwindspeed().intValue() >= WIND_WARNING_SPEED) {
+            final Warning cw = existingWarning(Warning.WarningType.STRONG_WIND_GUSTS, data.getStationid().longValue());
+            if(cw != null) {
+                return cw;
+            }
+            else {
+                return new GustWarning(data.getMaxwindspeed());
+            }
+        }
+        return null;
+    }
+
+    private Warning createVisibilityWarning(final RoadWeatherType data) {
+        if(data.getVisibilitymeters() == null) {
+            return null;
+        }
+        if(data.getVisibilitymeters().intValue() < VISIBILITY_WARNING_METERS) { // Check if current wind is above warning level
+            final Warning cw = existingWarning(Warning.WarningType.POOR_VISIBILITY, data.getStationid().longValue());
+            if(cw != null) {
+                return cw;
+            }
+            else {
+                return new VisibilityWarning(Warning.WarningType.POOR_VISIBILITY, data.getVisibilitymeters());
+            }
+        }
+        return null;
     }
 
     private Warning createBlackIceWarning(final RoadWeatherType data) {

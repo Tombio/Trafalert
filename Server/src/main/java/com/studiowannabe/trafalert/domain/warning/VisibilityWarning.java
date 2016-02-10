@@ -1,9 +1,8 @@
-package com.studiowannabe.trafalert.domain;
+package com.studiowannabe.trafalert.domain.warning;
 
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 /**
  * Created by Tomi on 31/01/16.

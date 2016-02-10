@@ -310,6 +310,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hMg-RH-dxP" userLabel="Road">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="iSb-mE-roP" userLabel="inCarSwch">
+                                        <rect key="frame" x="-25" y="-15" width="51" height="31"/>
+                                    </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tienpinta" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Ryv-gS-e4O" userLabel="roadTempLabelLbl">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
@@ -341,9 +344,11 @@
                                     <constraint firstItem="Ryv-gS-e4O" firstAttribute="top" secondItem="hMg-RH-dxP" secondAttribute="top" id="9VN-dP-hAe"/>
                                     <constraint firstItem="7tD-LR-lEX" firstAttribute="width" secondItem="hMg-RH-dxP" secondAttribute="width" id="DYd-mN-H5W"/>
                                     <constraint firstItem="8Qd-Oi-hBy" firstAttribute="bottom" secondItem="Mu6-Mb-a7b" secondAttribute="top" id="Tlx-jc-1W5"/>
+                                    <constraint firstItem="iSb-mE-roP" firstAttribute="leading" secondItem="hMg-RH-dxP" secondAttribute="leading" id="Tvn-O6-L0A"/>
                                     <constraint firstItem="8Qd-Oi-hBy" firstAttribute="height" secondItem="hMg-RH-dxP" secondAttribute="height" multiplier="0.2" id="U9I-7J-5DK"/>
                                     <constraint firstItem="8Qd-Oi-hBy" firstAttribute="width" secondItem="hMg-RH-dxP" secondAttribute="width" id="Wm4-IM-mou"/>
                                     <constraint firstItem="8Qd-Oi-hBy" firstAttribute="centerX" secondItem="hMg-RH-dxP" secondAttribute="centerX" id="XYJ-SA-liw"/>
+                                    <constraint firstItem="Ryv-gS-e4O" firstAttribute="centerY" secondItem="iSb-mE-roP" secondAttribute="centerY" id="eqh-Su-kYT"/>
                                     <constraint firstItem="Mu6-Mb-a7b" firstAttribute="width" secondItem="hMg-RH-dxP" secondAttribute="width" id="h9J-gQ-irL"/>
                                     <constraint firstItem="7tD-LR-lEX" firstAttribute="centerY" secondItem="hMg-RH-dxP" secondAttribute="centerY" multiplier="0.8" id="i2b-ge-e2u"/>
                                     <constraint firstItem="Ryv-gS-e4O" firstAttribute="centerX" secondItem="hMg-RH-dxP" secondAttribute="centerX" id="ifA-7v-zS7"/>
@@ -356,12 +361,19 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="subviews">
+                                        <exclude reference="iSb-mE-roP"/>
                                         <exclude reference="Ryv-gS-e4O"/>
                                         <exclude reference="7tD-LR-lEX"/>
                                         <exclude reference="8Qd-Oi-hBy"/>
                                         <exclude reference="Mu6-Mb-a7b"/>
                                     </mask>
                                     <mask key="constraints">
+                                        <exclude reference="8At-50-00h"/>
+                                        <exclude reference="9VN-dP-hAe"/>
+                                        <exclude reference="eqh-Su-kYT"/>
+                                        <exclude reference="ifA-7v-zS7"/>
+                                        <exclude reference="zZd-Ge-oPR"/>
+                                        <exclude reference="Tvn-O6-L0A"/>
                                         <exclude reference="DYd-mN-H5W"/>
                                         <exclude reference="i2b-ge-e2u"/>
                                         <exclude reference="tgz-VY-BGR"/>
@@ -374,20 +386,23 @@
                                         <exclude reference="pBr-63-H41"/>
                                         <exclude reference="qBq-To-kqh"/>
                                         <exclude reference="slI-fP-GaI"/>
-                                        <exclude reference="8At-50-00h"/>
-                                        <exclude reference="9VN-dP-hAe"/>
-                                        <exclude reference="ifA-7v-zS7"/>
-                                        <exclude reference="zZd-Ge-oPR"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="subviews">
+                                        <include reference="iSb-mE-roP"/>
                                         <include reference="Ryv-gS-e4O"/>
                                         <include reference="7tD-LR-lEX"/>
                                         <include reference="8Qd-Oi-hBy"/>
                                         <include reference="Mu6-Mb-a7b"/>
                                     </mask>
                                     <mask key="constraints">
+                                        <include reference="8At-50-00h"/>
+                                        <include reference="9VN-dP-hAe"/>
+                                        <include reference="eqh-Su-kYT"/>
+                                        <include reference="ifA-7v-zS7"/>
+                                        <include reference="zZd-Ge-oPR"/>
+                                        <include reference="Tvn-O6-L0A"/>
                                         <include reference="DYd-mN-H5W"/>
                                         <include reference="i2b-ge-e2u"/>
                                         <include reference="tgz-VY-BGR"/>
@@ -400,17 +415,13 @@
                                         <include reference="pBr-63-H41"/>
                                         <include reference="qBq-To-kqh"/>
                                         <include reference="slI-fP-GaI"/>
-                                        <include reference="8At-50-00h"/>
-                                        <include reference="9VN-dP-hAe"/>
-                                        <include reference="ifA-7v-zS7"/>
-                                        <include reference="zZd-Ge-oPR"/>
                                     </mask>
                                 </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fAD-q4-2MC" userLabel="Warning">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AC4-gq-tLi">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="warning" translatesAutoresizingMaskIntoConstraints="NO" id="AC4-gq-tLi">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="AC4-gq-tLi" secondAttribute="height" multiplier="1:1" id="ilA-jN-7bp"/>
@@ -428,7 +439,7 @@
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Warning texts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="OB4-yM-v5t">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="19"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -491,7 +502,6 @@
                             <constraint firstItem="YLh-oL-QHH" firstAttribute="top" secondItem="88M-Tl-FWi" secondAttribute="top" id="Tzm-pa-1Td"/>
                             <constraint firstItem="YLh-oL-QHH" firstAttribute="centerX" secondItem="88M-Tl-FWi" secondAttribute="centerX" id="Wje-I2-lfS"/>
                             <constraint firstItem="hMg-RH-dxP" firstAttribute="width" secondItem="88M-Tl-FWi" secondAttribute="width" id="aMa-aG-vOG"/>
-                            <constraint firstItem="YLh-oL-QHH" firstAttribute="centerX" secondItem="88M-Tl-FWi" secondAttribute="centerX" id="feu-Uy-TyH"/>
                             <constraint firstItem="hMg-RH-dxP" firstAttribute="centerX" secondItem="88M-Tl-FWi" secondAttribute="centerX" id="gWv-KI-New"/>
                             <constraint firstItem="hMg-RH-dxP" firstAttribute="top" secondItem="dfe-Ru-AFC" secondAttribute="bottom" id="mSM-kd-De3"/>
                             <constraint firstItem="YLh-oL-QHH" firstAttribute="height" secondItem="88M-Tl-FWi" secondAttribute="height" multiplier="0.35" id="qon-nl-hln"/>
@@ -508,7 +518,6 @@
                                 <exclude reference="DKc-N5-h5A"/>
                                 <exclude reference="Tzm-pa-1Td"/>
                                 <exclude reference="Wje-I2-lfS"/>
-                                <exclude reference="feu-Uy-TyH"/>
                                 <exclude reference="qon-nl-hln"/>
                                 <exclude reference="1nv-2E-7QR"/>
                                 <exclude reference="3EI-yQ-DAt"/>
@@ -535,7 +544,6 @@
                                 <include reference="DKc-N5-h5A"/>
                                 <include reference="Tzm-pa-1Td"/>
                                 <include reference="Wje-I2-lfS"/>
-                                <include reference="feu-Uy-TyH"/>
                                 <include reference="qon-nl-hln"/>
                                 <include reference="1nv-2E-7QR"/>
                                 <include reference="3EI-yQ-DAt"/>
@@ -557,6 +565,7 @@
                         <outlet property="airTempLbl" destination="DIn-ZA-cFW" id="Z3O-rp-Zxp"/>
                         <outlet property="conditionLbl" destination="80f-Op-yOu" id="lm9-R5-uEr"/>
                         <outlet property="freezingPointLbl" destination="Mu6-Mb-a7b" id="CgQ-Po-XiL"/>
+                        <outlet property="inCarSwch" destination="iSb-mE-roP" id="to9-lg-xJD"/>
                         <outlet property="rainLbl" destination="jK3-bz-4Do" id="YIk-sA-UeD"/>
                         <outlet property="roadSurfaceConditionLbl" destination="8Qd-Oi-hBy" id="hF3-oa-kqQ"/>
                         <outlet property="roadTempLbl" destination="7tD-LR-lEX" id="FRu-kN-3NG"/>
@@ -650,5 +659,6 @@
     <resources>
         <image name="first" width="30" height="30"/>
         <image name="second" width="30" height="30"/>
+        <image name="warning" width="128" height="128"/>
     </resources>
 </document>

@@ -1,4 +1,4 @@
-package com.studiowannabe.trafalert.domain;
+package com.studiowannabe.trafalert.domain.warning;
 
 import lombok.Data;
 

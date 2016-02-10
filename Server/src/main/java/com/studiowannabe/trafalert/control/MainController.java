@@ -2,7 +2,7 @@ package com.studiowannabe.trafalert.control;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.studiowannabe.trafalert.domain.Warning;
+import com.studiowannabe.trafalert.domain.warning.Warning;
 import com.studiowannabe.trafalert.domain.WeatherInfo;
 import com.studiowannabe.trafalert.domain.WeatherStationData;
 import lombok.extern.apachecommons.CommonsLog;

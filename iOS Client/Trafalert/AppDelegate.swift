@@ -47,11 +47,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         if CMMotionActivityManager.isActivityAvailable() {
             motionManager.startActivityUpdatesToQueue(NSOperationQueue.mainQueue(), withHandler: {
                 (activity: CMMotionActivity?) -> Void in
+                debugPrint("Car driving detected \(activity?.automotive)")
                 self.inCar.value = activity?.automotive == true
             })
         }
         else {
             debugPrint("No activity monitoring.. :(")
+            self.inCar.value = false
         }
         
         

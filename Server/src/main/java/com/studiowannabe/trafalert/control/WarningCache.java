@@ -1,7 +1,6 @@
 package com.studiowannabe.trafalert.control;
 
-import com.studiowannabe.trafalert.domain.Warning;
-import com.studiowannabe.trafalert.domain.WeatherStationData;
+import com.studiowannabe.trafalert.domain.warning.Warning;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;

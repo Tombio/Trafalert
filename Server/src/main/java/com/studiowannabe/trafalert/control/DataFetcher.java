@@ -1,6 +1,7 @@
 package com.studiowannabe.trafalert.control;
 
 import com.studiowannabe.trafalert.domain.*;
+import com.studiowannabe.trafalert.domain.warning.Warning;
 import com.studiowannabe.trafalert.wsdl.RoadWeatherResponse;
 import com.studiowannabe.trafalert.wsdl.RoadWeatherType;
 import org.apache.log4j.Logger;

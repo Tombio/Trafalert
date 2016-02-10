@@ -1,6 +1,6 @@
 package com.studiowannabe.trafalert.control;
 
-import com.studiowannabe.trafalert.domain.Warning;
+import com.studiowannabe.trafalert.domain.warning.Warning;
 import com.studiowannabe.trafalert.wsdl.RoadWeatherType;
 
 import java.math.BigDecimal;
