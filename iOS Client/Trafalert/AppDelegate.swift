@@ -23,14 +23,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var currentStation: WeatherStation?
     var currentData = WeatherStationData()
     var inCar = Observable(false)
-    
     var lastUpdateTime: NSDate?
-    
+    var spokenVersions = [Int64:Int]() // [id:lastVersion]
     let locationManager = CLLocationManager()
     let motionManager = CMMotionActivityManager()
     let dataFetcher = DataFetcher()
     let speechSynth = AVSpeechSynthesizer()
-    // let voice = AVSpeechSynthesisVoice(language: "fi-FI")
+    let voice = AVSpeechSynthesisVoice(language: "fi-FI")
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -85,13 +84,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func applicationWillTerminate(application: UIApplication) {
     }
     
+    func checkWarningsAndTalk(){
+        debugPrint("Check for talk")
+        if !currentData.warnings.isEmpty { // We can safely assume that once warnings are present, so is station id
+            let id = Int64(currentData.stationId!.value)
+            if let lastVersion = spokenVersions[id] {
+                if let maxVersion = currentData.warnings.collection.maxVersion() {
+                    if lastVersion < maxVersion {
+                        spokenVersions[id] = speakFromVersion(lastVersion)
+                    }
+                }
+            }
+            else {
+                spokenVersions[id] = speakFromVersion(0)
+            }
+        }
+        else {
+            debugPrint("Nothing to talk.. no warnings..")
+        }
+    }
+    
+    func speakFromVersion(version: Int) -> Int {
+        debugPrint("Speak from version \(version)")
+        var max = version
+        for w in currentData.warnings {
+            if version < w.version.value {
+                debugPrint("Send to talk")
+                talk("Varoitus: Tielle numero \(currentStation!.roadNumber): \(w.warningType.value.humanReadable())")
+                max = w.version.value > max ? w.version.value : max
+            }
+            else {
+                debugPrint("\(version) => \(w.version.value)")
+            }
+        }
+        return max
+    }
+    
     // MARK: Speak, my young Padawan
     
     func talk(string: String) {
         debugPrint("Speak \(string)")
         
         let utterance = AVSpeechUtterance(string: string)
-        // utterance.voice = voice
+        utterance.voice = voice
         speechSynth.speakUtterance(utterance)
     }
     
@@ -99,10 +134,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     func setWeather(info: WeatherStationData) {
         currentData.warnings.replace(info.warnings.collection)
+        currentData.stationId = info.stationId
         if currentStation != nil {
             info.info.stationName.value = currentStation!.name
         }
         currentWeather.updateWith(info.info)
+        checkWarningsAndTalk()
     }
     
     // MARK: CLLocationManagerDelegate

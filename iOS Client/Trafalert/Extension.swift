@@ -27,3 +27,10 @@ extension WeatherStationList {
         })
     }
 }
+
+extension Array where Element:Warning {
+    func maxVersion() -> Int? {
+        let sorted = sort { $0.version.value > $1.version.value }
+        return sorted.first?.version.value
+    }
+}
