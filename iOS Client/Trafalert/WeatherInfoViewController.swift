@@ -25,13 +25,14 @@ class WeatherInfoViewController: UIViewController {
     @IBOutlet weak var warningView: UIView!
     @IBOutlet weak var roadSurfaceConditionLbl: UILabel!
     @IBOutlet weak var warningLbl: UILabel!
-    @IBOutlet weak var inCarSwch: UISwitch!
-    
+    @IBOutlet weak var locationDebug: UILabel!
+  
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
         warningLbl.numberOfLines = 4
+        locationDebug.numberOfLines = 2
         // Bind some stuff
         appDelegate.currentWeather.stationName.bindTo(stationNameLbl)
         appDelegate.currentWeather.airTemp.observe { value in
@@ -70,8 +71,8 @@ class WeatherInfoViewController: UIViewController {
             })
             self.warningLbl.text = warningString
         }
-        appDelegate.inCar.observe { value in
-            self.inCarSwch.setOn(value, animated: true)
+        appDelegate.currentLocation.observe { value in
+            self.locationDebug.text = String(format: "%0.4f\n%0.4f", value.coordinate.latitude, value.coordinate.longitude)
         }
     }
     

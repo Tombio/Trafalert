@@ -22,9 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var currentWarnings = Array<Warning>()
     var currentStation: WeatherStation?
     var currentData = WeatherStationData()
-    var inCar = Observable(false)
+    var currentLocation = Observable(CLLocation(latitude: 0.0, longitude: 0.0))
+  
     var lastUpdateTime: NSDate?
-    var spokenVersions = [Int64:Int]() // [id:lastVersion]
+    var spokenVersions = [Int:Int]() // [id:lastVersion]
     let locationManager = CLLocationManager()
     let motionManager = CMMotionActivityManager()
     let dataFetcher = DataFetcher()
@@ -41,21 +42,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         locationManager.requestAlwaysAuthorization()
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.delegate = self
+        locationManager.activityType = .AutomotiveNavigation
+        locationManager.desiredAccuracy = 1000
         locationManager.startUpdatingLocation()
-        // Also start stalking motion data if possible
-        if CMMotionActivityManager.isActivityAvailable() {
-            motionManager.startActivityUpdatesToQueue(NSOperationQueue.mainQueue(), withHandler: {
-                (activity: CMMotionActivity?) -> Void in
-                debugPrint("Car driving detected \(activity?.automotive)")
-                self.inCar.value = activity?.automotive == true
-            })
-        }
-        else {
-            debugPrint("No activity monitoring.. :(")
-            self.inCar.value = false
-        }
-        
-        
         return true
     }
 
@@ -87,7 +76,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func checkWarningsAndTalk(){
         debugPrint("Check for talk")
         if !currentData.warnings.isEmpty { // We can safely assume that once warnings are present, so is station id
-            let id = Int64(currentData.stationId!.value)
+            let id = currentData.stationId!
             if let lastVersion = spokenVersions[id] {
                 if let maxVersion = currentData.warnings.collection.maxVersion() {
                     if lastVersion < maxVersion {
@@ -145,22 +134,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     // MARK: CLLocationManagerDelegate
     
     func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
+      
+      currentLocation.value = newLocation
+      if timeToUpdate(){
         let nearestStation = WeatherStationList.nearestStation(newLocation)
-        if timeToUpdate(nearestStation) {
+        if stationChanged(nearestStation) {
             debugPrint("Location update \(newLocation)")
             currentStation = nearestStation
             dataFetcher.updateWeatherInfo(nearestStation.id, callback: setWeather)
             lastUpdateTime = NSDate()
         }
+      }
     }
     
     /**
     * Update if there is no currentStation (first run), nearest station has changed, 
     * last update time is unknown or it has been more than 30 seconds since last update
     */
-    func timeToUpdate(nearestStation: WeatherStation) -> Bool {
-        return currentStation == nil || nearestStation.id != currentStation?.id ||
-            lastUpdateTime == nil || NSDate().timeIntervalSinceDate(lastUpdateTime!) > 30
+    func stationChanged(nearestStation: WeatherStation) -> Bool {
+        return currentStation == nil || nearestStation.id != currentStation?.id
+    }
+  
+    func timeToUpdate() -> Bool {
+        return lastUpdateTime == nil || NSDate().timeIntervalSinceDate(lastUpdateTime!) > 60
     }
     
     func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {

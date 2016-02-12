@@ -7,7 +7,7 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--First-->
+        <!--Säätila-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
                 <viewController id="9pv-A4-QxB" customClass="WeatherInfoViewController" customModule="Trafalert" customModuleProvider="target" sceneMemberID="viewController">
@@ -310,9 +310,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hMg-RH-dxP" userLabel="Road">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="iSb-mE-roP" userLabel="inCarSwch">
-                                        <rect key="frame" x="-25" y="-15" width="51" height="31"/>
-                                    </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tienpinta" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Ryv-gS-e4O" userLabel="roadTempLabelLbl">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
@@ -337,43 +334,53 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ELY-Wf-eXg" userLabel="locationDebug">
+                                        <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="Ryv-gS-e4O" firstAttribute="width" secondItem="hMg-RH-dxP" secondAttribute="width" id="8At-50-00h"/>
                                     <constraint firstItem="Ryv-gS-e4O" firstAttribute="top" secondItem="hMg-RH-dxP" secondAttribute="top" id="9VN-dP-hAe"/>
                                     <constraint firstItem="7tD-LR-lEX" firstAttribute="width" secondItem="hMg-RH-dxP" secondAttribute="width" id="DYd-mN-H5W"/>
+                                    <constraint firstItem="ELY-Wf-eXg" firstAttribute="height" secondItem="hMg-RH-dxP" secondAttribute="height" multiplier="0.1" id="RlS-WT-AAK"/>
                                     <constraint firstItem="8Qd-Oi-hBy" firstAttribute="bottom" secondItem="Mu6-Mb-a7b" secondAttribute="top" id="Tlx-jc-1W5"/>
-                                    <constraint firstItem="iSb-mE-roP" firstAttribute="leading" secondItem="hMg-RH-dxP" secondAttribute="leading" id="Tvn-O6-L0A"/>
                                     <constraint firstItem="8Qd-Oi-hBy" firstAttribute="height" secondItem="hMg-RH-dxP" secondAttribute="height" multiplier="0.2" id="U9I-7J-5DK"/>
                                     <constraint firstItem="8Qd-Oi-hBy" firstAttribute="width" secondItem="hMg-RH-dxP" secondAttribute="width" id="Wm4-IM-mou"/>
                                     <constraint firstItem="8Qd-Oi-hBy" firstAttribute="centerX" secondItem="hMg-RH-dxP" secondAttribute="centerX" id="XYJ-SA-liw"/>
-                                    <constraint firstItem="Ryv-gS-e4O" firstAttribute="centerY" secondItem="iSb-mE-roP" secondAttribute="centerY" id="eqh-Su-kYT"/>
+                                    <constraint firstItem="ELY-Wf-eXg" firstAttribute="width" secondItem="hMg-RH-dxP" secondAttribute="width" multiplier="0.25" id="fti-Bt-QHJ"/>
                                     <constraint firstItem="Mu6-Mb-a7b" firstAttribute="width" secondItem="hMg-RH-dxP" secondAttribute="width" id="h9J-gQ-irL"/>
                                     <constraint firstItem="7tD-LR-lEX" firstAttribute="centerY" secondItem="hMg-RH-dxP" secondAttribute="centerY" multiplier="0.8" id="i2b-ge-e2u"/>
                                     <constraint firstItem="Ryv-gS-e4O" firstAttribute="centerX" secondItem="hMg-RH-dxP" secondAttribute="centerX" id="ifA-7v-zS7"/>
                                     <constraint firstItem="Mu6-Mb-a7b" firstAttribute="height" secondItem="hMg-RH-dxP" secondAttribute="height" multiplier="0.2" id="pBr-63-H41"/>
+                                    <constraint firstItem="ELY-Wf-eXg" firstAttribute="top" secondItem="hMg-RH-dxP" secondAttribute="top" id="pEJ-Oz-InY"/>
                                     <constraint firstAttribute="bottom" secondItem="Mu6-Mb-a7b" secondAttribute="bottom" id="qBq-To-kqh"/>
                                     <constraint firstItem="Mu6-Mb-a7b" firstAttribute="centerX" secondItem="hMg-RH-dxP" secondAttribute="centerX" id="slI-fP-GaI"/>
                                     <constraint firstItem="7tD-LR-lEX" firstAttribute="height" secondItem="hMg-RH-dxP" secondAttribute="height" multiplier="0.4" id="tgz-VY-BGR"/>
                                     <constraint firstItem="7tD-LR-lEX" firstAttribute="centerX" secondItem="hMg-RH-dxP" secondAttribute="centerX" id="uCe-Ov-402"/>
+                                    <constraint firstItem="ELY-Wf-eXg" firstAttribute="leading" secondItem="hMg-RH-dxP" secondAttribute="leading" constant="5" id="z3V-BO-bR4"/>
                                     <constraint firstItem="Ryv-gS-e4O" firstAttribute="height" secondItem="hMg-RH-dxP" secondAttribute="height" multiplier="0.25" id="zZd-Ge-oPR"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="subviews">
-                                        <exclude reference="iSb-mE-roP"/>
                                         <exclude reference="Ryv-gS-e4O"/>
                                         <exclude reference="7tD-LR-lEX"/>
                                         <exclude reference="8Qd-Oi-hBy"/>
                                         <exclude reference="Mu6-Mb-a7b"/>
+                                        <exclude reference="ELY-Wf-eXg"/>
                                     </mask>
                                     <mask key="constraints">
                                         <exclude reference="8At-50-00h"/>
                                         <exclude reference="9VN-dP-hAe"/>
-                                        <exclude reference="eqh-Su-kYT"/>
                                         <exclude reference="ifA-7v-zS7"/>
                                         <exclude reference="zZd-Ge-oPR"/>
-                                        <exclude reference="Tvn-O6-L0A"/>
+                                        <exclude reference="RlS-WT-AAK"/>
+                                        <exclude reference="fti-Bt-QHJ"/>
+                                        <exclude reference="pEJ-Oz-InY"/>
+                                        <exclude reference="z3V-BO-bR4"/>
                                         <exclude reference="DYd-mN-H5W"/>
                                         <exclude reference="i2b-ge-e2u"/>
                                         <exclude reference="tgz-VY-BGR"/>
@@ -390,19 +397,21 @@
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="subviews">
-                                        <include reference="iSb-mE-roP"/>
                                         <include reference="Ryv-gS-e4O"/>
                                         <include reference="7tD-LR-lEX"/>
                                         <include reference="8Qd-Oi-hBy"/>
                                         <include reference="Mu6-Mb-a7b"/>
+                                        <include reference="ELY-Wf-eXg"/>
                                     </mask>
                                     <mask key="constraints">
                                         <include reference="8At-50-00h"/>
                                         <include reference="9VN-dP-hAe"/>
-                                        <include reference="eqh-Su-kYT"/>
                                         <include reference="ifA-7v-zS7"/>
                                         <include reference="zZd-Ge-oPR"/>
-                                        <include reference="Tvn-O6-L0A"/>
+                                        <include reference="RlS-WT-AAK"/>
+                                        <include reference="fti-Bt-QHJ"/>
+                                        <include reference="pEJ-Oz-InY"/>
+                                        <include reference="z3V-BO-bR4"/>
                                         <include reference="DYd-mN-H5W"/>
                                         <include reference="i2b-ge-e2u"/>
                                         <include reference="tgz-VY-BGR"/>
@@ -560,12 +569,12 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="First" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Säätila" image="noun_125470_cc" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="airTempLbl" destination="DIn-ZA-cFW" id="Z3O-rp-Zxp"/>
                         <outlet property="conditionLbl" destination="80f-Op-yOu" id="lm9-R5-uEr"/>
                         <outlet property="freezingPointLbl" destination="Mu6-Mb-a7b" id="CgQ-Po-XiL"/>
-                        <outlet property="inCarSwch" destination="iSb-mE-roP" id="to9-lg-xJD"/>
+                        <outlet property="locationDebug" destination="ELY-Wf-eXg" id="SEv-Pi-Nlw"/>
                         <outlet property="rainLbl" destination="jK3-bz-4Do" id="YIk-sA-UeD"/>
                         <outlet property="roadSurfaceConditionLbl" destination="8Qd-Oi-hBy" id="hF3-oa-kqQ"/>
                         <outlet property="roadTempLbl" destination="7tD-LR-lEX" id="FRu-kN-3NG"/>
@@ -581,7 +590,7 @@
             </objects>
             <point key="canvasLocation" x="750" y="-320.25"/>
         </scene>
-        <!--Second-->
+        <!--Kartta-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="MapViewController" customModule="Trafalert" customModuleProvider="target" sceneMemberID="viewController">
@@ -627,7 +636,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Second" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Kartta" image="noun_70539_cc" id="cPa-gy-q4n"/>
                     <connections>
                         <outlet property="mapView" destination="quV-A2-dgQ" id="Z8K-Kk-myT"/>
                     </connections>
@@ -635,6 +644,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="750" y="327.75"/>
+        </scene>
+        <!--Info-->
+        <scene sceneID="2kH-eA-NaK">
+            <objects>
+                <viewController id="gHF-Pr-jGf" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eWm-E8-vYR"/>
+                        <viewControllerLayoutGuide type="bottom" id="oKc-CJ-dh8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dVL-5G-Wnv">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Info" image="noun_16301_cc" id="Uh8-9z-c1g"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SpT-Oh-jrm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1495.5" y="3"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -649,6 +677,7 @@
                     <connections>
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="gHF-Pr-jGf" kind="relationship" relationship="viewControllers" id="Jis-Ct-Ego"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -657,8 +686,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="noun_125470_cc" width="25" height="24"/>
+        <image name="noun_16301_cc" width="25" height="25"/>
+        <image name="noun_70539_cc" width="24" height="25"/>
         <image name="warning" width="128" height="128"/>
     </resources>
 </document>

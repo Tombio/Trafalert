@@ -38,6 +38,8 @@ class LocationManagerHandler: NSObject, CLLocationManagerDelegate {
     override init(){
         super.init()
         self.locationManager.delegate = self
+        // self.locationManager.activityType = .AutomotiveNavigation
+        self.locationManager.desiredAccuracy = 1000
         self.locationManager.startUpdatingLocation()
     }
 

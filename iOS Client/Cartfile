@@ -1,6 +1,7 @@
 github "naoty/SwiftCSV" ~> 0.1.1
 github "Alamofire/Alamofire" ~> 3.0
-github "Hearst-DD/ObjectMapper" ~> 1.1
+github "Tombio/ObjectMapper"
+# github "Hearst-DD/ObjectMapper" ~> 1.1
 github "ReactiveKit/ReactiveKit" 
 github "ReactiveKit/ReactiveUIKit"
 github "ReactiveKit/ReactiveFoundation"

@@ -1,5 +1,5 @@
-github "Alamofire/Alamofire" "3.1.5"
-github "Hearst-DD/ObjectMapper" "1.1.1"
+github "Alamofire/Alamofire" "3.2.0"
+github "Tombio/ObjectMapper" "1.1.2"
 github "ReactiveKit/ReactiveFoundation" "v1.0.6"
 github "ReactiveKit/ReactiveKit" "v1.1.2"
 github "ReactiveKit/ReactiveUIKit" "v1.0.10"

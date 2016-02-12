@@ -7,87 +7,82 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E65CD7351C6D4A8900B2BEB1 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E65CD72F1C6D4A8900B2BEB1 /* Alamofire.framework */; };
+		E65CD7361C6D4A8900B2BEB1 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E65CD72F1C6D4A8900B2BEB1 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E65CD7391C6D4A8900B2BEB1 /* ReactiveFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E65CD7311C6D4A8900B2BEB1 /* ReactiveFoundation.framework */; };
+		E65CD73A1C6D4A8900B2BEB1 /* ReactiveFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E65CD7311C6D4A8900B2BEB1 /* ReactiveFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E65CD73B1C6D4A8900B2BEB1 /* ReactiveKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E65CD7321C6D4A8900B2BEB1 /* ReactiveKit.framework */; };
+		E65CD73C1C6D4A8900B2BEB1 /* ReactiveKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E65CD7321C6D4A8900B2BEB1 /* ReactiveKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E65CD73D1C6D4A8900B2BEB1 /* ReactiveUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E65CD7331C6D4A8900B2BEB1 /* ReactiveUIKit.framework */; };
+		E65CD73E1C6D4A8900B2BEB1 /* ReactiveUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E65CD7331C6D4A8900B2BEB1 /* ReactiveUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E65CD73F1C6D4A8900B2BEB1 /* SwiftCSV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E65CD7341C6D4A8900B2BEB1 /* SwiftCSV.framework */; };
+		E65CD7401C6D4A8900B2BEB1 /* SwiftCSV.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E65CD7341C6D4A8900B2BEB1 /* SwiftCSV.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E65CD7441C6D4E7B00B2BEB1 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E65CD7431C6D4E7B00B2BEB1 /* ObjectMapper.framework */; };
+		E65CD7451C6D4E7B00B2BEB1 /* ObjectMapper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E65CD7431C6D4E7B00B2BEB1 /* ObjectMapper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E67777AF1C5FFC1F0096D754 /* WeatherInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67777AE1C5FFC1F0096D754 /* WeatherInfo.swift */; };
-		E67777B11C6002110096D754 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E67777B01C6002110096D754 /* Alamofire.framework */; };
-		E67777B21C6002110096D754 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E67777B01C6002110096D754 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E67777B71C60132F0096D754 /* DataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67777B61C60132F0096D754 /* DataFetcher.swift */; };
 		E67777B91C60149B0096D754 /* WeatherInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67777B81C60149B0096D754 /* WeatherInfoViewController.swift */; };
-		E67777BD1C601DA60096D754 /* ReactiveFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E67777BA1C601DA60096D754 /* ReactiveFoundation.framework */; };
-		E67777BE1C601DA60096D754 /* ReactiveFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E67777BA1C601DA60096D754 /* ReactiveFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E67777BF1C601DA60096D754 /* ReactiveKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E67777BB1C601DA60096D754 /* ReactiveKit.framework */; };
-		E67777C01C601DA60096D754 /* ReactiveKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E67777BB1C601DA60096D754 /* ReactiveKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E67777C11C601DA60096D754 /* ReactiveUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E67777BC1C601DA60096D754 /* ReactiveUIKit.framework */; };
-		E67777C21C601DA60096D754 /* ReactiveUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E67777BC1C601DA60096D754 /* ReactiveUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E67777C41C614E8D0096D754 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67777C31C614E8D0096D754 /* Extension.swift */; };
 		E67777C61C6150820096D754 /* WeatherStationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67777C51C6150820096D754 /* WeatherStationList.swift */; };
-		E67777C81C6165770096D754 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E67777C71C6165770096D754 /* ObjectMapper.framework */; };
-		E67777C91C6165770096D754 /* ObjectMapper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E67777C71C6165770096D754 /* ObjectMapper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E690661E1C5AA12C0039CE74 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E690661D1C5AA12C0039CE74 /* AppDelegate.swift */; };
 		E69066251C5AA12C0039CE74 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E69066231C5AA12C0039CE74 /* Main.storyboard */; };
 		E69066271C5AA12C0039CE74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E69066261C5AA12C0039CE74 /* Assets.xcassets */; };
 		E69066341C5AA30E0039CE74 /* road_weather_stations.csv in Resources */ = {isa = PBXBuildFile; fileRef = E69066331C5AA30E0039CE74 /* road_weather_stations.csv */; };
 		E69066381C5AA35F0039CE74 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69066371C5AA35F0039CE74 /* MapViewController.swift */; };
 		E690663A1C5AA4E20039CE74 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E69066391C5AA4E20039CE74 /* MapKit.framework */; };
-		E6D12AED1C5AA9E5005D8FE7 /* SwiftCSV.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = E6D12AEC1C5AA9E5005D8FE7 /* SwiftCSV.framework.dSYM */; };
-		E6D12AEF1C5AAA10005D8FE7 /* SwiftCSV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6D12AEE1C5AAA10005D8FE7 /* SwiftCSV.framework */; };
-		E6D12AF01C5AAA10005D8FE7 /* SwiftCSV.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E6D12AEE1C5AAA10005D8FE7 /* SwiftCSV.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E6D12AF31C5AC134005D8FE7 /* WeatherStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D12AF21C5AC134005D8FE7 /* WeatherStation.swift */; };
 		E6D12AF51C5C0292005D8FE7 /* WeatherStationOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D12AF41C5C0292005D8FE7 /* WeatherStationOverlay.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		E65CD7411C6D4A8900B2BEB1 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E65CD7451C6D4E7B00B2BEB1 /* ObjectMapper.framework in Embed Frameworks */,
+				E65CD73C1C6D4A8900B2BEB1 /* ReactiveKit.framework in Embed Frameworks */,
+				E65CD7401C6D4A8900B2BEB1 /* SwiftCSV.framework in Embed Frameworks */,
+				E65CD73E1C6D4A8900B2BEB1 /* ReactiveUIKit.framework in Embed Frameworks */,
+				E65CD73A1C6D4A8900B2BEB1 /* ReactiveFoundation.framework in Embed Frameworks */,
+				E65CD7361C6D4A8900B2BEB1 /* Alamofire.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E6D12AEB1C5AA9CA005D8FE7 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				E6D12AED1C5AA9E5005D8FE7 /* SwiftCSV.framework.dSYM in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E6D12AF11C5AAA11005D8FE7 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				E67777C91C6165770096D754 /* ObjectMapper.framework in Embed Frameworks */,
-				E67777C01C601DA60096D754 /* ReactiveKit.framework in Embed Frameworks */,
-				E67777C21C601DA60096D754 /* ReactiveUIKit.framework in Embed Frameworks */,
-				E6D12AF01C5AAA10005D8FE7 /* SwiftCSV.framework in Embed Frameworks */,
-				E67777BE1C601DA60096D754 /* ReactiveFoundation.framework in Embed Frameworks */,
-				E67777B21C6002110096D754 /* Alamofire.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		E6267BA41C5C238700A95763 /* Bond.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bond.framework; path = Carthage/Build/iOS/Bond.framework; sourceTree = "<group>"; };
+		E65CD72F1C6D4A8900B2BEB1 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		E65CD7301C6D4A8900B2BEB1 /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
+		E65CD7311C6D4A8900B2BEB1 /* ReactiveFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveFoundation.framework; path = Carthage/Build/iOS/ReactiveFoundation.framework; sourceTree = "<group>"; };
+		E65CD7321C6D4A8900B2BEB1 /* ReactiveKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveKit.framework; path = Carthage/Build/iOS/ReactiveKit.framework; sourceTree = "<group>"; };
+		E65CD7331C6D4A8900B2BEB1 /* ReactiveUIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveUIKit.framework; path = Carthage/Build/iOS/ReactiveUIKit.framework; sourceTree = "<group>"; };
+		E65CD7341C6D4A8900B2BEB1 /* SwiftCSV.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftCSV.framework; path = Carthage/Build/iOS/SwiftCSV.framework; sourceTree = "<group>"; };
+		E65CD7431C6D4E7B00B2BEB1 /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
 		E67777AE1C5FFC1F0096D754 /* WeatherInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherInfo.swift; sourceTree = "<group>"; };
-		E67777B01C6002110096D754 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
-		E67777B31C60021A0096D754 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		E67777B61C60132F0096D754 /* DataFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataFetcher.swift; sourceTree = "<group>"; };
 		E67777B81C60149B0096D754 /* WeatherInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherInfoViewController.swift; sourceTree = "<group>"; };
-		E67777BA1C601DA60096D754 /* ReactiveFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveFoundation.framework; path = Carthage/Build/iOS/ReactiveFoundation.framework; sourceTree = "<group>"; };
-		E67777BB1C601DA60096D754 /* ReactiveKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveKit.framework; path = Carthage/Build/iOS/ReactiveKit.framework; sourceTree = "<group>"; };
-		E67777BC1C601DA60096D754 /* ReactiveUIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveUIKit.framework; path = Carthage/Build/iOS/ReactiveUIKit.framework; sourceTree = "<group>"; };
 		E67777C31C614E8D0096D754 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		E67777C51C6150820096D754 /* WeatherStationList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherStationList.swift; sourceTree = "<group>"; };
-		E67777C71C6165770096D754 /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
 		E690661A1C5AA12C0039CE74 /* Trafalert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trafalert.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E690661D1C5AA12C0039CE74 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E69066241C5AA12C0039CE74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E69066261C5AA12C0039CE74 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E690662B1C5AA12C0039CE74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E69066311C5AA2B30039CE74 /* SwiftCSV.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftCSV.framework; path = Carthage/Build/iOS/SwiftCSV.framework; sourceTree = "<group>"; };
 		E69066331C5AA30E0039CE74 /* road_weather_stations.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = road_weather_stations.csv; sourceTree = "<group>"; };
 		E69066371C5AA35F0039CE74 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		E69066391C5AA4E20039CE74 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		E6D12AEC1C5AA9E5005D8FE7 /* SwiftCSV.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = SwiftCSV.framework.dSYM; path = Carthage/Build/iOS/SwiftCSV.framework.dSYM; sourceTree = "<group>"; };
-		E6D12AEE1C5AAA10005D8FE7 /* SwiftCSV.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftCSV.framework; path = Carthage/Build/iOS/SwiftCSV.framework; sourceTree = "<group>"; };
 		E6D12AF21C5AC134005D8FE7 /* WeatherStation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherStation.swift; sourceTree = "<group>"; };
 		E6D12AF41C5C0292005D8FE7 /* WeatherStationOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherStationOverlay.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,13 +92,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E67777BD1C601DA60096D754 /* ReactiveFoundation.framework in Frameworks */,
-				E67777C11C601DA60096D754 /* ReactiveUIKit.framework in Frameworks */,
+				E65CD73B1C6D4A8900B2BEB1 /* ReactiveKit.framework in Frameworks */,
+				E65CD73D1C6D4A8900B2BEB1 /* ReactiveUIKit.framework in Frameworks */,
 				E690663A1C5AA4E20039CE74 /* MapKit.framework in Frameworks */,
-				E6D12AEF1C5AAA10005D8FE7 /* SwiftCSV.framework in Frameworks */,
-				E67777B11C6002110096D754 /* Alamofire.framework in Frameworks */,
-				E67777BF1C601DA60096D754 /* ReactiveKit.framework in Frameworks */,
-				E67777C81C6165770096D754 /* ObjectMapper.framework in Frameworks */,
+				E65CD7391C6D4A8900B2BEB1 /* ReactiveFoundation.framework in Frameworks */,
+				E65CD7351C6D4A8900B2BEB1 /* Alamofire.framework in Frameworks */,
+				E65CD73F1C6D4A8900B2BEB1 /* SwiftCSV.framework in Frameworks */,
+				E65CD7441C6D4E7B00B2BEB1 /* ObjectMapper.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,17 +108,14 @@
 		E69066111C5AA12C0039CE74 = {
 			isa = PBXGroup;
 			children = (
-				E67777C71C6165770096D754 /* ObjectMapper.framework */,
-				E67777BA1C601DA60096D754 /* ReactiveFoundation.framework */,
-				E67777BB1C601DA60096D754 /* ReactiveKit.framework */,
-				E67777BC1C601DA60096D754 /* ReactiveUIKit.framework */,
-				E67777B31C60021A0096D754 /* SwiftyJSON.framework */,
-				E67777B01C6002110096D754 /* Alamofire.framework */,
-				E6267BA41C5C238700A95763 /* Bond.framework */,
-				E6D12AEE1C5AAA10005D8FE7 /* SwiftCSV.framework */,
-				E6D12AEC1C5AA9E5005D8FE7 /* SwiftCSV.framework.dSYM */,
+				E65CD7431C6D4E7B00B2BEB1 /* ObjectMapper.framework */,
+				E65CD72F1C6D4A8900B2BEB1 /* Alamofire.framework */,
+				E65CD7301C6D4A8900B2BEB1 /* ObjectMapper.framework */,
+				E65CD7311C6D4A8900B2BEB1 /* ReactiveFoundation.framework */,
+				E65CD7321C6D4A8900B2BEB1 /* ReactiveKit.framework */,
+				E65CD7331C6D4A8900B2BEB1 /* ReactiveUIKit.framework */,
+				E65CD7341C6D4A8900B2BEB1 /* SwiftCSV.framework */,
 				E69066391C5AA4E20039CE74 /* MapKit.framework */,
-				E69066311C5AA2B30039CE74 /* SwiftCSV.framework */,
 				E690661C1C5AA12C0039CE74 /* Trafalert */,
 				E690661B1C5AA12C0039CE74 /* Products */,
 			);
@@ -168,7 +160,7 @@
 				E69066171C5AA12C0039CE74 /* Frameworks */,
 				E69066181C5AA12C0039CE74 /* Resources */,
 				E6D12AEB1C5AA9CA005D8FE7 /* CopyFiles */,
-				E6D12AF11C5AAA11005D8FE7 /* Embed Frameworks */,
+				E65CD7411C6D4A8900B2BEB1 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -356,6 +348,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Trafalert/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.studiowannabe.Trafalert;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -372,6 +365,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Trafalert/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.studiowannabe.Trafalert;
 				PRODUCT_NAME = "$(TARGET_NAME)";
