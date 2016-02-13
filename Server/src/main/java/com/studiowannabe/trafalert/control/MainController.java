@@ -37,26 +37,26 @@ public class MainController {
         this.objectMapper = objectMapper;
     }
 
-    @RequestMapping(value = "/warning/{region}/{version}", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/warning/{region}/{version}", method = RequestMethod.POST, produces = "application/json")
     public String warningsForRegion(@PathVariable(value = "region") final Long region,
                                            @PathVariable(value = "version") final Long version) throws Exception {
         final List<Warning> warnings = getWarningsForRegion(region);
         return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(warnings);
     }
 
-    @RequestMapping(value = "/warning", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/warning", method = RequestMethod.POST, produces = "application/json")
     public String warningsForRegion() throws Exception {
         final List<WeatherInfo> infos = getAllStationsWithWarnings();
         return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(infos);
     }
 
-    @RequestMapping(value = "/weather/{region}", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/weather/{region}", method = RequestMethod.POST, produces = "application/json")
     public String weatherForRegion(@PathVariable(value = "region") final Long region) throws Exception {
         final WeatherStationData wsd = getWeatherForRegion(region);
         return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(wsd);
     }
 
-    @RequestMapping(value = "/info/{region}", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/info/{region}", method = RequestMethod.POST, produces = "application/json")
     public String fullInfoForRegion(@PathVariable(value = "region") final Long region) throws Exception {
         final WeatherStationData wsd = cache.getCacheData().get(region);
         final List<Warning> warnings = warningCache.getCacheData().get(region);
@@ -65,7 +65,7 @@ public class MainController {
         return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(wi);
     }
 
-    @RequestMapping(value = "/info", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/info", method = RequestMethod.POST, produces = "application/json")
     public String allRegions() throws Exception {
         final List<WeatherInfo> infos = getAllStationsAndWarnings();
         return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(infos);
