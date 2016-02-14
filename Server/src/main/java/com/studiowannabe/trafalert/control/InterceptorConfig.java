@@ -31,12 +31,7 @@ public class InterceptorConfig extends WebMvcConfigurerAdapter {
 
         @Override
         public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-            final Enumeration<String> enume = request.getParameterNames();
-            while(enume.hasMoreElements()){
-                String s = enume.nextElement();
-                log.info(s + " => " + request.getParameter(s));
-            }
-            if (API_KEY.equals(request.getParameter("API_KEY"))){
+            if (API_KEY.equals(request.getHeader("API_KEY"))){
                 return true;
             }
             throw new GlobalExceptionHandler.UnauthorizedAccessException();
