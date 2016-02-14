@@ -26,6 +26,10 @@ class WeatherInfoViewController: UIViewController {
     @IBOutlet weak var roadSurfaceConditionLbl: UILabel!
     @IBOutlet weak var warningLbl: UILabel!
     @IBOutlet weak var locationDebug: UILabel!
+    
+    @IBOutlet weak var rainfallView: UIView!
+    @IBOutlet weak var visibilityView: UIView!
+    @IBOutlet weak var windDirectionView: UIView!
   
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
@@ -33,6 +37,12 @@ class WeatherInfoViewController: UIViewController {
         super.viewDidLoad()
         warningLbl.numberOfLines = 4
         locationDebug.numberOfLines = 2
+        
+        rainfallView.backgroundColor = UI.middleLeft
+        visibilityView.backgroundColor = UI.middleCenter
+        windDirectionView.backgroundColor = UI.middleRight
+        warningView.backgroundColor = UI.warning
+        
         // Bind some stuff
         appDelegate.currentWeather.stationName.bindTo(stationNameLbl)
         appDelegate.currentWeather.airTemp.observe { value in

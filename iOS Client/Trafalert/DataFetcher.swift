@@ -12,17 +12,17 @@ import ObjectMapper
 
 class DataFetcher {
     
-    //static var server = "http://localhost:8080"
-    static var server = "http://trafalert.herokuapp.com"
-    static var infoEndPoint = "/info" // get weather + warnings
-    static var weatherEndPoint = "/weather" // get weather only
-    static var warningEndPoint = "/warning" // get warnings only
+    static let server = "http://localhost:8080"
+    //static let server = "https://trafalert.herokuapp.com"
+    static let infoEndPoint = "/info" // get weather + warnings
+    static let weatherEndPoint = "/weather" // get weather only
+    static let warningEndPoint = "/warning" // get warnings only
     
     func updateWeatherInfo(station: Int, callback: (WeatherStationData) -> Void) {
         let address = String(format: "%@%@/%d", arguments:[DataFetcher.server, DataFetcher.infoEndPoint, station])
-        debugPrint(address)
-        Alamofire.request(.GET, address, parameters: nil, encoding: .JSON)
-            .responseJSON { response in
+        Alamofire.request(.POST, address, parameters: nil,
+            headers: ["API_KEY": DataFetcher.apiKey, "Content-type application":"json", "Accept application" : "json"]).responseJSON() {
+                (response) in
                 if let json = response.result.value {
                     debugPrint(json)
                     if let weather = Mapper<WeatherStationData>().map(json) {
@@ -33,5 +33,14 @@ class DataFetcher {
                     debugPrint("Failed to update info")
                 }
         }
+    }
+    
+    static var apiKey: String {
+        if let path = NSBundle.mainBundle().pathForResource("properties", ofType: "plist"), dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
+            if let apiKey = dict["API_KEY"] {
+                return apiKey as! String
+            }
+        }
+        fatalError("Unable to read API key from properties.plist")
     }
 }

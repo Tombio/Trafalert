@@ -134,22 +134,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     // MARK: CLLocationManagerDelegate
     
     func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
-      
       currentLocation.value = newLocation
       if timeToUpdate(){
         let nearestStation = WeatherStationList.nearestStation(newLocation)
-        if stationChanged(nearestStation) {
-            debugPrint("Location update \(newLocation)")
-            currentStation = nearestStation
-            dataFetcher.updateWeatherInfo(nearestStation.id, callback: setWeather)
-            lastUpdateTime = NSDate()
-        }
+        debugPrint("Location update \(newLocation)")
+        currentStation = nearestStation
+        dataFetcher.updateWeatherInfo(nearestStation.id, callback: setWeather)
+        lastUpdateTime = NSDate()
       }
     }
     
     /**
-    * Update if there is no currentStation (first run), nearest station has changed, 
-    * last update time is unknown or it has been more than 30 seconds since last update
+    * Update after 60 seconds has passed from last update.
     */
     func stationChanged(nearestStation: WeatherStation) -> Bool {
         return currentStation == nil || nearestStation.id != currentStation?.id
@@ -168,5 +164,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
         // NOP
     }
+    
 }
 
