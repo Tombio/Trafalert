@@ -4,6 +4,7 @@ import com.studiowannabe.trafalert.GlobalExceptionHandler;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.SystemEnvironmentPropertySource;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -16,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 @ComponentScan(basePackages="com.studiowannabe.trafalert")
 @CommonsLog
 public class InterceptorConfig extends WebMvcConfigurerAdapter {
-
-    private static final String API_KEY = System.getProperty("API_KEY");
+    private static final String AK = "API_KEY";
+    private static final String API_KEY = getApiKey();
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -44,5 +45,16 @@ public class InterceptorConfig extends WebMvcConfigurerAdapter {
         public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
 
         }
+    }
+
+    private static String getApiKey() {
+        if(System.getProperty(AK) != null){
+            return System.getProperty(AK);
+        }
+        else if(System.getenv(AK) != null) {
+            return System.getenv(AK);
+        }
+
+        throw new RuntimeException("No API key defined in env/properties");
     }
 }
