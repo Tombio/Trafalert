@@ -1,5 +1,7 @@
 package com.studiowannabe.trafalert.control;
 
+import com.studiowannabe.trafalert.GlobalExceptionHandler;
+import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -11,13 +13,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Configuration
-@ComponentScan(basePackages="com.studiowannabe.hippodrome")
+@ComponentScan(basePackages="com.studiowannabe.trafalert")
+@CommonsLog
 public class InterceptorConfig extends WebMvcConfigurerAdapter {
 
-    private static final String HIPPO_API_KEY = "e5129820-5b78-49e5-b264-6a55e0aa06a5";
+    private static final String API_KEY = System.getProperty("API_KEY");
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+        log.info("API key: " + API_KEY);
         registry.addInterceptor(new AccessInterceptor()).addPathPatterns("/**");
     }
 
@@ -25,10 +29,10 @@ public class InterceptorConfig extends WebMvcConfigurerAdapter {
 
         @Override
         public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-            if (HIPPO_API_KEY.equals(request.getHeader("hippo_api_key"))){
+            if (API_KEY.equals(request.getParameter("API_KEY"))){
                 return true;
             }
-            throw new Exception("Unauthorized access");
+            throw new GlobalExceptionHandler.UnauthorizedAccessException();
         }
 
         @Override
