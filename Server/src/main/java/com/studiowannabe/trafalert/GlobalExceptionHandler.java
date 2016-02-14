@@ -25,8 +25,8 @@ public class GlobalExceptionHandler {
     }
 
     public static class UnauthorizedAccessException extends Exception {
-        public UnauthorizedAccessException(){
-            super("Unauthorized access");
+        public UnauthorizedAccessException(final String apiKey){
+            super("Unauthorized access with API key " + apiKey);
         }
     }
 }

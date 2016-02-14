@@ -31,10 +31,10 @@ public class InterceptorConfig extends WebMvcConfigurerAdapter {
 
         @Override
         public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-            if (API_KEY.equals(request.getHeader("API_KEY"))){
+            if (API_KEY.equals(request.getHeader(AK))){
                 return true;
             }
-            throw new GlobalExceptionHandler.UnauthorizedAccessException();
+            throw new GlobalExceptionHandler.UnauthorizedAccessException(request.getHeader(AK));
         }
 
         @Override
