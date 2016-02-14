@@ -12,8 +12,8 @@ import ObjectMapper
 
 class DataFetcher {
     
-    static let server = "http://localhost:8080"
-    //static let server = "https://trafalert.herokuapp.com"
+    //static let server = "http://localhost:8080"
+    static let server = "https://trafalert.herokuapp.com"
     static let infoEndPoint = "/info" // get weather + warnings
     static let weatherEndPoint = "/weather" // get weather only
     static let warningEndPoint = "/warning" // get warnings only
@@ -21,8 +21,9 @@ class DataFetcher {
     func updateWeatherInfo(station: Int, callback: (WeatherStationData) -> Void) {
         let address = String(format: "%@%@/%d", arguments:[DataFetcher.server, DataFetcher.infoEndPoint, station])
         Alamofire.request(.POST, address, parameters: nil,
-            headers: ["API_KEY": DataFetcher.apiKey, "Content-type application":"json", "Accept application" : "json"]).responseJSON() {
+            headers: ["API_KEY": DataFetcher.apiKey]).responseJSON() {
                 (response) in
+                debugPrint(response.result)
                 if let json = response.result.value {
                     debugPrint(json)
                     if let weather = Mapper<WeatherStationData>().map(json) {
@@ -30,7 +31,7 @@ class DataFetcher {
                     }
                 }
                 else {
-                    debugPrint("Failed to update info")
+                    debugPrint("Failed to update info \(response.result.error)")
                 }
         }
     }

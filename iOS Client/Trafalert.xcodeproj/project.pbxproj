@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E62F7CD61C6F416900975FF8 /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62F7CD51C6F416900975FF8 /* UI.swift */; };
 		E62F7CDB1C709B1800975FF8 /* properties.plist in Resources */ = {isa = PBXBuildFile; fileRef = E62F7CDA1C709B1800975FF8 /* properties.plist */; };
+		E62F7CDD1C70FEAF00975FF8 /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62F7CDC1C70FEAF00975FF8 /* Notifier.swift */; };
 		E65CD7351C6D4A8900B2BEB1 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E65CD72F1C6D4A8900B2BEB1 /* Alamofire.framework */; };
 		E65CD7361C6D4A8900B2BEB1 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E65CD72F1C6D4A8900B2BEB1 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E65CD7391C6D4A8900B2BEB1 /* ReactiveFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E65CD7311C6D4A8900B2BEB1 /* ReactiveFoundation.framework */; };
@@ -67,6 +68,7 @@
 /* Begin PBXFileReference section */
 		E62F7CD51C6F416900975FF8 /* UI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
 		E62F7CDA1C709B1800975FF8 /* properties.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = properties.plist; sourceTree = "<group>"; };
+		E62F7CDC1C70FEAF00975FF8 /* Notifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
 		E65CD72F1C6D4A8900B2BEB1 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		E65CD7301C6D4A8900B2BEB1 /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
 		E65CD7311C6D4A8900B2BEB1 /* ReactiveFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveFoundation.framework; path = Carthage/Build/iOS/ReactiveFoundation.framework; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				E67777C51C6150820096D754 /* WeatherStationList.swift */,
 				E62F7CD51C6F416900975FF8 /* UI.swift */,
 				E62F7CDA1C709B1800975FF8 /* properties.plist */,
+				E62F7CDC1C70FEAF00975FF8 /* Notifier.swift */,
 			);
 			path = Trafalert;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E690661E1C5AA12C0039CE74 /* AppDelegate.swift in Sources */,
+				E62F7CDD1C70FEAF00975FF8 /* Notifier.swift in Sources */,
 				E67777B71C60132F0096D754 /* DataFetcher.swift in Sources */,
 				E6D12AF31C5AC134005D8FE7 /* WeatherStation.swift in Sources */,
 				E62F7CD61C6F416900975FF8 /* UI.swift in Sources */,

@@ -15,7 +15,7 @@ public class UI {
     static let middleCenter = UIColor(91, 177, 233, 80)
     static let middleRight = UIColor(75, 167, 227, 80)
     
-    static let warning = UIColor(134, 56, 56, 80)
+    static let warning = UIColor(255, 101, 101, 80)
     
 }
 

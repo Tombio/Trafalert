@@ -39,6 +39,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         if status == .NotDetermined || status == .Denied || status == .AuthorizedWhenInUse {
             locationManager.requestAlwaysAuthorization()
         }
+        if(UIApplication.instancesRespondToSelector(Selector("registerUserNotificationSettings:"))) {
+            UIApplication.sharedApplication().registerUserNotificationSettings(
+                UIUserNotificationSettings(forTypes: [UIUserNotificationType.Alert, UIUserNotificationType.Badge], categories: nil))
+        }
+        
         locationManager.requestAlwaysAuthorization()
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.delegate = self
@@ -61,13 +66,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        application.applicationIconBadgeNumber = 0
     }
     
     func application(application: UIApplication, willFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
         self.locationManager.startMonitoringSignificantLocationChanges()
         return true
         
+    }
+    
+    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        application.applicationIconBadgeNumber = 0
     }
 
     func applicationWillTerminate(application: UIApplication) {
@@ -100,6 +109,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             if version < w.version.value {
                 debugPrint("Send to talk")
                 talk("Varoitus: Tielle numero \(currentStation!.roadNumber): \(w.warningType.value.humanReadable())")
+                Notifier.sendNotification(w, station: currentStation!, warningCount: currentData.warnings.count)
                 max = w.version.value > max ? w.version.value : max
             }
             else {
