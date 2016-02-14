@@ -12,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Enumeration;
 
 @Configuration
 @ComponentScan(basePackages="com.studiowannabe.trafalert")
@@ -30,6 +31,11 @@ public class InterceptorConfig extends WebMvcConfigurerAdapter {
 
         @Override
         public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+            final Enumeration<String> enume = request.getParameterNames();
+            while(enume.hasMoreElements()){
+                String s = enume.nextElement();
+                log.info(s + " => " + request.getParameter(s));
+            }
             if (API_KEY.equals(request.getParameter("API_KEY"))){
                 return true;
             }
