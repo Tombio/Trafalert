@@ -10,6 +10,8 @@
 		E62F7CD61C6F416900975FF8 /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62F7CD51C6F416900975FF8 /* UI.swift */; };
 		E62F7CDB1C709B1800975FF8 /* properties.plist in Resources */ = {isa = PBXBuildFile; fileRef = E62F7CDA1C709B1800975FF8 /* properties.plist */; };
 		E62F7CDD1C70FEAF00975FF8 /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62F7CDC1C70FEAF00975FF8 /* Notifier.swift */; };
+		E62F7CE11C7128E100975FF8 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E62F7CDF1C7128E100975FF8 /* Fabric.framework */; };
+		E62F7CE21C7128E100975FF8 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E62F7CE01C7128E100975FF8 /* Crashlytics.framework */; };
 		E65CD7351C6D4A8900B2BEB1 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E65CD72F1C6D4A8900B2BEB1 /* Alamofire.framework */; };
 		E65CD7361C6D4A8900B2BEB1 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E65CD72F1C6D4A8900B2BEB1 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E65CD7391C6D4A8900B2BEB1 /* ReactiveFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E65CD7311C6D4A8900B2BEB1 /* ReactiveFoundation.framework */; };
@@ -69,6 +71,8 @@
 		E62F7CD51C6F416900975FF8 /* UI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
 		E62F7CDA1C709B1800975FF8 /* properties.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = properties.plist; sourceTree = "<group>"; };
 		E62F7CDC1C70FEAF00975FF8 /* Notifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
+		E62F7CDF1C7128E100975FF8 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		E62F7CE01C7128E100975FF8 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		E65CD72F1C6D4A8900B2BEB1 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		E65CD7301C6D4A8900B2BEB1 /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
 		E65CD7311C6D4A8900B2BEB1 /* ReactiveFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveFoundation.framework; path = Carthage/Build/iOS/ReactiveFoundation.framework; sourceTree = "<group>"; };
@@ -99,8 +103,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E65CD73B1C6D4A8900B2BEB1 /* ReactiveKit.framework in Frameworks */,
+				E62F7CE21C7128E100975FF8 /* Crashlytics.framework in Frameworks */,
 				E65CD73D1C6D4A8900B2BEB1 /* ReactiveUIKit.framework in Frameworks */,
 				E690663A1C5AA4E20039CE74 /* MapKit.framework in Frameworks */,
+				E62F7CE11C7128E100975FF8 /* Fabric.framework in Frameworks */,
 				E65CD7391C6D4A8900B2BEB1 /* ReactiveFoundation.framework in Frameworks */,
 				E65CD7351C6D4A8900B2BEB1 /* Alamofire.framework in Frameworks */,
 				E65CD73F1C6D4A8900B2BEB1 /* SwiftCSV.framework in Frameworks */,
@@ -114,6 +120,8 @@
 		E69066111C5AA12C0039CE74 = {
 			isa = PBXGroup;
 			children = (
+				E62F7CDF1C7128E100975FF8 /* Fabric.framework */,
+				E62F7CE01C7128E100975FF8 /* Crashlytics.framework */,
 				E65CD7431C6D4E7B00B2BEB1 /* ObjectMapper.framework */,
 				E65CD72F1C6D4A8900B2BEB1 /* Alamofire.framework */,
 				E65CD7301C6D4A8900B2BEB1 /* ObjectMapper.framework */,
@@ -171,6 +179,7 @@
 				E6D12AEB1C5AA9CA005D8FE7 /* CopyFiles */,
 				E65CD7411C6D4A8900B2BEB1 /* Embed Frameworks */,
 				E62F7CD41C6E932F00975FF8 /* ShellScript */,
+				E62F7CDE1C7128B700975FF8 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -256,6 +265,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+		E62F7CDE1C7128B700975FF8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "FABRIC_APIKEY=$(cat \"${SRCROOT}/fabric.apikey\")\nFABRIC_BUILDSECRET=$(cat \"${SRCROOT}/fabric.buildsecret\")\n./Fabric.framework/run ${FABRIC_APIKEY} ${FABRIC_BUILDSECRET}";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -377,11 +399,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Trafalert/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
@@ -397,11 +421,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Trafalert/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;

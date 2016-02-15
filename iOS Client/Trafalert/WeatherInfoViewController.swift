@@ -35,6 +35,7 @@ class WeatherInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor(patternImage: UI.background)
         warningLbl.numberOfLines = 4
         locationDebug.numberOfLines = 2
         

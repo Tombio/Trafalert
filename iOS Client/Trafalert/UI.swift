@@ -11,11 +11,12 @@ import UIKit
 
 public class UI {
     //6abaee 106 186 238
-    static let middleLeft = UIColor(106, 186, 238, 80)
-    static let middleCenter = UIColor(91, 177, 233, 80)
-    static let middleRight = UIColor(75, 167, 227, 80)
+    static let middleLeft = UIColor(106, 186, 238, 95)
+    static let middleCenter = UIColor(91, 177, 233, 95)
+    static let middleRight = UIColor(75, 167, 227, 95)
+    static let warning = UIColor(255, 101, 101, 95)
     
-    static let warning = UIColor(255, 101, 101, 80)
+    static let background = UIImage(named: "Background")!
     
 }
 

@@ -25,26 +25,25 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Station name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="7nZ-em-cT2" userLabel="stationNameLbl">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="21"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Air temp" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="DIn-ZA-cFW" userLabel="airTempLbl">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="70"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Condition" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="80f-Op-yOu" userLabel="conditionLbl">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="axW-IC-0J6">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="DIn-ZA-cFW" firstAttribute="centerY" secondItem="YLh-oL-QHH" secondAttribute="centerY" multiplier="1.1" id="2E9-Lz-Jmt"/>
                                     <constraint firstItem="7nZ-em-cT2" firstAttribute="top" secondItem="YLh-oL-QHH" secondAttribute="top" id="5Ph-kg-yyQ"/>
@@ -122,34 +121,74 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hIC-Ie-5s9" userLabel="Rainfall">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                         <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cloud" translatesAutoresizingMaskIntoConstraints="NO" id="Bu2-HZ-fue" userLabel="Cloud Image">
+                                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="Bu2-HZ-fue" secondAttribute="height" multiplier="1:1" id="0VU-oN-fep"/>
+                                                </constraints>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="0VU-oN-fep"/>
+                                                    </mask>
+                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=compact">
+                                                    <mask key="constraints">
+                                                        <include reference="0VU-oN-fep"/>
+                                                    </mask>
+                                                </variation>
+                                            </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="jK3-bz-4Do" userLabel="rainLbl">
                                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="jK3-bz-4Do" secondAttribute="height" multiplier="35:17" id="j6F-tO-3kv"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="j6F-tO-3kv"/>
+                                                    </mask>
+                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=compact">
+                                                    <mask key="constraints">
+                                                        <include reference="j6F-tO-3kv"/>
+                                                    </mask>
+                                                </variation>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" red="0.0011317555262464474" green="0.64910600755766024" blue="1" alpha="0.84747149493243246" colorSpace="calibratedRGB"/>
                                         <constraints>
+                                            <constraint firstItem="Bu2-HZ-fue" firstAttribute="height" secondItem="hIC-Ie-5s9" secondAttribute="height" multiplier="0.7" id="1hr-6t-Mdq"/>
+                                            <constraint firstItem="jK3-bz-4Do" firstAttribute="leading" secondItem="Bu2-HZ-fue" secondAttribute="trailing" constant="8" id="BRQ-kz-xyx"/>
                                             <constraint firstItem="jK3-bz-4Do" firstAttribute="centerY" secondItem="hIC-Ie-5s9" secondAttribute="centerY" id="D22-zk-DpL"/>
-                                            <constraint firstItem="jK3-bz-4Do" firstAttribute="centerX" secondItem="hIC-Ie-5s9" secondAttribute="centerX" id="UIX-ZW-2G8"/>
+                                            <constraint firstItem="Bu2-HZ-fue" firstAttribute="leading" secondItem="hIC-Ie-5s9" secondAttribute="leading" constant="16" id="LrR-s2-Oz3"/>
+                                            <constraint firstItem="Bu2-HZ-fue" firstAttribute="centerY" secondItem="hIC-Ie-5s9" secondAttribute="centerY" id="TRa-Kb-0ny"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="subviews">
+                                                <exclude reference="Bu2-HZ-fue"/>
                                                 <exclude reference="jK3-bz-4Do"/>
                                             </mask>
                                             <mask key="constraints">
+                                                <exclude reference="1hr-6t-Mdq"/>
+                                                <exclude reference="LrR-s2-Oz3"/>
+                                                <exclude reference="TRa-Kb-0ny"/>
+                                                <exclude reference="BRQ-kz-xyx"/>
                                                 <exclude reference="D22-zk-DpL"/>
-                                                <exclude reference="UIX-ZW-2G8"/>
                                             </mask>
                                         </variation>
                                         <variation key="heightClass=regular-widthClass=compact">
                                             <mask key="subviews">
+                                                <include reference="Bu2-HZ-fue"/>
                                                 <include reference="jK3-bz-4Do"/>
                                             </mask>
                                             <mask key="constraints">
+                                                <include reference="1hr-6t-Mdq"/>
+                                                <include reference="LrR-s2-Oz3"/>
+                                                <include reference="TRa-Kb-0ny"/>
+                                                <include reference="BRQ-kz-xyx"/>
                                                 <include reference="D22-zk-DpL"/>
-                                                <include reference="UIX-ZW-2G8"/>
                                             </mask>
                                         </variation>
                                     </view>
@@ -190,9 +229,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L4d-fc-28S" userLabel="Wind direction">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="J9R-Mr-RE8">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WindDirection" translatesAutoresizingMaskIntoConstraints="NO" id="J9R-Mr-RE8">
                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                <color key="backgroundColor" red="1" green="0.0" blue="0.46666666670000001" alpha="1" colorSpace="deviceRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="J9R-Mr-RE8" secondAttribute="height" multiplier="1:1" id="88J-J8-OYB"/>
                                                 </constraints>
@@ -216,7 +254,7 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.06965013376351159" green="0.0" blue="1" alpha="0.85425464527027029" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstItem="J9R-Mr-RE8" firstAttribute="height" secondItem="L4d-fc-28S" secondAttribute="height" multiplier="0.5" id="1Pv-ho-R0b"/>
+                                            <constraint firstItem="J9R-Mr-RE8" firstAttribute="height" secondItem="L4d-fc-28S" secondAttribute="height" multiplier="0.7" id="1Pv-ho-R0b" userLabel="Wind Image.height = 0.7 × height"/>
                                             <constraint firstItem="J9R-Mr-RE8" firstAttribute="centerX" secondItem="L4d-fc-28S" secondAttribute="centerX" id="Edq-TO-UK8"/>
                                             <constraint firstItem="J9R-Mr-RE8" firstAttribute="centerY" secondItem="L4d-fc-28S" secondAttribute="centerY" id="Ipi-I1-Qdt"/>
                                             <constraint firstItem="Cy8-eC-Ch6" firstAttribute="centerY" secondItem="L4d-fc-28S" secondAttribute="centerY" id="jRo-q8-rgn"/>
@@ -313,35 +351,34 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tienpinta" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Ryv-gS-e4O" userLabel="roadTempLabelLbl">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Road temp" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="7tD-LR-lEX" userLabel="roadTempLbl">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="70"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Condition" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8Qd-Oi-hBy" userLabel="roadSurfaceConditionLbl">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Freezing point" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Mu6-Mb-a7b" userLabel="freezingPointLbl">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ELY-Wf-eXg" userLabel="locationDebug">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="8"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="Ryv-gS-e4O" firstAttribute="width" secondItem="hMg-RH-dxP" secondAttribute="width" id="8At-50-00h"/>
                                     <constraint firstItem="Ryv-gS-e4O" firstAttribute="top" secondItem="hMg-RH-dxP" secondAttribute="top" id="9VN-dP-hAe"/>
@@ -514,7 +551,7 @@
                             <constraint firstItem="hMg-RH-dxP" firstAttribute="centerX" secondItem="88M-Tl-FWi" secondAttribute="centerX" id="gWv-KI-New"/>
                             <constraint firstItem="hMg-RH-dxP" firstAttribute="top" secondItem="dfe-Ru-AFC" secondAttribute="bottom" id="mSM-kd-De3"/>
                             <constraint firstItem="YLh-oL-QHH" firstAttribute="height" secondItem="88M-Tl-FWi" secondAttribute="height" multiplier="0.35" id="qon-nl-hln"/>
-                            <constraint firstItem="dfe-Ru-AFC" firstAttribute="centerY" secondItem="88M-Tl-FWi" secondAttribute="centerY" multiplier="0.8" id="vzE-HY-3FS"/>
+                            <constraint firstItem="dfe-Ru-AFC" firstAttribute="centerY" secondItem="88M-Tl-FWi" secondAttribute="centerY" multiplier="0.85" id="vzE-HY-3FS"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -690,6 +727,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Cloud" width="33" height="32"/>
+        <image name="WindDirection" width="32" height="33"/>
         <image name="noun_125470_cc" width="25" height="24"/>
         <image name="noun_16301_cc" width="25" height="25"/>
         <image name="noun_70539_cc" width="24" height="25"/>

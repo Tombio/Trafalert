@@ -11,6 +11,8 @@ import CoreLocation
 import CoreMotion
 import AVFoundation
 import ReactiveKit
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
@@ -50,6 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         locationManager.activityType = .AutomotiveNavigation
         locationManager.desiredAccuracy = 1000
         locationManager.startUpdatingLocation()
+        Fabric.with([Crashlytics.self])
         return true
     }
 
