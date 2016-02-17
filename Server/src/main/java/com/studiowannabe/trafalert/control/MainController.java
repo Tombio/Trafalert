@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * Created by Tomi on 30/01/16.
@@ -48,6 +50,11 @@ public class MainController {
     public String warningsForRegion() throws Exception {
         final List<WeatherInfo> infos = getAllStationsWithWarnings();
         return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(infos);
+    }
+
+    @RequestMapping(value = "/warning/stations", method = RequestMethod.POST, produces = "application/json")
+    public String stationsWithWarning() throws Exception {
+        return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(getStationIdsWithWarning());
     }
 
     @RequestMapping(value = "/weather/{region}", method = RequestMethod.POST, produces = "application/json")
@@ -103,5 +110,8 @@ public class MainController {
         return infos;
     }
 
-
+    private List<Long> getStationIdsWithWarning() {
+        final List<WeatherInfo> warningStations = getAllStationsWithWarnings();
+        return warningStations.stream().map(station -> station.getStationId()).collect(Collectors.toList());
+    }
 }
