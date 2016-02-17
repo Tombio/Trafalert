@@ -112,6 +112,9 @@ public class MainController {
 
     private List<Long> getStationIdsWithWarning() {
         final List<WeatherInfo> warningStations = getAllStationsWithWarnings();
+        for(WeatherInfo wi : warningStations){
+            log.info("Station " + wi.getStationId() + " => " + wi.getWarnings());
+        }
         return warningStations.stream().map(station -> station.getStationId()).collect(Collectors.toList());
     }
 }
