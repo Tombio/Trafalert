@@ -5,6 +5,7 @@ import com.studiowannabe.trafalert.wsdl.RoadWeatherType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -138,22 +139,29 @@ public class WarningIssuer {
 
     private Warning createBlackIceWarning(final RoadWeatherType data) {
         // road surface dew point and road surface temperature both need to be negative for
+        // Also air needs to be above freezing... maybe..
         // black ice to form... at least to my current understanding
-        if(data.getRoaddewpointdifference() == null || data.getRoadsurfacetemperature1() == null) {
+        final BigDecimal roadDew = data.getRoaddewpointdifference();
+        final BigDecimal roadTemp = getMean(data.getRoadsurfacetemperature1(), data.getRoadsurfacetemperature2(), data.getRoadsurfacetemperature3());
+        final BigDecimal airTemp = getMean(data.getAirtemperature1(), data.getAirtemperature3());
+        if(roadDew == null || roadTemp == null || airTemp == null) {
             return null;
         }
 
-        if(data.getRoaddewpointdifference().doubleValue() > 0 || data.getRoadsurfacetemperature1().doubleValue() > 0){
+        if(roadDew.doubleValue() > 0 || roadTemp.doubleValue() > 0){
             return null;
         }
 
+        if(airTemp.doubleValue() < 0){ // Black Ice forms more rapidly when road is below and air is above freezing
+            return null;
+        }
 
         final Warning cw = existingWarning(Warning.WarningType.BLACK_ICE, data.getStationid().longValue());
         if(cw != null) {
             return cw;
         }
         else {
-            return new BlackIceWarning(data.getRoaddewpointdifference(), data.getRoadsurfacetemperature1());
+            return new BlackIceWarning(roadDew, roadTemp);
         }
     }
 
@@ -168,5 +176,23 @@ public class WarningIssuer {
             }
         }
         return null;
+    }
+
+    private static BigDecimal getMean(final BigDecimal... vals) {
+        int count = 0;
+        BigDecimal sum = new BigDecimal(0);
+        for(final BigDecimal d : vals){
+            if(d == null) {
+                continue;
+            }
+            sum.add(d);
+            count++;
+        }
+
+        if(count == 0){
+            return null;
+        }
+
+        return sum.divide(new BigDecimal(count));
     }
 }
