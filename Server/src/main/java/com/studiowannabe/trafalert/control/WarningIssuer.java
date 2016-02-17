@@ -178,14 +178,15 @@ public class WarningIssuer {
         return null;
     }
 
-    private static BigDecimal getMean(final BigDecimal... vals) {
+    protected static BigDecimal getMean(final BigDecimal... vals) {
         int count = 0;
         BigDecimal sum = new BigDecimal(0);
+
         for(final BigDecimal d : vals){
             if(d == null) {
                 continue;
             }
-            sum.add(d);
+            sum = sum.add(d);
             count++;
         }
 
@@ -193,6 +194,6 @@ public class WarningIssuer {
             return null;
         }
 
-        return sum.divide(new BigDecimal(count));
+        return sum.divide(new BigDecimal(count), BigDecimal.ROUND_HALF_UP);
     }
 }

@@ -2,6 +2,7 @@ package com.studiowannabe.trafalert.control;
 
 import com.studiowannabe.trafalert.domain.warning.Warning;
 import com.studiowannabe.trafalert.wsdl.RoadWeatherType;
+import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -30,5 +31,12 @@ public class WarningIssuerTest {
         rwt.setRoaddewpointdifference(new BigDecimal(-0.01));
         rwt.setRoadsurfacetemperature1(new BigDecimal(-0.01));
         return rwt;
+    }
+
+    @Test
+    public void testMean(){
+        final BigDecimal bd = WarningIssuer.getMean(
+                new BigDecimal(1.000007), new BigDecimal(1.100003), new BigDecimal(1.200005));
+        assertEquals(1.1, bd.doubleValue(), 1);
     }
 }
