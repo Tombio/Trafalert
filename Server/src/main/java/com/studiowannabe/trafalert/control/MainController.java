@@ -54,7 +54,7 @@ public class MainController {
 
     @RequestMapping(value = "/warning/stations", method = RequestMethod.POST, produces = "application/json")
     public String stationsWithWarning() throws Exception {
-        return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(getStationIdsWithWarning());
+        return objectMapper.writerWithDefaultPrettyPrinter().withRootName("stations").writeValueAsString(getStationIdsWithWarning());
     }
 
     @RequestMapping(value = "/weather/{region}", method = RequestMethod.POST, produces = "application/json")
@@ -112,9 +112,6 @@ public class MainController {
 
     private List<Long> getStationIdsWithWarning() {
         final List<WeatherInfo> warningStations = getAllStationsWithWarnings();
-        for(WeatherInfo wi : warningStations){
-            log.info("Station " + wi.getStationId() + " => " + wi.getWarnings());
-        }
         return warningStations.stream().map(station -> station.getStationId()).collect(Collectors.toList());
     }
 }
