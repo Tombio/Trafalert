@@ -54,7 +54,7 @@ public class MainController {
 
     @RequestMapping(value = "/warning/stations", method = RequestMethod.POST, produces = "application/json")
     public String stationsWithWarning() throws Exception {
-        return objectMapper.writerWithDefaultPrettyPrinter().withRootName("stations").writeValueAsString(getStationIdsWithWarning());
+        return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(getStationIdsWithWarning());
     }
 
     @RequestMapping(value = "/weather/{region}", method = RequestMethod.POST, produces = "application/json")
