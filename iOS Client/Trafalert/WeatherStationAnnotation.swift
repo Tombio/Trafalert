@@ -9,21 +9,21 @@
 import Foundation
 import MapKit
 
-struct WeatherStationOverlay: MKAnnotation {
+class WeatherStationAnnotation: NSObject, MKAnnotation {
     
     var title: String?
     var subtitle: String?
     
     var stationName: String
     var active: Bool
-    var coordinates: CLLocationCoordinate2D
+    var coordinate: CLLocationCoordinate2D
     
     init(title: String, subtitle: String, stationName: String, active: Bool, coord: CLLocationCoordinate2D) {
         self.title = title
         self.subtitle = subtitle
         self.stationName = stationName
         self.active = active
-        self.coord = coord
+        self.coordinate = coord
     }
     
     /*

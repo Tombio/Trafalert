@@ -36,6 +36,20 @@ class DataFetcher {
         }
     }
     
+    func updateWarningStations(callback: (Array<Int>) -> Void){
+        let address = String(format: "%@%@/%@", arguments:[DataFetcher.server, DataFetcher.warningEndPoint, "stations"])
+        Alamofire.request(.POST, address, parameters: nil,
+            headers: ["API_KEY": DataFetcher.apiKey]).responseJSON() {
+                (response) in
+                guard let arr = response.result.value as? [Int] else {
+                    callback([])
+                    return
+                }
+                callback(arr)
+        }
+
+    }
+    
     static var apiKey: String {
         if let path = NSBundle.mainBundle().pathForResource("properties", ofType: "plist"), dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
             if let apiKey = dict["API_KEY"] {

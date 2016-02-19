@@ -36,7 +36,7 @@
 		E69066381C5AA35F0039CE74 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69066371C5AA35F0039CE74 /* MapViewController.swift */; };
 		E690663A1C5AA4E20039CE74 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E69066391C5AA4E20039CE74 /* MapKit.framework */; };
 		E6D12AF31C5AC134005D8FE7 /* WeatherStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D12AF21C5AC134005D8FE7 /* WeatherStation.swift */; };
-		E6D12AF51C5C0292005D8FE7 /* WeatherStationOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D12AF41C5C0292005D8FE7 /* WeatherStationOverlay.swift */; };
+		E6D12AF51C5C0292005D8FE7 /* WeatherStationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D12AF41C5C0292005D8FE7 /* WeatherStationAnnotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -94,7 +94,7 @@
 		E69066371C5AA35F0039CE74 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		E69066391C5AA4E20039CE74 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E6D12AF21C5AC134005D8FE7 /* WeatherStation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherStation.swift; sourceTree = "<group>"; };
-		E6D12AF41C5C0292005D8FE7 /* WeatherStationOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherStationOverlay.swift; sourceTree = "<group>"; };
+		E6D12AF41C5C0292005D8FE7 /* WeatherStationAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherStationAnnotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,7 +153,7 @@
 				E690662B1C5AA12C0039CE74 /* Info.plist */,
 				E69066371C5AA35F0039CE74 /* MapViewController.swift */,
 				E6D12AF21C5AC134005D8FE7 /* WeatherStation.swift */,
-				E6D12AF41C5C0292005D8FE7 /* WeatherStationOverlay.swift */,
+				E6D12AF41C5C0292005D8FE7 /* WeatherStationAnnotation.swift */,
 				E67777AE1C5FFC1F0096D754 /* WeatherInfo.swift */,
 				E67777B61C60132F0096D754 /* DataFetcher.swift */,
 				E67777B81C60149B0096D754 /* WeatherInfoViewController.swift */,
@@ -294,7 +294,7 @@
 				E67777C61C6150820096D754 /* WeatherStationList.swift in Sources */,
 				E67777AF1C5FFC1F0096D754 /* WeatherInfo.swift in Sources */,
 				E69066381C5AA35F0039CE74 /* MapViewController.swift in Sources */,
-				E6D12AF51C5C0292005D8FE7 /* WeatherStationOverlay.swift in Sources */,
+				E6D12AF51C5C0292005D8FE7 /* WeatherStationAnnotation.swift in Sources */,
 				E67777B91C60149B0096D754 /* WeatherInfoViewController.swift in Sources */,
 				E67777C41C614E8D0096D754 /* Extension.swift in Sources */,
 			);

@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import ObjectMapper
 
 extension WeatherStation {
     func distanceFrom(location: CLLocation) -> Double {
@@ -28,9 +29,20 @@ extension WeatherStationList {
     }
 }
 
-extension Array where Element:Warning {
+extension Array where Element: Warning {
     func maxVersion() -> Int? {
         let sorted = sort { $0.version.value > $1.version.value }
         return sorted.first?.version.value
+    }
+}
+
+typealias MappableInt = Int
+extension MappableInt: Mappable {
+    public init?(_ map: Map) {
+        self = map.currentValue as! Int
+    }
+    
+    public mutating func mapping(map: Map) {
+        self <- map
     }
 }
