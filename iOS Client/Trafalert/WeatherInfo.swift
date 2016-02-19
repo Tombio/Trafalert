@@ -9,6 +9,7 @@
 import Foundation
 import ReactiveKit
 import ObjectMapper
+import UIKit
 
 class WeatherStationData: Mappable {
     var stationId: Int?
@@ -107,6 +108,34 @@ class WeatherInfo: Mappable {
                 case .FREEZING_WATER: return "Alijäähtynyttä vettä"
             }
         }
+        
+        func skyBackgroundImage() -> UIImage {
+            let timeofDay = NSCalendar.currentCalendar().timeOfDay()
+            switch(self) {
+                case .UNKNOWN: return timeofDay == NSCalendar.TimeOfDay.Day ? UI.clearDay : UI.clearNight
+                case .NO_PRECIPITATION: return timeofDay == NSCalendar.TimeOfDay.Day ? UI.clearDay : UI.clearNight
+                default: return UI.rainBackground
+            }
+        }
+        
+        func rainImage() -> UIImage? {
+            switch(self) {
+            case .UNKNOWN: return nil
+            case .NO_PRECIPITATION: return nil
+            case .WEAK_PRECIPITATION_UNDEFINED: return UI.rain
+            case .WEAK_WATER: return UI.rain
+            case .WATER: return UI.rain
+            case .SNOW: return UI.snow
+            case .WET_SLEET: return UI.rain
+            case .SLEET: return UI.snow
+            case .HAIL: return UI.snow
+            case .ICE_CRYSTAL: return UI.snow
+            case .SNOW_PARTICLES: return UI.snow
+            case .SNOW_HAIL: return UI.snow
+            case .FREEZING_WEAK_WATER: return UI.rain
+            case .FREEZING_WATER: return UI.rain
+            }
+        }
     }
     
     enum RoadCondition: String {
@@ -133,6 +162,21 @@ class WeatherInfo: Mappable {
                 case .ICE: return "Jäätä"
                 case .LIKELY_WET_WITH_SALT: return "Suolattu"
                 default: return ""
+            }
+        }
+        
+        func roadImage() -> UIImage {
+            let season = NSCalendar.currentCalendar().season()
+            switch(self){
+            case .DRY: return season == .Summer ? UI.summerDry : UI.winterDry
+            case .DAMP: return season == .Summer ? UI.summerWet : UI.winterWet
+            case .WET: return season == .Summer ? UI.summerWet : UI.winterWet
+            case .WET_WITH_SALT: return UI.winterWet;
+            case .FROST: return season == .Summer ? UI.summerWet : UI.winterWet
+            case .SNOW: return UI.winterSnowy
+            case .ICE: return UI.winterIce
+            case .LIKELY_WET_WITH_SALT: return UI.winterWet
+            default: return season == .Summer ? UI.summerDry : UI.winterDry
             }
         }
     }

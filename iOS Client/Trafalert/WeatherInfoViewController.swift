@@ -30,12 +30,20 @@ class WeatherInfoViewController: UIViewController {
     @IBOutlet weak var rainfallView: UIView!
     @IBOutlet weak var visibilityView: UIView!
     @IBOutlet weak var windDirectionView: UIView!
+    
+    @IBOutlet weak var imageRain: UIImageView!
+    @IBOutlet weak var imageRoad: UIImageView!
+    @IBOutlet weak var imageSky: UIImageView!
   
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(patternImage: UI.background)
+
+        imageSky.image = UI.clearNight
+        imageRoad.image = UI.summerDry
+        
+        
         warningLbl.numberOfLines = 4
         locationDebug.numberOfLines = 2
         
@@ -51,6 +59,8 @@ class WeatherInfoViewController: UIViewController {
         }
         appDelegate.currentWeather.precipitationType.observe { value in
             self.conditionLbl.text = value.humanReadable()
+            self.imageSky.image = value.skyBackgroundImage()
+            self.imageRain.image = value.rainImage()
         }
         appDelegate.currentWeather.precipitationIntensity.observe { value in
             self.rainLbl.text = String(format: "%i mm/h", value)
@@ -74,6 +84,7 @@ class WeatherInfoViewController: UIViewController {
         }
         appDelegate.currentWeather.roadSurfaceCondition.observe { value in
             self.roadSurfaceConditionLbl.text = value.humanReadable()
+            self.imageRoad.image = value.roadImage()
         }
         appDelegate.currentData.warnings.observe { value in
             self.warningView.hidden = value.collection.isEmpty

@@ -37,5 +37,13 @@ class WeatherStationList {
         
         return ret
     }
-
+    
+    static func weatherStation(id: Int) -> WeatherStation? {
+        for ws in WeatherStationList.weatherStations {
+            if ws.id == id {
+                return ws
+            }
+        }
+        return nil
+    }
 }

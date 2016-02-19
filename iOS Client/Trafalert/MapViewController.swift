@@ -15,23 +15,22 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     @IBOutlet weak var mapView: MKMapView!
 
-    let locationHandler = LocationManagerHandler()
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
-        for ws in WeatherStationList.weatherStations {
-            mapView.addAnnotation(WeatherStationAnnotation(title: "Asema", subtitle: "Varoitukset", stationName: ws.name, active: true, coord: ws.coordinate))
-        }
         
         // Register observer for monitored locations
-        locationHandler.monitoredLocations.observe { value in
-            var updatingOverlays = self.activeOverlays()
-            updatingOverlays.appendContentsOf(self.overlaysToActivate(value))
-            for overlay in updatingOverlays {
-                self.mapView.removeOverlay(overlay)
-                self.mapView.addOverlay(overlay)
+        appDelegate.warningStations.observe { value in
+            for id in value.collection {
+                if let ws = WeatherStationList.weatherStation(id) {
+                    self.mapView.addAnnotation(WeatherStationAnnotation(
+                        title: ws.name, subtitle: "",
+                        stationName: ws.name, active: true, coord: ws.coordinate))
+                }
             }
+            
         }
     }
     

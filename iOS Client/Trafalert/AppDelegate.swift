@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var currentStation: WeatherStation?
     var currentData = WeatherStationData()
     var currentLocation = Observable(CLLocation(latitude: 0.0, longitude: 0.0))
-    var warningStations = Array<Int>()
+    var warningStations = ObservableCollection(Array<Int>())
   
     var lastUpdateTime: NSDate?
     var spokenVersions = [Int:Int]() // [id:lastVersion]
@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         locationManager.requestAlwaysAuthorization()
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.delegate = self
-        locationManager.activityType = .AutomotiveNavigation
+        //locationManager.activityType = .AutomotiveNavigation
         locationManager.desiredAccuracy = 500
         locationManager.startUpdatingLocation()
         Fabric.with([Crashlytics.self])
@@ -147,7 +147,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     func warningStations(stations: Array<Int>) {
-        self.warningStations = stations
+        self.warningStations.replace(stations)
     }
     
     // MARK: CLLocationManagerDelegate

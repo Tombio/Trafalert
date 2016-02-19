@@ -16,8 +16,22 @@ public class UI {
     static let middleRight = UIColor(75, 167, 227, 95)
     static let warning = UIColor(255, 101, 101, 95)
     
-    static let background = UIImage(named: "Background")!
+    static let rainBackground = UIImage(named: "Rain Sky")!
+    static let rain = UIImage(named: "Rain")!
+    static let snow = UIImage(named: "Snow")!
     
+    static let summerDry = UIImage(named: "Summer Dry")!
+    static let summerWet = UIImage(named: "Summer Wet")!
+    
+    static let winterDry = UIImage(named: "Winter Dry")!
+    static let winterWet = UIImage(named: "Winter Snow")!
+    static let winterSnowy = UIImage(named: "Winter Snow")!
+    static let winterIce = UIImage(named: "Winter Ice")!
+    
+    static let clearNight = UIImage(named: "Clear Night Sky")!
+    static let clearDay = UIImage(named: "Clear Sky")!
+    static let cloudyNight = UIImage(named: "Cloudy Night Sky")!
+
 }
 
 extension UIColor {

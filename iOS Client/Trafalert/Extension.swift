@@ -36,6 +36,17 @@ extension Array where Element: Warning {
     }
 }
 
+extension Array where Element: WeatherStationData {
+    func getWarnings(id: Int) -> [Warning] {
+        for ws in self {
+            if ws.stationId! == id {
+                return ws.warnings.collection
+            }
+        }
+        return Array<Warning>()
+    }
+}
+
 typealias MappableInt = Int
 extension MappableInt: Mappable {
     public init?(_ map: Map) {
@@ -44,5 +55,40 @@ extension MappableInt: Mappable {
     
     public mutating func mapping(map: Map) {
         self <- map
+    }
+}
+
+extension NSCalendar {
+    
+    enum Season {
+        case Summer
+        case Winter
+        case Fall
+        case Spring
+    }
+    
+    enum TimeOfDay {
+        case Morning
+        case Day
+        case Evening
+        case Night
+    }
+    
+    func season() -> Season {
+        let components = self.components([.Day , .Month , .Year], fromDate: NSDate())
+        switch components.month {
+            case 1..<4 : return .Winter
+            case 4..<9 : return .Summer
+            default: return .Winter
+        }
+    }
+    
+    func timeOfDay() -> TimeOfDay {
+        let components = self.components([.Hour], fromDate: NSDate())
+        switch components.month {
+            case 0..<8 : return .Night
+            case 8..<19 : return .Day
+            default: return .Night
+        }
     }
 }
