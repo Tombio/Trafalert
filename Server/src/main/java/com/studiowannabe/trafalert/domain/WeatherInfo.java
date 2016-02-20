@@ -2,7 +2,6 @@ package com.studiowannabe.trafalert.domain;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.studiowannabe.trafalert.domain.warning.Warning;
-import com.sun.istack.internal.Nullable;
 import lombok.Data;
 
 import java.util.List;
