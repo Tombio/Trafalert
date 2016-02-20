@@ -103,7 +103,7 @@ public class MainController {
         for(final WeatherStationData data : datas) {
             final List<Warning> warnings = warningCache.getCacheData().get(data.getStationId());
             if(!CollectionUtils.isEmpty(warnings)) {
-                final WeatherInfo wi = new WeatherInfo(data.getStationId(), data, warnings);
+                final WeatherInfo wi = new WeatherInfo(data.getStationId(), null, warnings);
                 infos.add(wi);
             }
         }
