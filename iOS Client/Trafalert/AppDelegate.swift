@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var currentStation: WeatherStation?
     var currentData = WeatherStationData()
     var currentLocation = Observable(CLLocation(latitude: 0.0, longitude: 0.0))
-    var warningStations = ObservableCollection(Array<Int>())
+    var warningStations = ObservableCollection(Array<WarningInfo>())
   
     var lastUpdateTime: NSDate?
     var spokenVersions = [Int:Int]() // [id:lastVersion]
@@ -104,7 +104,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     func speakFromVersion(version: Int) -> Int {
-        debugPrint("Speak from version \(version)")
         var max = version
         for w in currentData.warnings {
             if version < w.version.value {
@@ -122,8 +121,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     // MARK: Speak, my young Padawan
     
     func talk(string: String) {
-        debugPrint("Speak \(string)")
-        
         let utterance = AVSpeechUtterance(string: string)
         utterance.voice = voice
         speechSynth.speakUtterance(utterance)
@@ -141,7 +138,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         checkWarningsAndTalk()
     }
     
-    func warningStations(stations: Array<Int>) {
+    func warningStations(stations: Array<WarningInfo>) {
         self.warningStations.replace(stations)
     }
     

@@ -24,16 +24,19 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         // Register observer for monitored locations
         appDelegate.warningStations.observe { value in
             self.mapView.removeAnnotations(self.mapView.annotations)
-            for id in value.collection {
-                if let ws = WeatherStationList.weatherStation(id) {
+            for warn in value.collection {
+                if let ws = WeatherStationList.weatherStation(warn.stationId) {
                     let annotation = WeatherStationAnnotation(
-                        title: ws.name, subtitle: "",
+                        title: ws.name, subtitle: self.createSubs(warn),
                         stationName: ws.name, active: true, coord: ws.coordinate)
                     self.mapView.addAnnotation(annotation)
                 }
             }
-            
         }
+    }
+    
+    func createSubs(warn: WarningInfo) -> String {
+        return warn.warnings.reduce("", combine: { $0 == "" ? $1.warningType.value.humanReadable() : $0 + "\n" + $1.warningType.value.humanReadable()})
     }
     
     // MARK: - MKMapViewDelegate

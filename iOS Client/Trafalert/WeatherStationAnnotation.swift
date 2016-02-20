@@ -25,11 +25,4 @@ class WeatherStationAnnotation: NSObject, MKAnnotation {
         self.active = active
         self.coordinate = coord
     }
-    
-    /*
-    class func createOverlay(coord: CLLocationCoordinate2D, _ radius: CLLocationDistance, _ name: String) -> MKCircle {
-        let circle = WeatherStationOverlay(centerCoordinate: coord, radius: radius)
-        circle.stationName = name
-        return circle
-    }*/
 }

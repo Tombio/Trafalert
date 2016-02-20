@@ -35,6 +35,7 @@
 		E69066341C5AA30E0039CE74 /* road_weather_stations.csv in Resources */ = {isa = PBXBuildFile; fileRef = E69066331C5AA30E0039CE74 /* road_weather_stations.csv */; };
 		E69066381C5AA35F0039CE74 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69066371C5AA35F0039CE74 /* MapViewController.swift */; };
 		E690663A1C5AA4E20039CE74 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E69066391C5AA4E20039CE74 /* MapKit.framework */; };
+		E6CBBDAD1C791DCD000E3CAB /* WarningInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CBBDAC1C791DCD000E3CAB /* WarningInfo.swift */; };
 		E6D12AF31C5AC134005D8FE7 /* WeatherStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D12AF21C5AC134005D8FE7 /* WeatherStation.swift */; };
 		E6D12AF51C5C0292005D8FE7 /* WeatherStationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D12AF41C5C0292005D8FE7 /* WeatherStationAnnotation.swift */; };
 /* End PBXBuildFile section */
@@ -93,6 +94,7 @@
 		E69066331C5AA30E0039CE74 /* road_weather_stations.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = road_weather_stations.csv; sourceTree = "<group>"; };
 		E69066371C5AA35F0039CE74 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		E69066391C5AA4E20039CE74 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		E6CBBDAC1C791DCD000E3CAB /* WarningInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WarningInfo.swift; sourceTree = "<group>"; };
 		E6D12AF21C5AC134005D8FE7 /* WeatherStation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherStation.swift; sourceTree = "<group>"; };
 		E6D12AF41C5C0292005D8FE7 /* WeatherStationAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherStationAnnotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -155,6 +157,7 @@
 				E6D12AF21C5AC134005D8FE7 /* WeatherStation.swift */,
 				E6D12AF41C5C0292005D8FE7 /* WeatherStationAnnotation.swift */,
 				E67777AE1C5FFC1F0096D754 /* WeatherInfo.swift */,
+				E6CBBDAC1C791DCD000E3CAB /* WarningInfo.swift */,
 				E67777B61C60132F0096D754 /* DataFetcher.swift */,
 				E67777B81C60149B0096D754 /* WeatherInfoViewController.swift */,
 				E67777C31C614E8D0096D754 /* Extension.swift */,
@@ -292,6 +295,7 @@
 				E6D12AF31C5AC134005D8FE7 /* WeatherStation.swift in Sources */,
 				E62F7CD61C6F416900975FF8 /* UI.swift in Sources */,
 				E67777C61C6150820096D754 /* WeatherStationList.swift in Sources */,
+				E6CBBDAD1C791DCD000E3CAB /* WarningInfo.swift in Sources */,
 				E67777AF1C5FFC1F0096D754 /* WeatherInfo.swift in Sources */,
 				E69066381C5AA35F0039CE74 /* MapViewController.swift in Sources */,
 				E6D12AF51C5C0292005D8FE7 /* WeatherStationAnnotation.swift in Sources */,

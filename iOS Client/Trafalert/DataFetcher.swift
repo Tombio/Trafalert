@@ -23,9 +23,7 @@ class DataFetcher {
         Alamofire.request(.POST, address, parameters: nil,
             headers: ["API_KEY": DataFetcher.apiKey]).responseJSON() {
                 (response) in
-                debugPrint(response.result)
                 if let json = response.result.value {
-                    debugPrint(json)
                     if let weather = Mapper<WeatherStationData>().map(json) {
                         callback(weather)
                     }
@@ -36,16 +34,14 @@ class DataFetcher {
         }
     }
     
-    func updateWarningStations(callback: (Array<Int>) -> Void){
-        let address = String(format: "%@%@/%@", arguments:[DataFetcher.server, DataFetcher.warningEndPoint, "stations"])
+    func updateWarningStations(callback: (Array<WarningInfo>) -> Void){
+        let address = String(format: "%@%@", arguments:[DataFetcher.server, DataFetcher.warningEndPoint])
         Alamofire.request(.POST, address, parameters: nil,
             headers: ["API_KEY": DataFetcher.apiKey]).responseJSON() {
                 (response) in
-                guard let arr = response.result.value as? [Int] else {
-                    callback([])
-                    return
+                if let warnings = Mapper<WarningInfo>().mapArray(response.result.value) {
+                    callback(warnings)
                 }
-                callback(arr)
         }
 
     }
