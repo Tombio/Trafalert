@@ -14,7 +14,6 @@ import java.util.List;
 public @Data class WeatherInfo {
 
     final long stationId;
-    @Nullable
     final WeatherStationData WeatherData;
     final List<Warning> warnings;
 }
