@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         locationManager.requestAlwaysAuthorization()
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.delegate = self
-        //locationManager.activityType = .AutomotiveNavigation
+        locationManager.activityType = .AutomotiveNavigation
         locationManager.desiredAccuracy = 500
         locationManager.startUpdatingLocation()
         Fabric.with([Crashlytics.self])
@@ -86,7 +86,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     func checkWarningsAndTalk(){
-        debugPrint("Check for talk")
         if !currentData.warnings.isEmpty { // We can safely assume that once warnings are present, so is station id
             guard let id = currentData.stationId else {
                 return
@@ -102,9 +101,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 spokenVersions[id] = speakFromVersion(0)
             }
         }
-        else {
-            debugPrint("Nothing to talk.. no warnings..")
-        }
     }
     
     func speakFromVersion(version: Int) -> Int {
@@ -112,7 +108,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         var max = version
         for w in currentData.warnings {
             if version < w.version.value {
-                debugPrint("Send to talk")
                 talk("Varoitus: Tielle numero \(currentStation!.roadNumber): \(w.warningType.value.humanReadable())")
                 Notifier.sendNotification(w, station: currentStation!, warningCount: currentData.warnings.count)
                 max = w.version.value > max ? w.version.value : max
@@ -156,7 +151,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
       currentLocation.value = newLocation
       if timeToUpdate(){
         let nearestStation = WeatherStationList.nearestStation(newLocation)
-        debugPrint("Location update \(newLocation)")
         currentStation = nearestStation
         dataFetcher.updateWeatherInfo(nearestStation.id, callback: setWeather)
         dataFetcher.updateWarningStations(warningStations)
@@ -175,15 +169,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         return lastUpdateTime == nil || NSDate().timeIntervalSinceDate(lastUpdateTime!) > 60
     }
     
-    func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        // Ask from server info about entered region
-        print("Did enter region at app delegate \(region)")
-        
-    }
-    
-    func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
-        // NOP
-    }
     
     // Mark: - All the rest
     

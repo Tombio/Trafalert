@@ -59,7 +59,7 @@ class Warning: Mappable {
 
     }
     
-    
+    var station: Int?
     var version = Observable(0)
     var warningType = Observable(WarningType.NONE)
     
@@ -67,6 +67,7 @@ class Warning: Mappable {
     required init?(_ map: Map) {}
     
     func mapping(map: Map) {
+        station <- map["stationId"]
         version.value <- map["version"]
         warningType.value <- map["warningType"]
     }
@@ -80,6 +81,7 @@ class WeatherInfo: Mappable {
         case WEAK_PRECIPITATION_UNDEFINED = "WEAK_PRECIPITATION_UNDEFINED"
         case WEAK_WATER = "WEAK_WATER"
         case WATER = "WATER"
+        case WEAK_SNOW = "WEAK_SNOW"
         case SNOW = "SNOW"
         case WET_SLEET = "WET_SLEET"
         case SLEET = "SLEET"
@@ -97,6 +99,7 @@ class WeatherInfo: Mappable {
                 case .WEAK_PRECIPITATION_UNDEFINED: return "Heikkoa sadetta"
                 case .WEAK_WATER: return "Heikkoa vesisadetta"
                 case .WATER: return "Vesisadetta"
+                case .WEAK_SNOW: return "Heikkoa lumisadetta"
                 case .SNOW: return "Lumisadetta"
                 case .WET_SLEET: return "Märkää lunta"
                 case .SLEET: return "Räntäsadetta"
@@ -111,9 +114,13 @@ class WeatherInfo: Mappable {
         
         func skyBackgroundImage() -> UIImage {
             let timeofDay = NSCalendar.currentCalendar().timeOfDay()
+            
+            debugPrint(timeofDay)
             switch(self) {
                 case .UNKNOWN: return timeofDay == NSCalendar.TimeOfDay.Day ? UI.clearDay : UI.clearNight
                 case .NO_PRECIPITATION: return timeofDay == NSCalendar.TimeOfDay.Day ? UI.clearDay : UI.clearNight
+                case .WEAK_SNOW: return timeofDay == NSCalendar.TimeOfDay.Day ? UI.clearDay : UI.clearNight
+                case .WEAK_WATER: return timeofDay == NSCalendar.TimeOfDay.Day ? UI.clearDay : UI.clearNight
                 default: return UI.rainBackground
             }
         }
@@ -125,6 +132,7 @@ class WeatherInfo: Mappable {
             case .WEAK_PRECIPITATION_UNDEFINED: return UI.rain
             case .WEAK_WATER: return UI.rain
             case .WATER: return UI.rain
+            case .WEAK_SNOW: return UI.snow
             case .SNOW: return UI.snow
             case .WET_SLEET: return UI.rain
             case .SLEET: return UI.snow
@@ -185,10 +193,10 @@ class WeatherInfo: Mappable {
     var airTemp = Observable(19.1)
     var precipitationType = Observable(PrecipitationType.UNKNOWN)
     var roadTemp = Observable(0.0)
-    var windSpeed = Observable(0)
-    var windDirection = Observable(0)
-    var precipitationIntensity = Observable(0)
-    var visibility = Observable(0)
+    var windSpeed = Observable(0.0)
+    var windDirection = Observable(0.0)
+    var precipitationIntensity = Observable(0.0)
+    var visibility = Observable(0.0)
     var roadSurfaceDewPointDifference = Observable(0.0)
     var roadSurfaceCondition = Observable(RoadCondition.NONE)
     var dewPoint = Observable(0.0)
@@ -215,6 +223,7 @@ class WeatherInfo: Mappable {
     }
     
     func updateWith(info: WeatherInfo) {
+        debugPrint("update \(info.visibility.value)")
         self.stationName.value = info.stationName.value
         self.airTemp.value = info.airTemp.value
         self.precipitationType.value = info.precipitationType.value

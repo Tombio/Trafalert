@@ -23,36 +23,20 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         // Register observer for monitored locations
         appDelegate.warningStations.observe { value in
+            self.mapView.removeAnnotations(self.mapView.annotations)
             for id in value.collection {
                 if let ws = WeatherStationList.weatherStation(id) {
-                    self.mapView.addAnnotation(WeatherStationAnnotation(
+                    let annotation = WeatherStationAnnotation(
                         title: ws.name, subtitle: "",
-                        stationName: ws.name, active: true, coord: ws.coordinate))
+                        stationName: ws.name, active: true, coord: ws.coordinate)
+                    self.mapView.addAnnotation(annotation)
                 }
             }
             
         }
     }
     
-    func activeOverlays() -> [MKOverlay] {
-        return mapView.overlays.filter({
-            return ($0 as! WeatherStationAnnotation).active
-        })
-    }
-    
-    func overlaysToActivate(regions: Set<CLRegion>) -> [MKOverlay] {
-        return mapView.overlays.filter({
-            for region in regions {
-                if ($0 as! WeatherStationAnnotation).stationName == region.identifier {
-                    return true
-                }
-            }
-            return false
-        })
-    }
-    
     // MARK: - MKMapViewDelegate
-    
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if let annotation = annotation as? WeatherStationAnnotation {
             let identifier = "weatherStation"
@@ -70,16 +54,4 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
         return nil
     }
-    
-    /*
-    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
-        let wsOverlay = overlay as! WeatherStationOverlay
-        let circleRenderer = MKCircleRenderer(overlay: overlay)
-        circleRenderer.lineWidth = 1.0
-        wsOverlay.active = self.locationHandler.listeningRegion(wsOverlay.stationName!)
-        let color = wsOverlay.active ? UIColor.greenColor() : UIColor.purpleColor()
-        circleRenderer.strokeColor = color
-        circleRenderer.fillColor = color.colorWithAlphaComponent(0.3)
-        return circleRenderer
-    }*/
 }

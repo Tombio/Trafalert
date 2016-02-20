@@ -10,7 +10,7 @@ NUMERO;TSA_NIMI;NIMI_FI;NIMI_SE;NIMI_EN;TIE;TIEOSA;ETAISYYS;X;Y;KORKEUS;KUNTAKOO
 1091;vt1_Lehmijärvi_O;Tie 1 Lehmijärvi;Väg 1 Lehmijärvi;Road 1 Lehmijärvi;1;11;3750;24.15875503083034;60.287971188781256;0;444;Lohja;Uusimaa
 1079;vt1_Lehmijärvi_Opt;Tie 1 Lehmijärvi;Väg 1 Lehmijärvi;Road 1 Lehmijärvi;1;11;3751;24.15875503083034;60.287971188781256;0;444;Lohja;Uusimaa
 1052;vt2_Karkkila_R;Tie 2 Karkkila;Väg 2 Högfors;Road 2 Karkkila;2;14;452;24.22740296661618;60.53918910474509;0;224;Karkkila;Uusimaa
-1007;vt2_Salkola_Opt;Tie 2 Nummi-Pusula, Salkol;Väg 2 Nummi-Pusula, Salkola;Road 2 Nummi-Pusula, Salkola;2;18;2515;23.89254426538619;60.638629230172114;0;444;Lohja;Uusimaa
+1007;vt2_Salkola_Opt;Tie 2 Nummi-Pusula, Salkola;Väg 2 Nummi-Pusula, Salkola;Road 2 Nummi-Pusula, Salkola;2;18;2515;23.89254426538619;60.638629230172114;0;444;Lohja;Uusimaa
 1034;vt3_Pirkkola_R;Tie 3 Helsinki, Pirkkola;Väg 3 Helsingfors, Britas;Road 3 Helsinki, Pirkkola;3;101;4915;24.905139685559682;60.229249080995714;0;91;Helsinki;Uusimaa
 1061;vt3_Pirkkola_Opt;Tie 3 Pirkkola;Väg 3 Britas;Road 3 Pirkkola;3;101;4915;24.905139685559682;60.229249080995714;0;91;Helsinki;Uusimaa
 1041;vt3_Keimola_2_R;Tie 3 Vantaa, Keimola 2;Väg 3 Vanda, Käinby 2;Road 3 Vantaa, Keimola 2;3;103;4185;24.82608907530538;60.32629599398222;0;92;Vantaa;Uusimaa
@@ -322,10 +322,10 @@ NUMERO;TSA_NIMI;NIMI_FI;NIMI_SE;NIMI_EN;TIE;TIEOSA;ETAISYYS;X;Y;KORKEUS;KUNTAKOO
 3032;kt62_Anttola_K;Tie 62 Anttola;Väg 62 Anttola;Road 62 Anttola;62;4;6211;27.622805458834954;61.588140369017324;0;491;Mikkeli;Etelä-Savo
 3003;kt62_Puumala_R;Tie 62 Puumala;Väg 62 Puumala;Road 62 Puumala;62;15;5000;28.254842085859252;61.49107947906228;0;623;Puumala;Etelä-Savo
 6011;st435_Sulkava_K;Tie 435 Sulkava;Väg 435 Sulkava;Road 435 Sulkava;435;5;1395;28.318691203733344;61.79929644558112;90;768;Sulkava;Etelä-Savo
-8002;vt5_Leppävirta_R;Tie 5 Leppävirta, Poijinpe;Väg 5 Leppävirta, Poijinpelt;Road 5 Leppävirta, Poijinpelto;5;148;2320;27.808657099757248;62.382870462238856;97;420;Leppävirta;Pohjois-Savo
-8029;vt5_Leppävirta_Opt;Tie 5 Leppävirta, Poijinpe;Väg 5 Leppävirta, Poijinpelt;Road 5 Leppävirta, Poijinpelto;5;148;2320;27.808657099757248;62.382870462238856;97;420;Leppävirta;Pohjois-Savo
-8023;vt5_Oravikoski_R;Tie 5 Leppävirta, Oravikos;Väg 5 Leppävirta, Oravikoski;Road 5 Leppävirta, Oravikoski;5;154;791;27.60515809411716;62.589584671859946;92;420;Leppävirta;Pohjois-Savo
-8034;vt5_Oravikoski_Opt;Tie 5 Leppävirta, Oravikos;Väg 5 Leppävirta, Oravikoski;Road 5 Leppävirta, Oravikoski;5;154;791;27.60515809411716;62.589584671859946;92;420;Leppävirta;Pohjois-Savo
+8002;vt5_Leppävirta_R;Tie 5 Leppävirta, Poijinpe;Väg 5 Leppävirta, Poijinpelto;Road 5 Leppävirta, Poijinpelto;5;148;2320;27.808657099757248;62.382870462238856;97;420;Leppävirta;Pohjois-Savo
+8029;vt5_Leppävirta_Opt;Tie 5 Leppävirta, Poijinpe;Väg 5 Leppävirta, Poijinpelto;Road 5 Leppävirta, Poijinpelto;5;148;2320;27.808657099757248;62.382870462238856;97;420;Leppävirta;Pohjois-Savo
+8023;vt5_Oravikoski_R;Tie 5 Leppävirta, Oravikoski;Väg 5 Leppävirta, Oravikoski;Road 5 Leppävirta, Oravikoski;5;154;791;27.60515809411716;62.589584671859946;92;420;Leppävirta;Pohjois-Savo
+8034;vt5_Oravikoski_Opt;Tie 5 Leppävirta, Oravikoski;Väg 5 Leppävirta, Oravikoski;Road 5 Leppävirta, Oravikoski;5;154;791;27.60515809411716;62.589584671859946;92;420;Leppävirta;Pohjois-Savo
 8001;vt5_Kuopio_E_R;Tie 5 Kuopio E;Väg 5 Kuopio S;Road 5 Kuopio S;5;159;470;27.60704507893737;62.841154219541345;110;297;Kuopio;Pohjois-Savo
 8020;vt5_Siikalahti_R;Tie 5 Kuopio, Siikalahti;Väg 5 Kuopio, Siikalahti;Road 5 Kuopio, Siikalahti;5;160;78;27.636921063293883;62.88512033913825;115;297;Kuopio;Pohjois-Savo
 8021;vt5_Siikalahti_O_S;Tie 5 Kuopio, Siikalahti;Väg 5 Kuopio, Siikalahti;Road 5 Kuopio, Siikalahti;5;160;78;27.636921063293883;62.88512033913825;115;297;Kuopio;Pohjois-Savo

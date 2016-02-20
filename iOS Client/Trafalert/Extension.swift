@@ -85,7 +85,7 @@ extension NSCalendar {
     
     func timeOfDay() -> TimeOfDay {
         let components = self.components([.Hour], fromDate: NSDate())
-        switch components.month {
+        switch components.hour {
             case 0..<8 : return .Night
             case 8..<19 : return .Day
             default: return .Night

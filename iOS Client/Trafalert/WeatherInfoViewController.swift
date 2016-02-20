@@ -58,19 +58,21 @@ class WeatherInfoViewController: UIViewController {
             self.airTempLbl.text = String(format: " %0.1f°", value)
         }
         appDelegate.currentWeather.precipitationType.observe { value in
+            debugPrint("precipitation \(value)")
             self.conditionLbl.text = value.humanReadable()
             self.imageSky.image = value.skyBackgroundImage()
             self.imageRain.image = value.rainImage()
+            debugPrint(value.rainImage())
         }
         appDelegate.currentWeather.precipitationIntensity.observe { value in
             self.rainLbl.text = String(format: "%i mm/h", value)
         }
         appDelegate.currentWeather.visibility.observe { value in
-            let format = "Näkyvyys " + (value < 1000 ? "%i m" : "%i km");
+            let format = "Näkyvyys " + (value < 1000 ? "%0.0f m" : "%0.0f km");
             self.visibilityLbl.text = String(format: format, value < 1000 ? value : value / 1000)
         }
         appDelegate.currentWeather.windSpeed.observe { value in
-            self.windDirection.text = "\(value)"
+            self.windDirection.text = String(format: "%0.0f", value)
         }
         appDelegate.currentWeather.windDirection.observe { value in
             self.rotateImage(Float(value))
