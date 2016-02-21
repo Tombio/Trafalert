@@ -88,6 +88,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func checkWarningsAndTalk(){
         if !currentData.warnings.isEmpty { // We can safely assume that once warnings are present, so is station id
             guard let id = currentData.stationId else {
+                debugPrint("Current station was empty after all")
                 return
             }
             if let lastVersion = spokenVersions[id] {
@@ -106,10 +107,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func speakFromVersion(version: Int) -> Int {
         var max = version
         for w in currentData.warnings {
-            if version < w.version.value {
+            if version < w.version {
                 talk("Varoitus: Tielle numero \(currentStation!.roadNumber): \(w.warningType.value.humanReadable())")
                 Notifier.sendNotification(w, station: currentStation!, warningCount: currentData.warnings.count)
-                max = w.version.value > max ? w.version.value : max
+                max = w.version > max ? w.version : max
             }
         }
         return max

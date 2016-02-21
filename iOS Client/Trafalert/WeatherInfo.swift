@@ -20,7 +20,7 @@ class WeatherStationData: Mappable {
     required init?(_ map: Map) {}
     
     func mapping(map: Map) {
-        stationId <- map["stationId"]
+        stationId = map["stationId"].currentValue as? Int
         info <- map["weatherData"]
         if let warn = Mapper<Warning>().mapArray(map["warnings"].currentValue) {
             warnings.replace(warn)
@@ -57,15 +57,15 @@ class Warning: Mappable {
     }
     
     var station: Int?
-    var version = Observable(0)
+    var version = 0
     var warningType = Observable(WarningType.NONE)
     
     init(){}
     required init?(_ map: Map) {}
     
     func mapping(map: Map) {
-        station <- map["stationId"]
-        version.value <- map["version"]
+        station = map["stationId"].currentValue as? Int
+        version = map["version"].currentValue as! Int
         warningType.value <- map["warningType"]
     }
 }
