@@ -23,14 +23,11 @@ class WeatherStationData: Mappable {
         stationId <- map["stationId"]
         info <- map["weatherData"]
         if let warn = Mapper<Warning>().mapArray(map["warnings"].currentValue) {
-            debugPrint("Warnings found")
             warnings.replace(warn)
         }
         else {
-            debugPrint("No warnings")
             warnings.replace(Array<Warning>())
         }
-        debugPrint(warnings.collection)
     }
 }
 
@@ -113,9 +110,7 @@ class WeatherInfo: Mappable {
         }
         
         func skyBackgroundImage() -> UIImage {
-            let timeofDay = NSCalendar.currentCalendar().timeOfDay()
-            
-            debugPrint(timeofDay)
+            let timeofDay = NSCalendar.currentCalendar().timeOfDay
             switch(self) {
                 case .UNKNOWN: return timeofDay == NSCalendar.TimeOfDay.Day ? UI.clearDay : UI.clearNight
                 case .NO_PRECIPITATION: return timeofDay == NSCalendar.TimeOfDay.Day ? UI.clearDay : UI.clearNight
@@ -223,7 +218,6 @@ class WeatherInfo: Mappable {
     }
     
     func updateWith(info: WeatherInfo) {
-        debugPrint("update \(info.visibility.value)")
         self.stationName.value = info.stationName.value
         self.airTemp.value = info.airTemp.value
         self.precipitationType.value = info.precipitationType.value

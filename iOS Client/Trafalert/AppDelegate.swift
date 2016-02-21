@@ -111,9 +111,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 Notifier.sendNotification(w, station: currentStation!, warningCount: currentData.warnings.count)
                 max = w.version.value > max ? w.version.value : max
             }
-            else {
-                debugPrint("\(version) => \(w.version.value)")
-            }
         }
         return max
     }
@@ -121,6 +118,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     // MARK: Speak, my young Padawan
     
     func talk(string: String) {
+        debugPrint("Talk: \(string)")
         let utterance = AVSpeechUtterance(string: string)
         utterance.voice = voice
         speechSynth.speakUtterance(utterance)

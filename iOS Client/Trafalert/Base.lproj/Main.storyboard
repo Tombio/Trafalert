@@ -702,12 +702,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="327.75"/>
+            <point key="canvasLocation" x="750" y="342.75"/>
         </scene>
         <!--Info-->
         <scene sceneID="2kH-eA-NaK">
             <objects>
-                <viewController id="gHF-Pr-jGf" sceneMemberID="viewController">
+                <viewController id="gHF-Pr-jGf" customClass="InfoViewController" customModule="Trafalert" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eWm-E8-vYR"/>
                         <viewControllerLayoutGuide type="bottom" id="oKc-CJ-dh8"/>
@@ -718,14 +718,14 @@
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="STV-Pf-MhS">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="oKc-CJ-dh8" firstAttribute="top" secondItem="STV-Pf-MhS" secondAttribute="bottom" id="066-fi-Khl"/>
                             <constraint firstItem="STV-Pf-MhS" firstAttribute="leading" secondItem="dVL-5G-Wnv" secondAttribute="leadingMargin" id="HNY-tw-SYO"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="STV-Pf-MhS" secondAttribute="trailing" constant="16" id="eE2-9U-GnN"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="STV-Pf-MhS" secondAttribute="trailing" id="eE2-9U-GnN"/>
                             <constraint firstItem="STV-Pf-MhS" firstAttribute="top" secondItem="eWm-E8-vYR" secondAttribute="bottom" id="xw5-Bo-aCv"/>
                         </constraints>
                         <variation key="default">
@@ -753,10 +753,13 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Info" image="noun_16301_cc" id="Uh8-9z-c1g"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="webView" destination="STV-Pf-MhS" id="MB8-rx-1cF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SpT-Oh-jrm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1495.5" y="3"/>
+            <point key="canvasLocation" x="1492.5" y="0.0"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">

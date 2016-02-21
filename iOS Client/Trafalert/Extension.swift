@@ -78,12 +78,12 @@ extension NSCalendar {
         let components = self.components([.Day , .Month , .Year], fromDate: NSDate())
         switch components.month {
             case 1..<4 : return .Winter
-            case 4..<9 : return .Summer
+            case 4..<10 : return .Summer
             default: return .Winter
         }
     }
     
-    func timeOfDay() -> TimeOfDay {
+    var timeOfDay: TimeOfDay {
         let components = self.components([.Hour], fromDate: NSDate())
         switch components.hour {
             case 0..<8 : return .Night
