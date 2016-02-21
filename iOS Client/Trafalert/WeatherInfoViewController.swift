@@ -59,7 +59,8 @@ class WeatherInfoViewController: UIViewController {
         }
         appDelegate.currentWeather.precipitationType.observe { value in
             self.conditionLbl.text = value.humanReadable()
-            self.imageSky.image = value.skyBackgroundImage()
+            let day = String(format: "%0.0f", self.appDelegate.currentWeather.sunUp.value) == "1" ? true : false
+            self.imageSky.image = value.skyBackgroundImage(day)
             self.imageRain.image = value.rainImage()
         }
         appDelegate.currentWeather.precipitationIntensity.observe { value in

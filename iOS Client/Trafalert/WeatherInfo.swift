@@ -109,14 +109,11 @@ class WeatherInfo: Mappable {
             }
         }
         
-        func skyBackgroundImage() -> UIImage {
-            let timeofDay = NSCalendar.currentCalendar().timeOfDay
+        func skyBackgroundImage(day: Bool) -> UIImage {
             switch(self) {
-                case .UNKNOWN: return timeofDay == NSCalendar.TimeOfDay.Day ? UI.clearDay : UI.clearNight
-                case .NO_PRECIPITATION: return timeofDay == NSCalendar.TimeOfDay.Day ? UI.clearDay : UI.clearNight
-                case .WEAK_SNOW: return timeofDay == NSCalendar.TimeOfDay.Day ? UI.clearDay : UI.clearNight
-                case .WEAK_WATER: return timeofDay == NSCalendar.TimeOfDay.Day ? UI.clearDay : UI.clearNight
-                default: return UI.rainBackground
+                case .UNKNOWN: return day ? UI.clearDay : UI.clearNight
+                case .NO_PRECIPITATION: return day ? UI.clearDay : UI.clearNight
+                default: return day ? UI.rainBackgroundDay : UI.rainBackground
             }
         }
         
@@ -184,6 +181,13 @@ class WeatherInfo: Mappable {
         }
     }
     
+    enum TimeOfDay {
+        case Morning
+        case Day
+        case Evening
+        case Night
+    }
+    
     var stationName = Observable("Unknown")
     var airTemp = Observable(19.1)
     var precipitationType = Observable(PrecipitationType.UNKNOWN)
@@ -195,6 +199,7 @@ class WeatherInfo: Mappable {
     var roadSurfaceDewPointDifference = Observable(0.0)
     var roadSurfaceCondition = Observable(RoadCondition.NONE)
     var dewPoint = Observable(0.0)
+    var sunUp = Observable(0.0)
     
     let transform = TransformOf<PrecipitationType, String>(fromJSON: { (value: String?) -> PrecipitationType? in
             if let _ = value {
@@ -212,10 +217,7 @@ class WeatherInfo: Mappable {
     })
     
     init(){}
-    
-    required init?(_ map: Map) {
-        
-    }
+    required init?(_ map: Map) {}
     
     func updateWith(info: WeatherInfo) {
         self.stationName.value = info.stationName.value
@@ -229,6 +231,7 @@ class WeatherInfo: Mappable {
         self.roadSurfaceDewPointDifference.value = info.roadSurfaceDewPointDifference.value
         self.dewPoint.value = info.dewPoint.value
         self.roadSurfaceCondition.value = info.roadSurfaceCondition.value
+        self.sunUp.value = info.sunUp.value
     }
     
     
@@ -243,5 +246,6 @@ class WeatherInfo: Mappable {
         self.roadSurfaceDewPointDifference.value <- map["roadSurfaceDewPointDifference"]
         self.dewPoint.value <- map["dewPoint"]
         self.roadSurfaceCondition.value <- (map["roadCondition"], EnumTransform<RoadCondition>())
+        self.sunUp.value <- map["sunUp"]
     }
 }

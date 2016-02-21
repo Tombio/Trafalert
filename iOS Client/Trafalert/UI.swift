@@ -17,6 +17,7 @@ public class UI {
     static let warning = UIColor(255, 101, 101, 95)
     
     static let rainBackground = UIImage(named: "Rain Sky")!
+    static let rainBackgroundDay = UIImage(named: "Day Rain Sky")!
     static let rain = UIImage(named: "Rain")!
     static let snow = UIImage(named: "Snow")!
     

@@ -24,5 +24,6 @@ public @Data class WeatherStationData {
     final BigDecimal precipitationSum;
     final PrecipitationType precipitationType;
     final RoadCondition roadCondition;
+    final BigDecimal sunUp;
 
 }

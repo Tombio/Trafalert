@@ -67,28 +67,12 @@ extension NSCalendar {
         case Spring
     }
     
-    enum TimeOfDay {
-        case Morning
-        case Day
-        case Evening
-        case Night
-    }
-    
     func season() -> Season {
         let components = self.components([.Day , .Month , .Year], fromDate: NSDate())
         switch components.month {
             case 1..<4 : return .Winter
-            case 4..<10 : return .Summer
+            case 4..<11 : return .Summer
             default: return .Winter
-        }
-    }
-    
-    var timeOfDay: TimeOfDay {
-        let components = self.components([.Hour], fromDate: NSDate())
-        switch components.hour {
-            case 0..<8 : return .Night
-            case 8..<19 : return .Day
-            default: return .Night
         }
     }
 }

@@ -56,7 +56,7 @@ public class DataFetcher {
             final WeatherStationData wsd = new WeatherStationData(data.getStationid().longValue(), data.getAirtemperature1(), data.getRoadsurfacetemperature1(),
                     data.getAveragewindspeed(), data.getMaxwindspeed(), data.getVisibilitymeters(), data.getDewpoint(),
                     data.getRoaddewpointdifference(), data.getHumidity(), data.getWinddirection(), precipitation, data.getPrecipitationintensity(),
-                    data.getPrecipitationsum(), precipitationType, roadCondition);
+                    data.getPrecipitationsum(), precipitationType, roadCondition, data.getSunup());
             map.put(data.getStationid().longValue(), wsd);
 
             warningMap.put(data.getStationid().longValue(), warningIssuer.calculateWarnings(data));
