@@ -78,6 +78,11 @@ public class MainController {
         return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(infos);
     }
 
+    @RequestMapping(value = "/meta/station", method = RequestMethod.POST, produces = "application/json")
+    public String metaStations throws Exception {
+
+    }
+
     private List<Warning> getWarningsForRegion(final long region) {
         return warningCache.getCacheData().get(region);
     }

@@ -4,12 +4,15 @@ import com.studiowannabe.trafalert.domain.warning.*;
 import com.studiowannabe.trafalert.wsdl.RoadWeatherType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Function;
 
 /**
  * Created by Tomi on 31/01/16.
@@ -28,12 +31,12 @@ public class WarningIssuer {
         this.warningCache = warningCache;
     }
 
-    public List<Warning> calculateWarnings(final RoadWeatherType data) {
-        if(data == null) {
+    public List<Warning> calculateWarnings(final List<RoadWeatherType> data) {
+        if(CollectionUtils.isEmpty(data)) {
             return Collections.emptyList();
         }
         final List<Warning> warnings = new ArrayList<>();
-
+/*
         final Warning ww = createWindWarning(data);
         if(ww != null) {
             warnings.add(ww);
@@ -63,10 +66,10 @@ public class WarningIssuer {
         if(hrw != null){
             warnings.add(hrw);
         }
-
+*/
         return warnings;
     }
-
+/*
     private Warning createHeavyRainWarning(RoadWeatherType data) {
         if(data.getPrecipitation() != null && PRECIPITATION_WARNING_VALUES.contains(data.getPrecipitation().intValue())){
             final Warning hrw = existingWarning(Warning.WarningType.HEAVY_RAIN, data.getStationid().longValue());
@@ -95,14 +98,41 @@ public class WarningIssuer {
         return null;
     }
 
-    private Warning createWindWarning(final RoadWeatherType data) {
-        if(data.getAveragewindspeed() != null && data.getAveragewindspeed().intValue() >= WIND_WARNING_SPEED) {
+    private static BigDecimal countAverage(final List<RoadWeatherType> data, final Function<RoadWeatherType, BigDecimal> func) {
+        int count = 0;
+        BigDecimal sum = new BigDecimal(0);
+        for(final RoadWeatherType datum : data){
+            final BigDecimal bd = func.apply(datum);
+            if(bd == null){
+                continue;
+            }
+            sum = sum.add(bd);
+            count++;
+        }
+        return sum.divide(new BigDecimal(count));
+    }
+
+    /**
+     * Integer totalAgeReduce = roster
+     .stream()
+     .map(Person::getAge)
+     .reduce(
+     0,
+     (a, b) -> a + b);
+
+     * @param data
+     * @return
+     */
+    /*
+    private Warning createWindWarning(final List<RoadWeatherType> data) {
+        final BigDecimal avgWind = countAverage(data, RoadWeatherType::getAveragewindspeed);
+        if(avgWind != null && avgWind.intValue() >= WIND_WARNING_SPEED) {
            final Warning cw = existingWarning(Warning.WarningType.STRONG_WIND, data.getStationid().longValue());
             if(cw != null) {
                 return cw;
             }
             else {
-                return new WindWarning(data.getAveragewindspeed());
+                return new WindWarning(data.avgWind());
             }
         }
         return null;
@@ -195,5 +225,5 @@ public class WarningIssuer {
         }
 
         return sum.divide(new BigDecimal(count), BigDecimal.ROUND_HALF_UP);
-    }
+    }*/
 }
