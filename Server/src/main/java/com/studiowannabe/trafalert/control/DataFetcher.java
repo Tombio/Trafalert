@@ -8,7 +8,6 @@ import com.studiowannabe.trafalert.domain.warning.Warning;
 import com.studiowannabe.trafalert.wsdl.RoadWeatherResponse;
 import com.studiowannabe.trafalert.wsdl.RoadWeatherType;
 import org.apache.log4j.Logger;
-import org.osgeo.proj4j.ProjCoordinate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -93,11 +92,12 @@ public class DataFetcher {
                 final Long id = Long.parseLong(rowAsMap.get("NUMERO"));
                 final String tsaNimi = rowAsMap.get("TSA_NIMI");
                 final String tieNimiFi = rowAsMap.get("NIMI_FI");
+                final int roadNumber = Integer.parseInt(rowAsMap.get("TIE"));
                 final Double x = Double.parseDouble(rowAsMap.get("Y"));
                 final Double y = Double.parseDouble(rowAsMap.get("X"));
                 final CoordinateNode coord = coordinateConverter.getProjectedCoordinates(new CoordinateNode(x, y));
 
-                final StationInfo info = new StationInfo(id, tsaNimi, tieNimiFi, coord);
+                final StationInfo info = new StationInfo(id, tsaNimi, tieNimiFi, roadNumber, coord);
                 stationGroupping.add(coord, info);
             }
         }
