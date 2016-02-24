@@ -1,6 +1,7 @@
 package com.studiowannabe.trafalert.control;
 
 import com.studiowannabe.trafalert.domain.warning.*;
+import com.studiowannabe.trafalert.wsdl.RoadWeather;
 import com.studiowannabe.trafalert.wsdl.RoadWeatherType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -31,149 +32,127 @@ public class WarningIssuer {
         this.warningCache = warningCache;
     }
 
-    public List<Warning> calculateWarnings(final List<RoadWeatherType> data) {
+    public List<Warning> calculateWarnings(final Long groupId, final List<RoadWeatherType> data) {
         if(CollectionUtils.isEmpty(data)) {
             return Collections.emptyList();
         }
         final List<Warning> warnings = new ArrayList<>();
-/*
-        final Warning ww = createWindWarning(data);
+
+        final Warning ww = createWindWarning(groupId, data);
         if(ww != null) {
             warnings.add(ww);
         }
 
-        final Warning gw = createGustWarning(data);
+        final Warning gw = createGustWarning(groupId, data);
         if(gw != null) {
             warnings.add(gw);
         }
 
-        final Warning biw = createBlackIceWarning(data);
+        final Warning biw = createBlackIceWarning(groupId, data);
         if(biw != null) {
             warnings.add(biw);
         }
 
-        final Warning vw = createVisibilityWarning(data);
+        final Warning vw = createVisibilityWarning(groupId, data);
         if(vw != null){
             warnings.add(vw);
         }
 
-        final Warning srw = createSlipperyRoadWarning(data);
+        final Warning srw = createSlipperyRoadWarning(groupId, data);
         if(srw != null){
             warnings.add(srw);
         }
 
-        final Warning hrw = createHeavyRainWarning(data);
+        final Warning hrw = createHeavyRainWarning(groupId, data);
         if(hrw != null){
             warnings.add(hrw);
         }
-*/
         return warnings;
     }
-/*
-    private Warning createHeavyRainWarning(RoadWeatherType data) {
-        if(data.getPrecipitation() != null && PRECIPITATION_WARNING_VALUES.contains(data.getPrecipitation().intValue())){
-            final Warning hrw = existingWarning(Warning.WarningType.HEAVY_RAIN, data.getStationid().longValue());
-            if(hrw != null) {
-                return hrw;
-            }
-            else {
-                return new HeavyRainWarning(data.getPrecipitation());
+
+    private Warning createHeavyRainWarning(final Long groupId, List<RoadWeatherType> data) {
+        for(final RoadWeatherType type : data) {
+            if (type.getPrecipitation() != null && PRECIPITATION_WARNING_VALUES.contains(type.getPrecipitation().intValue())) {
+                final Warning hrw = existingWarning(Warning.WarningType.HEAVY_RAIN, groupId);
+                if (hrw != null) {
+                    return hrw;
+                } else {
+                    return new HeavyRainWarning(type.getPrecipitation());
+                }
             }
         }
-
         return null;
     }
 
-    private Warning createSlipperyRoadWarning(RoadWeatherType data) {
-        if(data.getWarning3() != null && data.getWarning3().intValue() > 0){
-            final Warning srw = existingWarning(Warning.WarningType.SLIPPERY_ROAD, data.getStationid().longValue());
-            if(srw != null) {
-                return srw;
-            }
-            else {
-                return new SlipperyRoadWarning(data.getWarning3());
+    private Warning createSlipperyRoadWarning(final Long groupId, List<RoadWeatherType> data) {
+        for(final RoadWeatherType type : data) {
+            if (type.getWarning3() != null && type.getWarning3().intValue() > 0) {
+                final Warning srw = existingWarning(Warning.WarningType.SLIPPERY_ROAD, groupId);
+                if (srw != null) {
+                    return srw;
+                } else {
+                    return new SlipperyRoadWarning(type.getWarning3());
+                }
             }
         }
-
         return null;
     }
 
-    private static BigDecimal countAverage(final List<RoadWeatherType> data, final Function<RoadWeatherType, BigDecimal> func) {
-        int count = 0;
-        BigDecimal sum = new BigDecimal(0);
-        for(final RoadWeatherType datum : data){
-            final BigDecimal bd = func.apply(datum);
-            if(bd == null){
-                continue;
-            }
-            sum = sum.add(bd);
-            count++;
-        }
-        return sum.divide(new BigDecimal(count));
-    }
-
-    /**
-     * Integer totalAgeReduce = roster
-     .stream()
-     .map(Person::getAge)
-     .reduce(
-     0,
-     (a, b) -> a + b);
-
-     * @param data
-     * @return
-     */
-    /*
-    private Warning createWindWarning(final List<RoadWeatherType> data) {
+    private Warning createWindWarning(final Long groupId, final List<RoadWeatherType> data) {
         final BigDecimal avgWind = countAverage(data, RoadWeatherType::getAveragewindspeed);
         if(avgWind != null && avgWind.intValue() >= WIND_WARNING_SPEED) {
-           final Warning cw = existingWarning(Warning.WarningType.STRONG_WIND, data.getStationid().longValue());
+           final Warning cw = existingWarning(Warning.WarningType.STRONG_WIND, groupId);
             if(cw != null) {
                 return cw;
             }
             else {
-                return new WindWarning(data.avgWind());
+                return new WindWarning(avgWind);
             }
         }
         return null;
     }
 
-    private Warning createGustWarning(final RoadWeatherType data) {
-        if(data.getMaxwindspeed() != null && data.getMaxwindspeed().intValue() >= WIND_WARNING_SPEED) {
-            final Warning cw = existingWarning(Warning.WarningType.STRONG_WIND_GUSTS, data.getStationid().longValue());
+    private Warning createGustWarning(final Long groupId, final List<RoadWeatherType> data) {
+        final BigDecimal maxWind = countAverage(data, RoadWeatherType::getMaxwindspeed);
+        if(maxWind != null && maxWind.intValue() >= WIND_WARNING_SPEED) {
+            final Warning cw = existingWarning(Warning.WarningType.STRONG_WIND_GUSTS, groupId);
             if(cw != null) {
                 return cw;
             }
             else {
-                return new GustWarning(data.getMaxwindspeed());
+                return new GustWarning(maxWind);
             }
         }
         return null;
     }
 
-    private Warning createVisibilityWarning(final RoadWeatherType data) {
-        if(data.getVisibilitymeters() == null) {
-            return null;
-        }
-        if(data.getVisibilitymeters().intValue() < VISIBILITY_WARNING_METERS) { // Check if current wind is above warning level
-            final Warning cw = existingWarning(Warning.WarningType.POOR_VISIBILITY, data.getStationid().longValue());
+    private Warning createVisibilityWarning(Long groupId, final List<RoadWeatherType> data) {
+        final BigDecimal vis = countAverage(data, RoadWeatherType::getVisibilitymeters);
+        if(vis != null && vis.intValue() < VISIBILITY_WARNING_METERS) {
+            final Warning cw = existingWarning(Warning.WarningType.POOR_VISIBILITY, groupId);
             if(cw != null) {
                 return cw;
             }
             else {
-                return new VisibilityWarning(Warning.WarningType.POOR_VISIBILITY, data.getVisibilitymeters());
+                return new VisibilityWarning(Warning.WarningType.POOR_VISIBILITY, vis);
             }
         }
         return null;
     }
 
-    private Warning createBlackIceWarning(final RoadWeatherType data) {
+    private Warning createBlackIceWarning(Long groupId, final List<RoadWeatherType> data) {
         // road surface dew point and road surface temperature both need to be negative for
         // Also air needs to be above freezing... maybe..
         // black ice to form... at least to my current understanding
-        final BigDecimal roadDew = data.getRoaddewpointdifference();
-        final BigDecimal roadTemp = getMean(data.getRoadsurfacetemperature1(), data.getRoadsurfacetemperature2(), data.getRoadsurfacetemperature3());
-        final BigDecimal airTemp = getMean(data.getAirtemperature1(), data.getAirtemperature3());
+        final BigDecimal roadDew = countAverage(data, RoadWeatherType::getRoaddewpointdifference);
+        final BigDecimal roadTemp = getMean(
+                countAverage(data, RoadWeatherType::getRoadsurfacetemperature1),
+                countAverage(data, RoadWeatherType::getRoadsurfacetemperature2),
+                countAverage(data, RoadWeatherType::getRoadsurfacetemperature3));
+
+        final BigDecimal airTemp = getMean(
+                countAverage(data, RoadWeatherType::getAirtemperature1),
+                countAverage(data, RoadWeatherType::getAirtemperature3));
         if(roadDew == null || roadTemp == null || airTemp == null) {
             return null;
         }
@@ -186,7 +165,7 @@ public class WarningIssuer {
             return null;
         }
 
-        final Warning cw = existingWarning(Warning.WarningType.BLACK_ICE, data.getStationid().longValue());
+        final Warning cw = existingWarning(Warning.WarningType.BLACK_ICE, groupId);
         if(cw != null) {
             return cw;
         }
@@ -195,8 +174,8 @@ public class WarningIssuer {
         }
     }
 
-    private Warning existingWarning(final Warning.WarningType type, final long station) {
-        final List<Warning> currentData = warningCache.getCacheData().get(station);
+    private Warning existingWarning(final Warning.WarningType type, final long groupId) {
+        final List<Warning> currentData = warningCache.getCacheData().get(groupId);
         if(currentData == null) {
             return null;
         }
@@ -225,5 +204,23 @@ public class WarningIssuer {
         }
 
         return sum.divide(new BigDecimal(count), BigDecimal.ROUND_HALF_UP);
-    }*/
+    }
+
+    private static BigDecimal countAverage(final List<RoadWeatherType> data, final Function<RoadWeatherType, BigDecimal> func) {
+        int count = 0;
+        BigDecimal sum = new BigDecimal(0);
+        for(final RoadWeatherType datum : data){
+            final BigDecimal bd = func.apply(datum);
+            if(bd == null){
+                continue;
+            }
+            sum = sum.add(bd);
+            count++;
+        }
+        if(count == 0){
+            return null; // No relevant data available
+        }
+        return sum.divide(new BigDecimal(count), BigDecimal.ROUND_HALF_UP);
+    }
+
 }
