@@ -1,7 +1,8 @@
 package com.studiowannabe.trafalert.domain.json;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.studiowannabe.trafalert.domain.StationInfo;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +16,6 @@ import java.util.List;
 @NoArgsConstructor
 public @Data class GrouppedStations {
 
-    @JsonUnwrapped
     final List<StationGroup> stationGroup = new ArrayList<>();
 
     public void addGroup(final StationGroup group) {
@@ -23,14 +23,9 @@ public @Data class GrouppedStations {
     }
 
     public static @Data class StationGroup {
-
         @JsonProperty(value = "group_id")
         private final Long groupId;
         @JsonProperty(value = "stations")
         private final List<StationInfo> stationInfoList;
-
     }
-
-
-
 }

@@ -88,7 +88,7 @@ public class MainController {
         for(final HashMap.Entry<Long, List<StationInfo>> entry : stationGroupping.getStationGroups().entrySet()) {
             stations.addGroup(new GrouppedStations.StationGroup(entry.getKey(), entry.getValue()));
         }
-        return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(stations);
+        return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(stations.getStationGroup());
     }
 
     private List<Warning> getWarningsForRegion(final long region) {
