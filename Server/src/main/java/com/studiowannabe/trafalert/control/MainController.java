@@ -2,6 +2,7 @@ package com.studiowannabe.trafalert.control;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.studiowannabe.trafalert.domain.StationInfo;
 import com.studiowannabe.trafalert.domain.warning.Warning;
 import com.studiowannabe.trafalert.domain.WeatherInfo;
 import com.studiowannabe.trafalert.domain.WeatherStationData;
@@ -30,13 +31,15 @@ public class MainController {
     private final WeatherDataCache cache;
     private final WarningCache warningCache;
     private final ObjectMapper objectMapper;
+    private final StationGroupping stationGroupping;
 
     @Autowired
     public MainController(final WeatherDataCache cache, final WarningCache warningCache,
-                          final ObjectMapper objectMapper) {
+                          final ObjectMapper objectMapper, final StationGroupping stationGroupping) {
         this.cache = cache;
         this.warningCache = warningCache;
         this.objectMapper = objectMapper;
+        this.stationGroupping = stationGroupping;
     }
 
     @RequestMapping(value = "/warning/{region}/{version}", method = RequestMethod.POST, produces = "application/json")
@@ -93,11 +96,10 @@ public class MainController {
 
     private List<WeatherInfo> getAllStationsAndWarnings() {
         final List<WeatherInfo> infos = new ArrayList<WeatherInfo>();
-        final Collection<WeatherStationData> datas =
-                cache.getCacheData().values().stream().map(pair -> pair.getLeft()).collect(Collectors.toList());
-        for(final WeatherStationData data : datas) {
-            final List<Warning> warnings = warningCache.getCacheData().get(data.getStationId());
-            final WeatherInfo wi = new WeatherInfo(data.getStationId(), data, warnings);
+        for(final Long id : stationGroupping.getStationGroups().keySet()) {
+            final StationInfo info = stationGroupping.getStationGroups().get(id).get(0); // Ugly, yeah :p
+            final List<Warning> warnings = warningCache.getCacheData().get(id);
+            final WeatherInfo wi = new WeatherInfo(id, cache.getCacheData().get(info.getId()).getLeft(), warnings);
             infos.add(wi);
         }
         return infos;
@@ -105,12 +107,10 @@ public class MainController {
 
     private List<WeatherInfo> getAllStationsWithWarnings() {
         final List<WeatherInfo> infos = new ArrayList<WeatherInfo>();
-        final Collection<WeatherStationData> datas =
-                cache.getCacheData().values().stream().map(pair -> pair.getLeft()).collect(Collectors.toList());
-        for(final WeatherStationData data : datas) {
-            final List<Warning> warnings = warningCache.getCacheData().get(data.getStationId());
+        for(final Long id : stationGroupping.getStationGroups().keySet()) {
+            final List<Warning> warnings = warningCache.getCacheData().get(id);
             if(!CollectionUtils.isEmpty(warnings)) {
-                final WeatherInfo wi = new WeatherInfo(data.getStationId(), null, warnings);
+                final WeatherInfo wi = new WeatherInfo(id, null, warnings);
                 infos.add(wi);
             }
         }
