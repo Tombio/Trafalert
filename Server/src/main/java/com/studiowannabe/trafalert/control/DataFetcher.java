@@ -106,7 +106,6 @@ public class DataFetcher {
         finally {
             in.close();
         }
-        log.info(stationGroupping.getStationGroups());
     }
 
 
