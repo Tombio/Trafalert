@@ -6,8 +6,10 @@ import com.studiowannabe.trafalert.domain.StationInfo;
 import com.studiowannabe.trafalert.domain.warning.Warning;
 import com.studiowannabe.trafalert.domain.WeatherInfo;
 import com.studiowannabe.trafalert.domain.WeatherStationData;
+import com.studiowannabe.trafalert.util.NamingMapper;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -81,9 +84,14 @@ public class MainController {
         return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(infos);
     }
 
+    @Cacheable
     @RequestMapping(value = "/meta/station", method = RequestMethod.POST, produces = "application/json")
     public String metaStations() throws Exception {
-        return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(StationGroupping.stationGroups.values());
+        final HashMap<NamingMapper<Long>, List<StationInfo>> map = new HashMap<>();
+        for(final HashMap.Entry<Long, List<StationInfo>> entry : stationGroupping.getStationGroups().entrySet()) {
+            map.put(new NamingMapper<>("GroupId", entry.getKey()), entry.getValue());
+        }
+        return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(map);
     }
 
     private List<Warning> getWarningsForRegion(final long region) {
