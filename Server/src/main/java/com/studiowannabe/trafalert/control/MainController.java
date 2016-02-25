@@ -83,7 +83,7 @@ public class MainController {
 
     @RequestMapping(value = "/meta/station", method = RequestMethod.POST, produces = "application/json")
     public String metaStations() throws Exception {
-        return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(StationGroupping.stationGroups);
+        return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(StationGroupping.stationGroups.values());
     }
 
     private List<Warning> getWarningsForRegion(final long region) {

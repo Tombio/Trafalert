@@ -18,8 +18,7 @@ import java.util.stream.Collectors;
 public class StationGroupping {
 
     private final static Map<CoordinateNode, Long> groupIds = new HashMap<>();
-
-    @JsonProperty(value = "Stations")
+    
     protected final static Map<Long, List<StationInfo>> stationGroups = new HashMap<>();
     private static AtomicLong SEQ = new AtomicLong(0);
 
