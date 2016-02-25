@@ -3,10 +3,10 @@ package com.studiowannabe.trafalert.control;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.studiowannabe.trafalert.domain.StationInfo;
+import com.studiowannabe.trafalert.domain.json.GrouppedStations;
 import com.studiowannabe.trafalert.domain.warning.Warning;
 import com.studiowannabe.trafalert.domain.WeatherInfo;
 import com.studiowannabe.trafalert.domain.WeatherStationData;
-import com.studiowannabe.trafalert.util.NamingMapper;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -17,10 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -73,7 +71,6 @@ public class MainController {
     public String fullInfoForRegion(@PathVariable(value = "region") final Long region) throws Exception {
         final WeatherStationData wsd = cache.getCacheData().get(region).getLeft();
         final List<Warning> warnings = warningCache.getCacheData().get(region);
-        log.info("Station " + wsd);
         final WeatherInfo wi = new WeatherInfo(wsd.getStationId(), wsd, warnings);
         return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(wi);
     }
@@ -87,11 +84,11 @@ public class MainController {
     @Cacheable
     @RequestMapping(value = "/meta/station", method = RequestMethod.POST, produces = "application/json")
     public String metaStations() throws Exception {
-        final HashMap<NamingMapper<Long>, List<StationInfo>> map = new HashMap<>();
+        final GrouppedStations stations = new GrouppedStations();
         for(final HashMap.Entry<Long, List<StationInfo>> entry : stationGroupping.getStationGroups().entrySet()) {
-            map.put(new NamingMapper<>("GroupId", entry.getKey()), entry.getValue());
+            stations.addGroup(new GrouppedStations.StationGroup(entry.getKey(), entry.getValue()));
         }
-        return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(map);
+        return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(stations);
     }
 
     private List<Warning> getWarningsForRegion(final long region) {
