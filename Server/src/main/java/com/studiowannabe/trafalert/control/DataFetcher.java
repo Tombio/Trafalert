@@ -5,8 +5,11 @@ import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import com.studiowannabe.trafalert.domain.*;
 import com.studiowannabe.trafalert.domain.warning.Warning;
+import com.studiowannabe.trafalert.util.CollectionUtils;
+import com.studiowannabe.trafalert.util.Pair;
 import com.studiowannabe.trafalert.wsdl.RoadWeatherResponse;
 import com.studiowannabe.trafalert.wsdl.RoadWeatherType;
+import lombok.extern.apachecommons.CommonsLog;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -23,9 +26,8 @@ import java.util.Map;
  * Created by Tomi on 31/01/16.
  */
 @Component
+@CommonsLog
 public class DataFetcher {
-
-    private static Logger log = Logger.getLogger(DataFetcher.class);
 
     private static final String WEATHER_URL = "http://tie.digitraffic.fi/sujuvuus/ws/roadWeather";
     private static final String SCHEMA_URL = "https://raw.githubusercontent.com/finnishtransportagency/metadata/master/csv/meta_rws_stations.csv";
@@ -95,7 +97,7 @@ public class DataFetcher {
                 final int roadNumber = Integer.parseInt(rowAsMap.get("TIE"));
                 final Double x = Double.parseDouble(rowAsMap.get("Y"));
                 final Double y = Double.parseDouble(rowAsMap.get("X"));
-                final CoordinateNode coord = coordinateConverter.getProjectedCoordinates(new CoordinateNode(x, y));
+                final CoordinateNode coord = coordinateConverter.getProjectedCoordinates(x, y);
 
                 final StationInfo info = new StationInfo(id, tsaNimi, tieNimiFi, roadNumber, coord);
                 stationGroupping.add(coord, info);
@@ -114,12 +116,43 @@ public class DataFetcher {
         final RoadWeatherResponse response = weatherClient.getRoadWeather();
         if(response != null) {
             updateCaches(response);
+            calculateWarnings();
         }
     }
 
-    private void updateCaches(final RoadWeatherResponse response) {
-        final HashMap<Long, WeatherStationData> map = new HashMap<>(response.getRoadweatherdata().getRoadweather().size());
+    private void calculateWarnings(){
         final HashMap<Long, List<Warning>> warningMap = new HashMap<>();
+        final Map<Long, List<StationInfo>> groupping = stationGroupping.getStationGroups();
+        final Map<Long, Pair<WeatherStationData, RoadWeatherType>> cacheData = cache.getCacheData();
+
+        for(final HashMap.Entry<Long, List<StationInfo>> entry : groupping.entrySet()) {
+            final List<RoadWeatherType> data = CollectionUtils.mapWithoutNulls(entry.getValue(),
+                    new CollectionUtils.Mapper<RoadWeatherType, StationInfo>() {
+                @Override
+                public RoadWeatherType map(final StationInfo stationInfo) {
+                    if(stationInfo == null){
+                        return null;
+                    }
+                    final Pair<WeatherStationData, RoadWeatherType> type = cacheData.get(stationInfo.getId());
+                    return type != null ? type.getRight() : null;
+                }
+            });
+            if(entry.getKey() == null || data == null){
+                log.warn("Null value in cache");
+                continue;
+            }
+            final List<Warning> warnings = warningIssuer.calculateWarnings(entry.getKey(), data);
+            if(!org.springframework.util.CollectionUtils.isEmpty(warnings)) {
+                log.info(entry.getKey() + " Issued warnings " + warnings);
+            }
+            warningMap.put(entry.getKey(), warnings);
+        }
+        warningCache.setCacheData(warningMap);
+    }
+
+    private void updateCaches(final RoadWeatherResponse response) {
+        final HashMap<Long, Pair<WeatherStationData, RoadWeatherType>> map = new HashMap<>(response.getRoadweatherdata().getRoadweather().size());
+
         for (final RoadWeatherType data : response.getRoadweatherdata().getRoadweather()) {
 
             final Precipitation precipitation = Precipitation.parse(data.getPrecipitation());
@@ -130,11 +163,8 @@ public class DataFetcher {
                     data.getAveragewindspeed(), data.getMaxwindspeed(), data.getVisibilitymeters(), data.getDewpoint(),
                     data.getRoaddewpointdifference(), data.getHumidity(), data.getWinddirection(), precipitation, data.getPrecipitationintensity(),
                     data.getPrecipitationsum(), precipitationType, roadCondition, data.getSunup());
-            map.put(data.getStationid().longValue(), wsd);
-
-            //warningMap.put(data.getStationid().longValue(), warningIssuer.calculateWarnings(data));
+            map.put(data.getStationid().longValue(), Pair.instance(wsd, data));
         }
         cache.setCacheData(map);
-        warningCache.setCacheData(warningMap);
     }
 }

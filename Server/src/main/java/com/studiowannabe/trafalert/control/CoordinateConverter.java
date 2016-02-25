@@ -19,12 +19,11 @@ public class CoordinateConverter {
         transformer = coordinateTransformFactory.createTransform(coordinateTransformFrom, coordinateTransformTo);
     }
 
-    public CoordinateNode getProjectedCoordinates(final CoordinateNode node) {
+    public CoordinateNode getProjectedCoordinates(final Double x, final Double y) {
         ProjCoordinate from = new ProjCoordinate();
         ProjCoordinate to = new ProjCoordinate();
-        from.x = node.getX();
-        from.y = node.getY();
-
+        from.x = x;
+        from.y = y;
         transformer.transform(from, to);
         return new CoordinateNode(to.x, to.y);
     }

@@ -65,7 +65,7 @@ public class MainController {
 
     @RequestMapping(value = "/info/{region}", method = RequestMethod.POST, produces = "application/json")
     public String fullInfoForRegion(@PathVariable(value = "region") final Long region) throws Exception {
-        final WeatherStationData wsd = cache.getCacheData().get(region);
+        final WeatherStationData wsd = cache.getCacheData().get(region).getLeft();
         final List<Warning> warnings = warningCache.getCacheData().get(region);
         log.info("Station " + wsd);
         final WeatherInfo wi = new WeatherInfo(wsd.getStationId(), wsd, warnings);
@@ -88,12 +88,13 @@ public class MainController {
     }
 
     private WeatherStationData getWeatherForRegion(final long region) {
-        return cache.getCacheData().get(region);
+        return cache.getCacheData().get(region).getLeft();
     }
 
     private List<WeatherInfo> getAllStationsAndWarnings() {
         final List<WeatherInfo> infos = new ArrayList<WeatherInfo>();
-        final Collection<WeatherStationData> datas = cache.getCacheData().values();
+        final Collection<WeatherStationData> datas =
+                cache.getCacheData().values().stream().map(pair -> pair.getLeft()).collect(Collectors.toList());
         for(final WeatherStationData data : datas) {
             final List<Warning> warnings = warningCache.getCacheData().get(data.getStationId());
             final WeatherInfo wi = new WeatherInfo(data.getStationId(), data, warnings);
@@ -104,7 +105,8 @@ public class MainController {
 
     private List<WeatherInfo> getAllStationsWithWarnings() {
         final List<WeatherInfo> infos = new ArrayList<WeatherInfo>();
-        final Collection<WeatherStationData> datas = cache.getCacheData().values();
+        final Collection<WeatherStationData> datas =
+                cache.getCacheData().values().stream().map(pair -> pair.getLeft()).collect(Collectors.toList());
         for(final WeatherStationData data : datas) {
             final List<Warning> warnings = warningCache.getCacheData().get(data.getStationId());
             if(!CollectionUtils.isEmpty(warnings)) {
