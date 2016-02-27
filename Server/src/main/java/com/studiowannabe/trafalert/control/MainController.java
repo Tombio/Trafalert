@@ -111,15 +111,21 @@ public class MainController {
     }
 
     private List<WeatherInfo> getAllStationsWithWarnings() {
-        final List<WeatherInfo> infos = new ArrayList<WeatherInfo>();
-        for(final Long id : stationGroupping.getStationGroups().keySet()) {
-            final List<Warning> warnings = warningCache.getCacheData().get(id);
-            if(!CollectionUtils.isEmpty(warnings)) {
-                final WeatherInfo wi = new WeatherInfo(id, null, warnings);
-                infos.add(wi);
+        try {
+            final List<WeatherInfo> infos = new ArrayList<WeatherInfo>();
+            for (final Long id : stationGroupping.getStationGroups().keySet()) {
+                final List<Warning> warnings = warningCache.getCacheData().get(id);
+                if (!CollectionUtils.isEmpty(warnings)) {
+                    final WeatherInfo wi = new WeatherInfo(id, null, warnings);
+                    infos.add(wi);
+                }
             }
+            return infos;
         }
-        return infos;
+        catch (Exception e) {
+            log.error("Error fetching warnings", e);
+            throw e;
+        }
     }
 
     private List<Long> getStationIdsWithWarning() {
