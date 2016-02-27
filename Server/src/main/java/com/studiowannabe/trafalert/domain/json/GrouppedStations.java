@@ -28,10 +28,6 @@ public @Data class GrouppedStations {
         private final Long groupId;
         @JsonProperty(value = "stations")
         private final List<StationInfo> stationInfoList;
-        @JsonProperty(value = "tsa_name")
-        private final String getTsaName(){
-            return stationInfoList.get(0).getTsaName();
-        }
         @JsonProperty(value = "name")
         private final String getName(){
             return stationInfoList.get(0).getNameFi();
