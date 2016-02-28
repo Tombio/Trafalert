@@ -66,31 +66,6 @@ public class DataFetcher {
                     .readValues(in);
             while (it.hasNext()) {
                 Map<String, String> rowAsMap = it.next();
-                /**
-                 * {
-                 * NUMERO=2011,
-                 * TSA_NIMI=vt9_Mellilä_R,
-                 * NIMI_FI=Tie 9 Mellilä,
-                 * NIMI_SE=Väg 9 Mellilä,
-                 * NIMI_EN=Road 9 Mellilä,
-                 * TIE=9,
-                 * TIEOSA=112,
-                 * ETAISYYS=3290,
-                 * X=6745554, Y=275720, KORKEUS=91, KUNTAKOODI=430, KUNNAN_NIMI=Loimaa, MAAKUNNAN_NIMI=Varsinais-Suomi}
-                 *
-                 * 311=[
-                 *  StationInfo(id=12022, tsaNimi=vt4_Haaransilta_R, nimiFi=Tie 4 Liminka, Haaransilta,
-                 *      coordinateNode=CoordinateNode{x=25.486298321621184, y=64.81577961377776}),
-                 *  StationInfo(id=12023, tsaNimi=vt4_Haaransilta_O, nimiFi=Tie 4 Liminka, Haaransilta,
-                 *  coordinateNode=CoordinateNode{x=25.486298321621184, y=64.81577961377776})],
-                 *
-                 * 312=[
-                 *  StationInfo(id=12001, tsaNimi=vt4_Ouluntulli_R, nimiFi=Tie 4 Kempele, Ouluntulli,
-                 *      coordinateNode=CoordinateNode{x=25.532109883841848, y=64.94740628492444}),
-                 *  StationInfo(id=12024, tsaNimi=vt4_Ouluntulli_O, nimiFi=Tie 4 Ouluntulli,
-                 *      coordinateNode=CoordinateNode{x=25.532109883841848, y=64.94740628492444})]
-                 *
-                 */
                 final Long id = Long.parseLong(rowAsMap.get("NUMERO"));
                 final String tsaNimi = rowAsMap.get("TSA_NIMI");
                 final String tieNimiFi = rowAsMap.get("NIMI_FI");
@@ -98,7 +73,6 @@ public class DataFetcher {
                 final Double x = Double.parseDouble(rowAsMap.get("Y"));
                 final Double y = Double.parseDouble(rowAsMap.get("X"));
                 final CoordinateNode coord = coordinateConverter.getProjectedCoordinates(x, y);
-
                 final StationInfo info = new StationInfo(id, tsaNimi, tieNimiFi, roadNumber, coord);
                 stationGroupping.add(coord, info);
             }
@@ -162,6 +136,7 @@ public class DataFetcher {
                     data.getAveragewindspeed(), data.getMaxwindspeed(), data.getVisibilitymeters(), data.getDewpoint(),
                     data.getRoaddewpointdifference(), data.getHumidity(), data.getWinddirection(), precipitation, data.getPrecipitationintensity(),
                     data.getPrecipitationsum(), precipitationType, roadCondition, data.getSunup());
+
             map.put(data.getStationid().longValue(), Pair.instance(wsd, data));
         }
         cache.setCacheData(map);

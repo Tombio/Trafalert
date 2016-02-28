@@ -99,7 +99,7 @@ public class WarningIssuer {
     }
 
     private Warning createWindWarning(final Long groupId, final List<RoadWeatherType> data) {
-        final BigDecimal avgWind = countAverage(data, RoadWeatherType::getAveragewindspeed);
+        final BigDecimal avgWind = WeatherUtil.countAverage(data, RoadWeatherType::getAveragewindspeed);
         if(avgWind != null && avgWind.intValue() >= WIND_WARNING_SPEED) {
            final Warning cw = existingWarning(Warning.WarningType.STRONG_WIND, groupId);
             if(cw != null) {
@@ -113,7 +113,7 @@ public class WarningIssuer {
     }
 
     private Warning createGustWarning(final Long groupId, final List<RoadWeatherType> data) {
-        final BigDecimal maxWind = countAverage(data, RoadWeatherType::getMaxwindspeed);
+        final BigDecimal maxWind = WeatherUtil.countAverage(data, RoadWeatherType::getMaxwindspeed);
         if(maxWind != null && maxWind.intValue() >= WIND_WARNING_SPEED) {
             final Warning cw = existingWarning(Warning.WarningType.STRONG_WIND_GUSTS, groupId);
             if(cw != null) {
@@ -127,7 +127,7 @@ public class WarningIssuer {
     }
 
     private Warning createVisibilityWarning(Long groupId, final List<RoadWeatherType> data) {
-        final BigDecimal vis = countAverage(data, RoadWeatherType::getVisibilitymeters);
+        final BigDecimal vis = WeatherUtil.countAverage(data, RoadWeatherType::getVisibilitymeters);
         if(vis != null && vis.intValue() < VISIBILITY_WARNING_METERS) {
             final Warning cw = existingWarning(Warning.WarningType.POOR_VISIBILITY, groupId);
             if(cw != null) {
@@ -144,15 +144,15 @@ public class WarningIssuer {
         // road surface dew point and road surface temperature both need to be negative for
         // Also air needs to be above freezing... maybe..
         // black ice to form... at least to my current understanding
-        final BigDecimal roadDew = countAverage(data, RoadWeatherType::getRoaddewpointdifference);
-        final BigDecimal roadTemp = getMean(
-                countAverage(data, RoadWeatherType::getRoadsurfacetemperature1),
-                countAverage(data, RoadWeatherType::getRoadsurfacetemperature2),
-                countAverage(data, RoadWeatherType::getRoadsurfacetemperature3));
+        final BigDecimal roadDew = WeatherUtil.countAverage(data, RoadWeatherType::getRoaddewpointdifference);
+        final BigDecimal roadTemp = WeatherUtil.getMean(
+                WeatherUtil.countAverage(data, RoadWeatherType::getRoadsurfacetemperature1),
+                WeatherUtil.countAverage(data, RoadWeatherType::getRoadsurfacetemperature2),
+                WeatherUtil.countAverage(data, RoadWeatherType::getRoadsurfacetemperature3));
 
-        final BigDecimal airTemp = getMean(
-                countAverage(data, RoadWeatherType::getAirtemperature1),
-                countAverage(data, RoadWeatherType::getAirtemperature3));
+        final BigDecimal airTemp = WeatherUtil.getMean(
+                WeatherUtil.countAverage(data, RoadWeatherType::getAirtemperature1),
+                WeatherUtil.countAverage(data, RoadWeatherType::getAirtemperature3));
         if(roadDew == null || roadTemp == null || airTemp == null) {
             return null;
         }
@@ -186,41 +186,4 @@ public class WarningIssuer {
         }
         return null;
     }
-
-    protected static BigDecimal getMean(final BigDecimal... vals) {
-        int count = 0;
-        BigDecimal sum = new BigDecimal(0);
-
-        for(final BigDecimal d : vals){
-            if(d == null) {
-                continue;
-            }
-            sum = sum.add(d);
-            count++;
-        }
-
-        if(count == 0){
-            return null;
-        }
-
-        return sum.divide(new BigDecimal(count), BigDecimal.ROUND_HALF_UP);
-    }
-
-    private static BigDecimal countAverage(final List<RoadWeatherType> data, final Function<RoadWeatherType, BigDecimal> func) {
-        int count = 0;
-        BigDecimal sum = new BigDecimal(0);
-        for(final RoadWeatherType datum : data){
-            final BigDecimal bd = func.apply(datum);
-            if(bd == null){
-                continue;
-            }
-            sum = sum.add(bd);
-            count++;
-        }
-        if(count == 0){
-            return null; // No relevant data available
-        }
-        return sum.divide(new BigDecimal(count), BigDecimal.ROUND_HALF_UP);
-    }
-
 }
