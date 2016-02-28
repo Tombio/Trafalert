@@ -33,14 +33,17 @@ public class MainController {
     private final WarningCache warningCache;
     private final ObjectMapper objectMapper;
     private final StationGroupping stationGroupping;
+    private final WeatherCalculator calculator;
 
     @Autowired
     public MainController(final WeatherDataCache cache, final WarningCache warningCache,
-                          final ObjectMapper objectMapper, final StationGroupping stationGroupping) {
+                          final ObjectMapper objectMapper, final StationGroupping stationGroupping,
+                          final WeatherCalculator calculator) {
         this.cache = cache;
         this.warningCache = warningCache;
         this.objectMapper = objectMapper;
         this.stationGroupping = stationGroupping;
+        this.calculator = calculator;
     }
 
     @RequestMapping(value = "/warning/{region}/{version}", method = RequestMethod.POST, produces = "application/json")
@@ -70,7 +73,7 @@ public class MainController {
     @RequestMapping(value = "/info/{region}", method = RequestMethod.POST, produces = "application/json")
     public String fullInfoForRegion(@PathVariable(value = "region") final Long region) throws Exception {
         log.info("Siis tä");
-        final WeatherStationData wsd = cache.getCacheData().get(region).getLeft();
+        final WeatherStationData wsd = getWeatherForRegion(region);
         log.info("Vittu");
         final List<Warning> warnings = warningCache.getCacheData().get(region);
         log.info("Persehelvetti");
@@ -99,7 +102,7 @@ public class MainController {
     }
 
     private WeatherStationData getWeatherForRegion(final long region) {
-        return cache.getCacheData().get(region).getLeft();
+        return calculator.calculateData(region);
     }
 
     private List<WeatherInfo> getAllStationsAndWarnings() {

@@ -1,18 +1,23 @@
 package com.studiowannabe.trafalert.control;
 
-import com.studiowannabe.trafalert.domain.StationInfo;
-import com.studiowannabe.trafalert.domain.WeatherStationData;
+import com.studiowannabe.trafalert.domain.*;
 import com.studiowannabe.trafalert.domain.warning.Warning;
 import com.studiowannabe.trafalert.util.Pair;
+import com.studiowannabe.trafalert.wsdl.RoadWeather;
 import com.studiowannabe.trafalert.wsdl.RoadWeatherType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import static com.studiowannabe.trafalert.control.WeatherUtil.countAverage;
+import static com.studiowannabe.trafalert.control.WeatherUtil.getMean;
+import static com.studiowannabe.trafalert.control.WeatherUtil.getFirst;
 
 /**
  * Created by Tomi on 28/02/16.
@@ -28,20 +33,64 @@ public class WeatherCalculator {
     }
 
     public WeatherStationData calculateData(final Long groupId){
-        final HashMap<Long, List<Warning>> warningMap = new HashMap<>();
         final Map<Long, List<StationInfo>> groupping = StationGroupping.stationGroups;
         final Map<Long, Pair<WeatherStationData, RoadWeatherType>> cacheData = cache.getCacheData();
 
         final List<StationInfo> relevantStations = groupping.get(groupId);
-        final List<RoadWeatherType> types =
-                relevantStations.stream().map(stationInfo -> cacheData.get(stationInfo.getId())).
-                        collect(Collectors.toList());
+        final List<RoadWeatherType> types = new ArrayList<>(relevantStations.size());
+        for(final StationInfo si : relevantStations){
+            types.add(cacheData.get(si.getId()).getRight());
+        }
 
         if(!org.springframework.util.CollectionUtils.isEmpty(relevantStations)){
-            final BigDecimal airTemp = WeatherUtil.getMean(
-                    WeatherUtil.countAverage(types, RoadWeatherType::getAirtemperature1),
+            final BigDecimal airTemp = getMean(
+                    countAverage(types, RoadWeatherType::getAirtemperature1),
+                    countAverage(types, RoadWeatherType::getAirtemperature3));
+            final BigDecimal roadSurfaceTemp = getMean(
+                    countAverage(types, RoadWeatherType::getRoadsurfacetemperature1),
+                    countAverage(types, RoadWeatherType::getRoadsurfacetemperature2),
+                    countAverage(types, RoadWeatherType::getRoadsurfacetemperature3));
+            final BigDecimal averageWindSpeed = countAverage(types, RoadWeatherType::getAveragewindspeed);
+            final BigDecimal maxWindSpeed = countAverage(types, RoadWeatherType::getMaxwindspeed);
+            final BigDecimal visibility = countAverage(types, RoadWeatherType::getVisibilitymeters);
+            final BigDecimal dewPoint = countAverage(types, RoadWeatherType::getDewpoint);
+            final BigDecimal roadSurfaceDewPointDifference = countAverage(types, RoadWeatherType::getRoaddewpointdifference);
+            final BigDecimal humidity = getMean(
+                    countAverage(types, RoadWeatherType::getHumidity),
+                    countAverage(types, RoadWeatherType::getHumidity3));
+            final BigDecimal windDirection = countAverage(types, RoadWeatherType::getWinddirection);
 
-            return new WeatherStationData(groupId, )
+
+            final Precipitation precipitation = Precipitation.parse(getFirst(types, RoadWeatherType::getPrecipitation));
+            final PrecipitationType precipitationType = PrecipitationType.parse(getFirst(types, RoadWeatherType::getPrecipitationtype));
+            final BigDecimal precipitationIntensity = countAverage(types, RoadWeatherType::getPrecipitationintensity);
+            final BigDecimal precipitationSum = countAverage(types, RoadWeatherType::getPrecipitationsum);
+            final RoadCondition roadCondition = RoadCondition.parse(getFirst(types, RoadWeatherType::getRoadsurfaceconditions1));
+            final BigDecimal sunUp = getFirst(types, RoadWeatherType::getSunup);
+
+            /*
+            final Long stationId;
+            final BigDecimal airTemperature;
+            final BigDecimal roadSurfaceTemperature;
+            final BigDecimal averageWindSpeed;
+            final BigDecimal maxWindSpeed;
+            final BigDecimal visibility;
+            final BigDecimal dewPoint;
+            final BigDecimal roadSurfaceDewPointDifference;
+            final BigDecimal humidity;
+            final BigDecimal windDirection;
+            final Precipitation precipitation;
+            final BigDecimal precipitationIntensity;
+            final BigDecimal precipitationSum;
+            final PrecipitationType precipitationType;
+            final RoadCondition roadCondition;
+            final BigDecimal sunUp;
+             */
+
+
+            return new WeatherStationData(groupId, airTemp, roadSurfaceTemp, averageWindSpeed, maxWindSpeed, visibility, dewPoint,
+                    roadSurfaceDewPointDifference, humidity, windDirection, precipitation, precipitationIntensity, precipitationSum,
+                    precipitationType, roadCondition, sunUp);
         }
         throw new IllegalArgumentException("Unknown station group " + groupId);
     }

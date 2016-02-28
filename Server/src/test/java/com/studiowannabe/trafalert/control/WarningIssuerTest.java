@@ -40,7 +40,7 @@ public class WarningIssuerTest {
 
     @Test
     public void testMean(){
-        final BigDecimal bd = WarningIssuer.getMean(
+        final BigDecimal bd = WeatherUtil.getMean(
                 new BigDecimal(1.000007), new BigDecimal(1.100003), new BigDecimal(1.200005));
         assertEquals(1.1, bd.doubleValue(), 1);
 

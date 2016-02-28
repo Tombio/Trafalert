@@ -11,6 +11,16 @@ import java.util.function.Function;
  */
 public class WeatherUtil {
 
+    protected static BigDecimal getFirst(final List<RoadWeatherType> data, final Function<RoadWeatherType, BigDecimal> func) {
+        for (final RoadWeatherType datum : data) {
+            final BigDecimal bd = func.apply(datum);
+            if (bd != null) {
+                return bd;
+            }
+        }
+        return null; // No relevant data available
+    }
+
     protected static BigDecimal countAverage(final List<RoadWeatherType> data, final Function<RoadWeatherType, BigDecimal> func) {
         int count = 0;
         BigDecimal sum = new BigDecimal(0);
@@ -28,7 +38,7 @@ public class WeatherUtil {
         return sum.divide(new BigDecimal(count), BigDecimal.ROUND_HALF_UP);
     }
 
-    protected static BigDecimal getMean(final BigDecimal... vals) {
+    protected static BigDecimal getMean(final BigDecimal ... vals) {
         int count = 0;
         BigDecimal sum = new BigDecimal(0);
 
