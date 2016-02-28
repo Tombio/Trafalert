@@ -72,11 +72,8 @@ public class MainController {
 
     @RequestMapping(value = "/info/{region}", method = RequestMethod.POST, produces = "application/json")
     public String fullInfoForRegion(@PathVariable(value = "region") final Long region) throws Exception {
-        log.info("Siis tä");
         final WeatherStationData wsd = getWeatherForRegion(region);
-        log.info("Vittu");
         final List<Warning> warnings = warningCache.getCacheData().get(region);
-        log.info("Persehelvetti");
         final WeatherInfo wi = new WeatherInfo(wsd.getStationId(), wsd, warnings);
         return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(wi);
     }
