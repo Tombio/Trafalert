@@ -21,6 +21,7 @@ class DataFetcher {
     
     func updateWeatherInfo(station: Int, callback: (WeatherStationData) -> Void) {
         let address = String(format: "%@%@/%d", arguments:[DataFetcher.server, DataFetcher.infoEndPoint, station])
+        debugPrint("Address \(address)")
         Alamofire.request(.POST, address, parameters: nil,
             headers: ["API_KEY": DataFetcher.apiKey]).responseJSON() {
                 (response) in
@@ -51,8 +52,6 @@ class DataFetcher {
         Alamofire.request(.POST, address, parameters: nil,
             headers: ["API_KEY": DataFetcher.apiKey]).responseJSON() {
                 (response) in
-                    debugPrint(response.result.value
-                )
                 if let stations = Mapper<WeatherStationGroup>().mapArray(response.result.value) {
                     debugPrint("Stations \(stations.count)")
                     callback(stations)

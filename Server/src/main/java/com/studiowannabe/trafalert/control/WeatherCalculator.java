@@ -59,34 +59,12 @@ public class WeatherCalculator {
                     countAverage(types, RoadWeatherType::getHumidity),
                     countAverage(types, RoadWeatherType::getHumidity3));
             final BigDecimal windDirection = countAverage(types, RoadWeatherType::getWinddirection);
-
-
             final Precipitation precipitation = Precipitation.parse(getFirst(types, RoadWeatherType::getPrecipitation));
             final PrecipitationType precipitationType = PrecipitationType.parse(getFirst(types, RoadWeatherType::getPrecipitationtype));
             final BigDecimal precipitationIntensity = countAverage(types, RoadWeatherType::getPrecipitationintensity);
             final BigDecimal precipitationSum = countAverage(types, RoadWeatherType::getPrecipitationsum);
             final RoadCondition roadCondition = RoadCondition.parse(getFirst(types, RoadWeatherType::getRoadsurfaceconditions1));
             final BigDecimal sunUp = getFirst(types, RoadWeatherType::getSunup);
-
-            /*
-            final Long stationId;
-            final BigDecimal airTemperature;
-            final BigDecimal roadSurfaceTemperature;
-            final BigDecimal averageWindSpeed;
-            final BigDecimal maxWindSpeed;
-            final BigDecimal visibility;
-            final BigDecimal dewPoint;
-            final BigDecimal roadSurfaceDewPointDifference;
-            final BigDecimal humidity;
-            final BigDecimal windDirection;
-            final Precipitation precipitation;
-            final BigDecimal precipitationIntensity;
-            final BigDecimal precipitationSum;
-            final PrecipitationType precipitationType;
-            final RoadCondition roadCondition;
-            final BigDecimal sunUp;
-             */
-
 
             return new WeatherStationData(groupId, airTemp, roadSurfaceTemp, averageWindSpeed, maxWindSpeed, visibility, dewPoint,
                     roadSurfaceDewPointDifference, humidity, windDirection, precipitation, precipitationIntensity, precipitationSum,

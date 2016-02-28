@@ -39,16 +39,14 @@ class WeatherStationGroup: Mappable {
     var name = ""
     var location: CLLocation?
     
-    required init?(_ map: Map) {
-        debugPrint("map \(map)")
-    }
+    required init?(_ map: Map) {}
     
     func mapping(map: Map) {
         id = map["group_id"].currentValue as! Int
-        roadNumber <- map["road_number"]
+        roadNumber = map["road_number"].currentValue as! Int
         name <- map["name"]
-        location = CLLocation(latitude: map["coordinates.x"].currentValue as! Double,
-            longitude: map["coordinates.y"].currentValue as! Double)
+        location = CLLocation(latitude: map["coordinates.y"].currentValue as! Double,
+            longitude: map["coordinates.x"].currentValue as! Double)
         
         if let stations = Mapper<WeatherStation>().mapArray(map["stations"]) {
             self.stations = stations
@@ -56,6 +54,5 @@ class WeatherStationGroup: Mappable {
         else {
             stations = Array<WeatherStation>()
         }
-        debugPrint("id: \(id) Name: \(name)")
     }
 }

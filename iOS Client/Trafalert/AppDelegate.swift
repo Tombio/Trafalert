@@ -114,7 +114,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         var max = version
         for w in currentData.warnings {
             if version < w.version {
-                talk("Varoitus: Tielle numero \(currentStation!.roadNumber): \(w.warningType.value.humanReadable())")
+                talk("Varoitus: \(currentStation!.name): \(w.warningType.value.humanReadable())")
                 Notifier.sendNotification(w, station: currentStation!, warningCount: currentData.warnings.count)
                 max = w.version > max ? w.version : max
             }
