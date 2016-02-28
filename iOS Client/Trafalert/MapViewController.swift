@@ -25,10 +25,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         appDelegate.warningStations.observe { value in
             self.mapView.removeAnnotations(self.mapView.annotations)
             for warn in value.collection {
-                if let ws = WeatherStationList.weatherStation(warn.stationId) {
+                if let ws = self.appDelegate.stationGroupForId(warn.stationId) {
                     let annotation = WeatherStationAnnotation(
                         title: ws.name, subtitle: self.createSubs(warn),
-                        stationName: ws.name, active: true, coord: ws.coordinate)
+                        stationName: ws.name, active: true, coord: ws.location!.coordinate)
                     self.mapView.addAnnotation(annotation)
                 }
             }

@@ -9,14 +9,28 @@
 import Foundation
 import MapKit
 import ReactiveKit
+import ObjectMapper
 
-struct WeatherStation {
+class WeatherStation: Mappable {
     
-    let id: Int
-    let name: String
-    let roadNumber: Int
-    let location: CLLocation
+    var id = 0 // id
+    var name = "" // nameFi
+    var roadNumber = 0 // roadNumber
+    var location = CLLocation(latitude: 0, longitude: 0) // coordinateNode (x,y)
     
+    required init?(_ map: Map) {
+
+    }
+    
+    func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        roadNumber <- map["roadNumber"]
+        let x = map["coordinate.x"].currentValue as! Double
+        let y = map["coordinate.y"].currentValue as! Double
+        location = CLLocation(latitude: x, longitude: y)
+    }
+
     var coordinate: CLLocationCoordinate2D {
         return self.location.coordinate
     }

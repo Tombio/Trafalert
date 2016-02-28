@@ -22,6 +22,7 @@ class WeatherStationData: Mappable {
     func mapping(map: Map) {
         stationId = map["stationId"].currentValue as? Int
         info <- map["weatherData"]
+        debugPrint(map["warnings"].currentValue)
         if let warn = Mapper<Warning>().mapArray(map["warnings"].currentValue) {
             warnings.replace(warn)
         }

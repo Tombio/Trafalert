@@ -22,10 +22,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     // Need to clean this mess at some point
     var currentWeather  = WeatherInfo()
     var currentWarnings = Array<Warning>()
-    var currentStation: WeatherStation?
+    var currentStation: WeatherStationGroup?
     var currentData = WeatherStationData()
     var currentLocation = Observable(CLLocation(latitude: 0.0, longitude: 0.0))
     var warningStations = ObservableCollection(Array<WarningInfo>())
+    var weatherStationGroups = Array<WeatherStationGroup>()
   
     var lastUpdateTime: NSDate?
     var spokenVersions = [Int:Int]() // [id:lastVersion]
@@ -51,8 +52,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         locationManager.delegate = self
         locationManager.activityType = .AutomotiveNavigation
         locationManager.desiredAccuracy = 500
-        locationManager.startUpdatingLocation()
         Fabric.with([Crashlytics.self])
+        dataFetcher.fetchStationMetaData(stationMetaSetter)
+        
         return true
     }
 
@@ -83,6 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
 
     func applicationWillTerminate(application: UIApplication) {
+        
     }
     
     func checkWarningsAndTalk(){
@@ -101,6 +104,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             else {
                 spokenVersions[id] = speakFromVersion(0)
             }
+        }
+        else {
+            debugPrint("No warnings")
         }
     }
     
@@ -141,17 +147,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         self.warningStations.replace(stations)
     }
     
+    func stationMetaSetter(stations: Array<WeatherStationGroup>) {
+        debugPrint("Meta data received. Start updating location")
+        self.weatherStationGroups = stations
+        locationManager.startUpdatingLocation()
+    }
+    
     // MARK: CLLocationManagerDelegate
     
     func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
-      currentLocation.value = newLocation
-      if timeToUpdate(){
-        let nearestStation = WeatherStationList.nearestStation(newLocation)
-        currentStation = nearestStation
-        dataFetcher.updateWeatherInfo(nearestStation.id, callback: setWeather)
-        dataFetcher.updateWarningStations(warningStations)
-        lastUpdateTime = NSDate()
-      }
+        currentLocation.value = newLocation
+        if weatherStationGroups.isEmpty {
+            return
+        }
+        if timeToUpdate(){
+            let nearestStation = findNearestStation()
+            currentStation = nearestStation
+            dataFetcher.updateWeatherInfo(nearestStation.id, callback: setWeather)
+            dataFetcher.updateWarningStations(warningStations)
+            lastUpdateTime = NSDate()
+        }
+    }
+    
+    func findNearestStation() -> WeatherStationGroup {
+        var distance = Double.infinity
+        var station = weatherStationGroups.first!
+        for wsg in weatherStationGroups {
+            let d = wsg.location!.distanceFromLocation(currentLocation.value)
+            if d < distance {
+                distance = d
+                station = wsg
+            }
+        }
+        return station
+    }
+    
+    func stationGroupForId(id: Int) -> WeatherStationGroup? {
+        for w in weatherStationGroups {
+            if w.id == id {
+                return w
+            }
+        }
+        return nil
     }
     
     /**

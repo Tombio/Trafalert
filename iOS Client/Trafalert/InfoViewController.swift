@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class InfoViewController: UIViewController, UIWebViewDelegate {
-
+    
     
     @IBOutlet weak var webView: UIWebView!
     

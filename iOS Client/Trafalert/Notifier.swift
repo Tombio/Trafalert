@@ -11,7 +11,7 @@ import UIKit
 
 class Notifier {
 
-    static func sendNotification(warning: Warning, station: WeatherStation, warningCount: Int) {
+    static func sendNotification(warning: Warning, station: WeatherStationGroup, warningCount: Int) {
         let localNotification = UILocalNotification()
         localNotification.fireDate = NSDate(timeIntervalSinceNow: 5)
         localNotification.alertTitle = warning.warningType.value.humanReadable()

@@ -17,6 +17,7 @@ class DataFetcher {
     static let infoEndPoint = "/info" // get weather + warnings
     static let weatherEndPoint = "/weather" // get weather only
     static let warningEndPoint = "/warning" // get warnings only
+    static let stationMetaEndPoint = "/meta/station"
     
     func updateWeatherInfo(station: Int, callback: (WeatherStationData) -> Void) {
         let address = String(format: "%@%@/%d", arguments:[DataFetcher.server, DataFetcher.infoEndPoint, station])
@@ -29,7 +30,7 @@ class DataFetcher {
                     }
                 }
                 else {
-                    debugPrint("Failed to update info \(response.result.error)")
+                    debugPrint("Failed to update info \(address) => \(response.result.error)")
                 }
         }
     }
@@ -43,7 +44,23 @@ class DataFetcher {
                     callback(warnings)
                 }
         }
-
+    }
+    
+    func fetchStationMetaData(callback: (Array<WeatherStationGroup>) -> Void) {
+        let address = String(format: "%@%@", arguments:[DataFetcher.server, DataFetcher.stationMetaEndPoint])
+        Alamofire.request(.POST, address, parameters: nil,
+            headers: ["API_KEY": DataFetcher.apiKey]).responseJSON() {
+                (response) in
+                    debugPrint(response.result.value
+                )
+                if let stations = Mapper<WeatherStationGroup>().mapArray(response.result.value) {
+                    debugPrint("Stations \(stations.count)")
+                    callback(stations)
+                }
+                else {
+                    fatalError("Station fetching failed")
+                }
+        }
     }
     
     static var apiKey: String {

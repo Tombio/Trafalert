@@ -131,7 +131,7 @@
                                                     </mask>
                                                 </variation>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="jK3-bz-4Do" userLabel="rainLbl">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.29999999999999999" translatesAutoresizingMaskIntoConstraints="NO" id="jK3-bz-4Do" userLabel="rainLbl">
                                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="jK3-bz-4Do" secondAttribute="height" multiplier="35:17" id="j6F-tO-3kv"/>
@@ -156,7 +156,7 @@
                                             <constraint firstItem="Bu2-HZ-fue" firstAttribute="height" secondItem="hIC-Ie-5s9" secondAttribute="height" multiplier="0.7" id="1hr-6t-Mdq"/>
                                             <constraint firstItem="jK3-bz-4Do" firstAttribute="leading" secondItem="Bu2-HZ-fue" secondAttribute="trailing" constant="8" id="BRQ-kz-xyx"/>
                                             <constraint firstItem="jK3-bz-4Do" firstAttribute="centerY" secondItem="hIC-Ie-5s9" secondAttribute="centerY" id="D22-zk-DpL"/>
-                                            <constraint firstItem="Bu2-HZ-fue" firstAttribute="leading" secondItem="hIC-Ie-5s9" secondAttribute="leading" constant="16" id="LrR-s2-Oz3"/>
+                                            <constraint firstItem="Bu2-HZ-fue" firstAttribute="leading" secondItem="hIC-Ie-5s9" secondAttribute="leading" constant="10" id="LrR-s2-Oz3"/>
                                             <constraint firstItem="Bu2-HZ-fue" firstAttribute="centerY" secondItem="hIC-Ie-5s9" secondAttribute="centerY" id="TRa-Kb-0ny"/>
                                         </constraints>
                                         <variation key="default">
@@ -189,7 +189,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Go5-53-NJD" userLabel="Visibility">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bav-mK-ZYT" userLabel="visibilityLbl">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.29999999999999999" translatesAutoresizingMaskIntoConstraints="NO" id="bav-mK-ZYT" userLabel="visibilityLbl">
                                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -239,7 +239,7 @@
                                                     </mask>
                                                 </variation>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Cy8-eC-Ch6" userLabel="windDirectionLbl">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.29999999999999999" translatesAutoresizingMaskIntoConstraints="NO" id="Cy8-eC-Ch6" userLabel="windDirectionLbl">
                                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -360,7 +360,7 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ELY-Wf-eXg" userLabel="locationDebug">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.59999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="ELY-Wf-eXg" userLabel="locationDebug">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
