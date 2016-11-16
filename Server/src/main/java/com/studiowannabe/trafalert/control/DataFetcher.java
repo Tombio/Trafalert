@@ -115,9 +115,6 @@ public class DataFetcher {
                 continue;
             }
             final List<Warning> warnings = warningIssuer.calculateWarnings(entry.getKey(), data);
-            if(!org.springframework.util.CollectionUtils.isEmpty(warnings)) {
-                log.info(entry.getKey() + " Issued warnings " + warnings);
-            }
             warningMap.put(entry.getKey(), warnings);
         }
         warningCache.setCacheData(warningMap);
