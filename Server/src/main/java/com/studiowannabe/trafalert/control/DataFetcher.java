@@ -30,7 +30,8 @@ import java.util.Map;
 public class DataFetcher {
 
     private static final String WEATHER_URL = "http://tie.digitraffic.fi/sujuvuus/ws/roadWeather";
-    private static final String SCHEMA_URL = "https://raw.githubusercontent.com/finnishtransportagency/metadata/master/csv/meta_rws_stations.csv";
+    // private static final String SCHEMA_URL = "https://raw.githubusercontent.com/finnishtransportagency/metadata/master/csv/meta_rws_stations.csv";
+    private static final String SCHEMA_URL = "https://raw.githubusercontent.com/Tombio/metadata/master/csv/meta_rws_stations.csv";
 
     private final WeatherDataCache cache;
     private final WarningCache warningCache;
